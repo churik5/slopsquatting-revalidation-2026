@@ -497,7 +497,9 @@ def main() -> dict:
         "runs_db_wal_bytes": wal.stat().st_size if wal.exists() else None,
         "runs_db_open_mode": "sqlite URI mode=ro",
         "git_head": git("rev-parse", "HEAD"),
-        "git_worktree_dirty": bool(git("status", "--porcelain", "--untracked-files=no")),
+        "git_worktree_dirty": bool(git("status", "--porcelain", "--untracked-files=no", "--", ".",
+                                       ":(exclude)reports/prereg_baseline.json",
+                                       ":(exclude)reports/prereg_baseline.md")),
         "prereg_commit": "686f648", "network": "blocked (socket.socket replaced)",
     }
 
