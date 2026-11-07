@@ -1,0 +1,7 @@
+{
+  "t0_utc": "2026-11-07T11:44:08Z",
+  "git_head": "ed0f815d2be3a6374de105e8253bbecc82cea539",
+  "prereg_sha256": "18067fe753780fe783dab56cbfd6ad3dd193c08c3d30e54af975c6d1fb91c608",
+  "prereg_deviations_sha256": "0d694125266598296cc174dba8f99c7ac81af731b2a03e5c18f5f8bfab927045",
+  "note": "T0 = start of live registry checks, task 1, round 1. Recorded before the first request."
+}
