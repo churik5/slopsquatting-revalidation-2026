@@ -77,6 +77,18 @@ B by number of models:
 | B | `c2c138b6d25b89c48a013fbcd0506e5e896e2c0474bce1efc3c318a15a22c7c6` | `7b17a1c8cebdd049010feb704cac8bfff435d3067a3f6b175eb36a649b24514a` |
 | B4 | `febeba111d8a4735216f06308c3912e9a860bef574d654e428fd701fce82c1be` | `e0fda2cac1aa2828898951e96329e0f10857eab3d3bf92827a411f7ca6994f43` |
 
+### pipreqs mapping matches (before T0, counts only)
+
+`data/reference/pipreqs_mapping.txt` (sha256 `bc02385c473b7ccf…`, 833 normalized import-name keys). name (PEP 503) equals a mapping import-name key (PEP 503); counts only. The EXISTS rule for the mapped distribution is applied after T0 (PREREG-deviations D10).
+
+| Group (pypi) | Names | Match a key | …mapped distribution differs | …mapped distribution same |
+|---|---:|---:|---:|---:|
+| A | 120 | 27 | 27 | 0 |
+| B | 1866 | 28 | 28 | 0 |
+| B4 | 105 | 4 | 4 | 0 |
+
+npm: not applicable (pipreqs maps Python import names to PyPI distributions).
+
 ## 4. A1 candidates in the paper text
 
 Candidates (matches with ±60 chars of context) for manual review: **97** (distinct names: 19). No automatic decision.
@@ -146,6 +158,6 @@ Fisher exact, two-sided, alpha 0.05, power ≥ 0.8, Monte Carlo 20000 simulation
 ## 8. Provenance
 
 - runs.db SHA-256: `ad82fc69d3e16edc6aa85f89e4eed367a778fa412965219c1f92a192fcf9fdcd` (840286208 bytes; WAL 0 bytes; opened with sqlite URI mode=ro; unchanged after the run)
-- Repository HEAD commit at run: `f186d69b7cd6f28b79eba6a48af5e03ac33aac89` (tracked files modified: False)
+- Repository HEAD commit at run: `08b6a74edfa0b2bad3d1a525e3a51f907628b904` (tracked files modified: True)
 - PREREG.md commit: `686f648`
 - network: blocked (socket.socket replaced)

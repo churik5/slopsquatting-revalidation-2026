@@ -313,9 +313,36 @@
     "sizes": "A and B4 inside common strata",
     "test": "Fisher exact, two-sided"
   },
+  "pipreqs_mapping_matches": {
+    "file": "data/reference/pipreqs_mapping.txt",
+    "n_keys_normalized": 833,
+    "npm": "not applicable (pipreqs maps Python import names to PyPI distributions)",
+    "pypi": {
+      "A": {
+        "match_key": 27,
+        "match_key_dist_differs": 27,
+        "match_key_dist_same": 0,
+        "n_group": 120
+      },
+      "B": {
+        "match_key": 28,
+        "match_key_dist_differs": 28,
+        "match_key_dist_same": 0,
+        "n_group": 1866
+      },
+      "B4": {
+        "match_key": 4,
+        "match_key_dist_differs": 4,
+        "match_key_dist_same": 0,
+        "n_group": 105
+      }
+    },
+    "rule": "name (PEP 503) equals a mapping import-name key (PEP 503); counts only. The EXISTS rule for the mapped distribution is applied after T0 (PREREG-deviations D10).",
+    "sha256": "bc02385c473b7ccfdc2c67697df423feaa394023f5f1d59693c86a5a0dcd7e50"
+  },
   "provenance": {
-    "git_head": "f186d69b7cd6f28b79eba6a48af5e03ac33aac89",
-    "git_worktree_dirty": false,
+    "git_head": "08b6a74edfa0b2bad3d1a525e3a51f907628b904",
+    "git_worktree_dirty": true,
     "network": "blocked (socket.socket replaced)",
     "prereg_commit": "686f648",
     "runs_db_bytes": 840286208,
