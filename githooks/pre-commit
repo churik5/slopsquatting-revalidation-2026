@@ -1,0 +1,37 @@
+#!/bin/sh
+# Reject commits that add or modify private name lists:
+#   * any path under data/private/
+#   * any file whose basename contains "names", "hallucinat" or "candidates" (case-insensitive)
+# Install once: ln -s ../../githooks/pre-commit .git/hooks/pre-commit
+is_blocked() {
+  case "$1" in
+    (data/private/*) return 0 ;;
+  esac
+  base=$(basename "$1" | tr '[:upper:]' '[:lower:]')
+  case "$base" in
+    (*names*|*hallucinat*|*candidates*) return 0 ;;
+  esac
+  return 1
+}
+
+staged=$(git -c core.quotepath=off diff --cached --name-only --diff-filter=ACMRTUXB)
+bad=""
+n=0
+old_ifs=$IFS
+IFS='
+'
+for p in $staged; do
+  if is_blocked "$p"; then
+    bad="$bad
+  $p"
+    n=$((n + 1))
+  fi
+done
+IFS=$old_ifs
+
+if [ "$n" -gt 0 ]; then
+  echo "pre-commit: rejected $n staged path(s) that may hold private name lists:$bad" >&2
+  echo "Unstage them (git restore --staged <path>). Name lists belong in data/private/ only." >&2
+  exit 1
+fi
+exit 0
