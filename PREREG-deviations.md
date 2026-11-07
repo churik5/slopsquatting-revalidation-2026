@@ -34,3 +34,11 @@ D7. Registrability is known only for A: the registries reviewed the universal se
     and report npm scoped names in every group separately.
 D8. A1 frozen: 18 names (sha256 in notes/a1-final.sha256). First appearance:
     10 names in v1, 8 names in v2.
+D9. Correction to D5: the database has 154 universal names without any filter
+    (121 PyPI + 33 npm), 139 under the v3 counting (121 PyPI + 18 npm after the
+    old SQL filter), and 138 after the current noise filter (one PyPI name fewer
+    than the v3 counting; npm unchanged at 18).
+D10. Clarification to D1: before T0 only the number of names that match the
+    pipreqs mapping is reported (per group, from the offline baseline). The rule
+    itself (mapped distribution EXISTS) is applied after the live checks, and the
+    names it removes are counted then.
