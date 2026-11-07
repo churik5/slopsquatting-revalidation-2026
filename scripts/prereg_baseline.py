@@ -410,6 +410,8 @@ def main() -> dict:
         grp_names[e] = {"A": A, "B": B, "B4": B4}
         for g, s in (("A", A), ("B", B), ("B4", B4)):
             write_private(PRIVATE / f"group_{g}_{e}.txt", sorted(s))
+            # exact names (some contain '\n'); the .txt form above is what the hashes are taken over
+            (PRIVATE / f"group_{g}_{e}.json").write_text(json.dumps(sorted(s), ensure_ascii=False) + "\n")
         excl_lines = []
         for rid, ecos, pred in rules:
             if e in ecos:

@@ -180,8 +180,19 @@ class Store:
 
 
 # ── targets ───────────────────────────────────────────────────────────────────
-def read_list(p: Path) -> list[str]:
-    return [x for x in p.read_text().splitlines() if x]
+def list_sha256(names) -> str:
+    s = sorted(names)
+    return hashlib.sha256(("\n".join(s) + "\n" if s else "").encode()).hexdigest()
+
+
+def read_group(g: str, eco: str) -> list[str]:
+    """Exact group names from the JSON written by prereg_baseline.py, verified against the
+    committed group hash in reports/prereg_baseline.json (some names contain '\n')."""
+    names = json.loads((GROUPS / f"group_{g}_{eco}.json").read_text())
+    want = json.loads((REPORTS / "prereg_baseline.json").read_text())["groups"][eco]
+    if len(names) != want[g] or list_sha256(names) != want["sha256"][g]:
+        raise SystemExit(f"group {g}/{eco} does not match the committed baseline")
+    return names
 
 
 def load_pipreqs() -> dict[str, set[str]]:
@@ -209,7 +220,7 @@ def round1_targets() -> list[tuple[str, str, str]]:
     pmap = load_pipreqs()
     for eco in ("pypi", "npm"):
         for g in ("A", "B"):
-            t += [(n, eco, "study") for n in read_list(GROUPS / f"group_{g}_{eco}.txt")]
+            t += [(n, eco, "study") for n in read_group(g, eco)]
     study_pypi = {n for n, e, _ in t if e == "pypi"}
     t += [(d, "pypi", "mapped") for n in sorted(study_pypi) if n in pmap for d in sorted(pmap[n])]
     t += control_sample()
