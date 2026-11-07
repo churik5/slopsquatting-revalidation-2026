@@ -49,3 +49,10 @@ D11. Refinement of D1. The pipreqs rule removes a name only if every extraction
      because installing it fetches whatever is registered under that exact name.
      Decided before T0 on conceptual grounds; offline counts are in
      reports/prereg_baseline.md (commit 9cc8b599498f08a562aa794914d3b50428939534).
+D12. Clarification to D11 and a limitation stated before T0. In the data, an install
+     target is an H1 extraction: for Python, `pip install X` anywhere in the response
+     (first argument only); for JavaScript, `npm install X` inside code blocks. Other
+     install forms (requirements files, uv add, poetry add, yarn add, pnpm add) were not
+     extracted. The pipreqs mapping covers about 1,157 common import names, so rare
+     import-name/distribution-name mismatches are not caught. This mainly affects B
+     (the long tail) and is reported as a limitation.
