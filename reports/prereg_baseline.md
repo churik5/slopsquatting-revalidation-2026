@@ -155,9 +155,36 @@ Fisher exact, two-sided, alpha 0.05, power ≥ 0.8, Monte Carlo 20000 simulation
 | npm | 18 | 6 | 0.02 | 0.660 | 0.640 | 33.00 | 0.8058 |
 | npm | 18 | 6 | 0.05 | 0.715 | 0.665 | 14.30 | 0.8019 |
 
+## 7b. Variant (PREREG-deviations D11): pipreqs matches that are import-only removed
+
+heuristic_hits.heuristic: 'H1' = install-command regex (Python: `pip install X` anywhere in the response; JS: `npm install X` inside fenced code), 'IMPORTS' = ast/tree-sitter import extraction. A pipreqs-key match is 'install target' if it has >= 1 H1 extraction, else 'import only'. Variant groups = groups minus import-only matches (pypi only; npm unchanged). Strata and MDE recomputed with the same method and seed.
+
+| Group (pypi) | pipreqs matches | Install target ≥ 1× | Import only |
+|---|---:|---:|---:|
+| A | 27 | 1 | 26 |
+| B | 28 | 0 | 28 |
+| B4 | 4 | 0 | 4 |
+
+| Ecosystem | A | B | B4 | Common strata | A in common | B4 in common |
+|---|---:|---:|---:|---:|---:|---:|
+| pypi | 94 | 1838 | 101 | 9/9 | 94 | 101 |
+| npm | 18 | 745 | 39 | 4/9 | 18 | 6 |
+
+| Scope | n A | n B4 | Baseline p0 | Min. share in A | Difference | Ratio | Power at MDE |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| pooled | 112 | 107 | 0.01 | 0.095 | 0.085 | 9.50 | 0.8002 |
+| pooled | 112 | 107 | 0.02 | 0.120 | 0.100 | 6.00 | 0.8125 |
+| pooled | 112 | 107 | 0.05 | 0.175 | 0.125 | 3.50 | 0.8240 |
+| pypi | 94 | 101 | 0.01 | 0.100 | 0.090 | 10.00 | 0.8096 |
+| pypi | 94 | 101 | 0.02 | 0.125 | 0.105 | 6.25 | 0.8165 |
+| pypi | 94 | 101 | 0.05 | 0.180 | 0.130 | 3.60 | 0.8004 |
+| npm | 18 | 6 | 0.01 | 0.645 | 0.635 | 64.50 | 0.8109 |
+| npm | 18 | 6 | 0.02 | 0.660 | 0.640 | 33.00 | 0.8058 |
+| npm | 18 | 6 | 0.05 | 0.715 | 0.665 | 14.30 | 0.8019 |
+
 ## 8. Provenance
 
 - runs.db SHA-256: `ad82fc69d3e16edc6aa85f89e4eed367a778fa412965219c1f92a192fcf9fdcd` (840286208 bytes; WAL 0 bytes; opened with sqlite URI mode=ro; unchanged after the run)
-- Repository HEAD commit at run: `35c6218bd333a9f18612e173a4dd001929bb9e97` (tracked files modified: False)
+- Repository HEAD commit at run: `40a28baebbd11442fd5483bbd300dacf8d3ebde4` (tracked files modified: False)
 - PREREG.md commit: `686f648`
 - network: blocked (socket.socket replaced)

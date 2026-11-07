@@ -313,6 +313,267 @@
     "sizes": "A and B4 inside common strata",
     "test": "Fisher exact, two-sided"
   },
+  "pipreqs_import_only_variant": {
+    "group_sha256_pypi": {
+      "A": "7f899cea2fb8350b21ef2db9296f21618a0e85d5ba72316a79a16a1845a9b2ff",
+      "B": "2f59ae9692547a28ef9436b8da0cb1f76b6c68cd18474dc16588e6bc39bb38b6",
+      "B4": "b312746669ddd97ea7464c8f4a589fc4fc5103b36d473b7e2b201c88dd4535ef"
+    },
+    "groups": {
+      "npm": {
+        "A": 18,
+        "B": 745,
+        "B4": 39
+      },
+      "pypi": {
+        "A": 94,
+        "B": 1838,
+        "B4": 101
+      }
+    },
+    "mde": {
+      "npm": [
+        {
+          "mde_abs_diff": 0.635,
+          "mde_ratio": 64.5,
+          "mde_share_a": 0.645,
+          "n_a": 18,
+          "n_b": 6,
+          "p0": 0.01,
+          "power_at_mde": 0.8109,
+          "power_previous_grid_point": 0.79965
+        },
+        {
+          "mde_abs_diff": 0.64,
+          "mde_ratio": 33.0,
+          "mde_share_a": 0.66,
+          "n_a": 18,
+          "n_b": 6,
+          "p0": 0.02,
+          "power_at_mde": 0.8058,
+          "power_previous_grid_point": 0.79385
+        },
+        {
+          "mde_abs_diff": 0.665,
+          "mde_ratio": 14.3,
+          "mde_share_a": 0.715,
+          "n_a": 18,
+          "n_b": 6,
+          "p0": 0.05,
+          "power_at_mde": 0.8019,
+          "power_previous_grid_point": 0.7878
+        }
+      ],
+      "pooled": [
+        {
+          "mde_abs_diff": 0.085,
+          "mde_ratio": 9.5,
+          "mde_share_a": 0.095,
+          "n_a": 112,
+          "n_b": 107,
+          "p0": 0.01,
+          "power_at_mde": 0.8002,
+          "power_previous_grid_point": 0.7536
+        },
+        {
+          "mde_abs_diff": 0.1,
+          "mde_ratio": 6.0,
+          "mde_share_a": 0.12,
+          "n_a": 112,
+          "n_b": 107,
+          "p0": 0.02,
+          "power_at_mde": 0.81245,
+          "power_previous_grid_point": 0.7763
+        },
+        {
+          "mde_abs_diff": 0.125,
+          "mde_ratio": 3.5,
+          "mde_share_a": 0.175,
+          "n_a": 112,
+          "n_b": 107,
+          "p0": 0.05,
+          "power_at_mde": 0.82405,
+          "power_previous_grid_point": 0.7985
+        }
+      ],
+      "pypi": [
+        {
+          "mde_abs_diff": 0.09,
+          "mde_ratio": 10.0,
+          "mde_share_a": 0.1,
+          "n_a": 94,
+          "n_b": 101,
+          "p0": 0.01,
+          "power_at_mde": 0.8096,
+          "power_previous_grid_point": 0.77195
+        },
+        {
+          "mde_abs_diff": 0.105,
+          "mde_ratio": 6.25,
+          "mde_share_a": 0.125,
+          "n_a": 94,
+          "n_b": 101,
+          "p0": 0.02,
+          "power_at_mde": 0.81655,
+          "power_previous_grid_point": 0.78435
+        },
+        {
+          "mde_abs_diff": 0.13,
+          "mde_ratio": 3.6,
+          "mde_share_a": 0.18,
+          "n_a": 94,
+          "n_b": 101,
+          "p0": 0.05,
+          "power_at_mde": 0.8004,
+          "power_previous_grid_point": 0.77195
+        }
+      ]
+    },
+    "rule": "heuristic_hits.heuristic: 'H1' = install-command regex (Python: `pip install X` anywhere in the response; JS: `npm install X` inside fenced code), 'IMPORTS' = ast/tree-sitter import extraction. A pipreqs-key match is 'install target' if it has >= 1 H1 extraction, else 'import only'. Variant groups = groups minus import-only matches (pypi only; npm unchanged). Strata and MDE recomputed with the same method and seed.",
+    "split_pypi": {
+      "A": {
+        "import_only": 26,
+        "install_target_at_least_once": 1,
+        "match_key": 27
+      },
+      "B": {
+        "import_only": 28,
+        "install_target_at_least_once": 0,
+        "match_key": 28
+      },
+      "B4": {
+        "import_only": 4,
+        "install_target_at_least_once": 0,
+        "match_key": 4
+      }
+    },
+    "strata": {
+      "npm": {
+        "A_dropped": 0,
+        "A_in_common": 18,
+        "B4_dropped": 33,
+        "B4_in_common": 6,
+        "cells": {
+          "f1_l1": {
+            "A": 0,
+            "B4": 13,
+            "empty": true
+          },
+          "f1_l2": {
+            "A": 0,
+            "B4": 6,
+            "empty": true
+          },
+          "f1_l3": {
+            "A": 0,
+            "B4": 11,
+            "empty": true
+          },
+          "f2_l1": {
+            "A": 5,
+            "B4": 2,
+            "empty": false
+          },
+          "f2_l2": {
+            "A": 4,
+            "B4": 1,
+            "empty": false
+          },
+          "f2_l3": {
+            "A": 3,
+            "B4": 2,
+            "empty": false
+          },
+          "f3_l1": {
+            "A": 0,
+            "B4": 2,
+            "empty": true
+          },
+          "f3_l2": {
+            "A": 6,
+            "B4": 1,
+            "empty": false
+          },
+          "f3_l3": {
+            "A": 0,
+            "B4": 1,
+            "empty": true
+          }
+        },
+        "freq_cuts": [
+          4.0,
+          5.0
+        ],
+        "len_cuts": [
+          12.0,
+          17.0
+        ],
+        "n_common_strata": 4
+      },
+      "pypi": {
+        "A_dropped": 0,
+        "A_in_common": 94,
+        "B4_dropped": 0,
+        "B4_in_common": 101,
+        "cells": {
+          "f1_l1": {
+            "A": 15,
+            "B4": 23,
+            "empty": false
+          },
+          "f1_l2": {
+            "A": 8,
+            "B4": 20,
+            "empty": false
+          },
+          "f1_l3": {
+            "A": 7,
+            "B4": 34,
+            "empty": false
+          },
+          "f2_l1": {
+            "A": 5,
+            "B4": 3,
+            "empty": false
+          },
+          "f2_l2": {
+            "A": 3,
+            "B4": 4,
+            "empty": false
+          },
+          "f2_l3": {
+            "A": 4,
+            "B4": 4,
+            "empty": false
+          },
+          "f3_l1": {
+            "A": 24,
+            "B4": 6,
+            "empty": false
+          },
+          "f3_l2": {
+            "A": 14,
+            "B4": 6,
+            "empty": false
+          },
+          "f3_l3": {
+            "A": 14,
+            "B4": 1,
+            "empty": false
+          }
+        },
+        "freq_cuts": [
+          5.0,
+          7.333333333333314
+        ],
+        "len_cuts": [
+          7.0,
+          11.0
+        ],
+        "n_common_strata": 9
+      }
+    }
+  },
   "pipreqs_mapping_matches": {
     "file": "data/reference/pipreqs_mapping.txt",
     "n_keys_normalized": 833,
@@ -341,7 +602,7 @@
     "sha256": "bc02385c473b7ccfdc2c67697df423feaa394023f5f1d59693c86a5a0dcd7e50"
   },
   "provenance": {
-    "git_head": "35c6218bd333a9f18612e173a4dd001929bb9e97",
+    "git_head": "40a28baebbd11442fd5483bbd300dacf8d3ebde4",
     "git_worktree_dirty": false,
     "network": "blocked (socket.socket replaced)",
     "prereg_commit": "686f648",
