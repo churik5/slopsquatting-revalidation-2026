@@ -158,6 +158,6 @@ Fisher exact, two-sided, alpha 0.05, power ≥ 0.8, Monte Carlo 20000 simulation
 ## 8. Provenance
 
 - runs.db SHA-256: `ad82fc69d3e16edc6aa85f89e4eed367a778fa412965219c1f92a192fcf9fdcd` (840286208 bytes; WAL 0 bytes; opened with sqlite URI mode=ro; unchanged after the run)
-- Repository HEAD commit at run: `08b6a74edfa0b2bad3d1a525e3a51f907628b904` (tracked files modified: True)
+- Repository HEAD commit at run: `35c6218bd333a9f18612e173a4dd001929bb9e97` (tracked files modified: False)
 - PREREG.md commit: `686f648`
 - network: blocked (socket.socket replaced)

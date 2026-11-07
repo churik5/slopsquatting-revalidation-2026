@@ -341,8 +341,8 @@
     "sha256": "bc02385c473b7ccfdc2c67697df423feaa394023f5f1d59693c86a5a0dcd7e50"
   },
   "provenance": {
-    "git_head": "08b6a74edfa0b2bad3d1a525e3a51f907628b904",
-    "git_worktree_dirty": true,
+    "git_head": "35c6218bd333a9f18612e173a4dd001929bb9e97",
+    "git_worktree_dirty": false,
     "network": "blocked (socket.socket replaced)",
     "prereg_commit": "686f648",
     "runs_db_bytes": 840286208,
