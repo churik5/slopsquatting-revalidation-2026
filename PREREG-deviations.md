@@ -56,3 +56,19 @@ D12. Clarification to D11 and a limitation stated before T0. In the data, an ins
      extracted. The pipreqs mapping covers about 1,157 common import names, so rare
      import-name/distribution-name mismatches are not caught. This mainly affects B
      (the long tail) and is reported as a limitation.
+
+## Written after T0: 2026-11-07, after the round 1 aggregates and before round 2.
+## No breakdown by group A/B had been seen.
+
+D13. npm special statuses come from the npm registry document and override the
+     two-method rule: a package with a time.unpublished field (UNPUBLISHED) or with
+     0.0.1-security as its only version (SECURITY_HOLDING) keeps that status even if
+     deps.dev does not list it. Both count as registered, as in PREREG section 4.2.
+D14. A PyPI name for which the Simple API says EXISTS and the JSON API says ABSENT in
+     both rounds is reported as EXISTS_SIMPLE_ONLY (for example, a project without
+     files). The primary analysis treats it as UNKNOWN, as pre-registered.
+     Sensitivity analysis: count it as registered.
+D15. Names that are not valid package names under the registry's own naming rules
+     (PyPI: PEP 508 name syntax; npm: validate-npm-package-name rules for new
+     packages), including names with whitespace or line breaks, are extraction noise
+     and are excluded. The number removed in each group is reported.
