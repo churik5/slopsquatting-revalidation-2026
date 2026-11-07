@@ -63,6 +63,7 @@ sys.path.insert(0, str(REPO / "src"))
 DB = REPO / "data" / "runs.db"
 REF = REPO / "data" / "reference"
 FP_CSV = REPO / "data" / "master_lists" / "py_false_positive_packages.csv"
+PIPREQS = REPO / "data" / "reference" / "pipreqs_mapping.txt"
 PAPERS = REPO / "data" / "private" / "papers"
 PRIVATE = REPO / "data" / "private" / "prereg"
 REPORTS = REPO / "reports"
@@ -138,6 +139,24 @@ def load_node_builtins() -> tuple[set[str], dict]:
         meta[v] = {"n_modules": len(mods), "source": d["versions"][v]["source"]}
     meta["union"] = len(names)
     return names, meta
+
+
+def load_pipreqs() -> dict[str, set[str]]:
+    """pipreqs mapping: PEP 503-normalized import name -> set of normalized distributions."""
+    m: dict[str, set[str]] = defaultdict(set)
+    for line in PIPREQS.read_text().splitlines():
+        if ":" in line:
+            imp, dist = line.split(":", 1)
+            m[norm_pypi(imp.strip())].add(norm_pypi(dist.strip()))
+    return m
+
+
+def pipreqs_matches(group: set[str], mapping: dict[str, set[str]]) -> dict:
+    """Counts only. A match = the normalized name is an import-name key of the mapping."""
+    hit = {n for n in group if n in mapping}
+    return {"n_group": len(group), "match_key": len(hit),
+            "match_key_dist_differs": sum(1 for n in hit if mapping[n] != {n}),
+            "match_key_dist_same": sum(1 for n in hit if mapping[n] == {n})}
 
 
 def load_fp_imports() -> set[str]:
@@ -376,6 +395,15 @@ def main() -> dict:
         write_private(PRIVATE / f"excluded_{e}.tsv", excl_lines)
     res["exclusions"] = excl
     res["groups"] = groups
+    pmap = load_pipreqs()
+    res["pipreqs_mapping_matches"] = {
+        "file": str(PIPREQS.relative_to(REPO)), "sha256": file_sha256(PIPREQS),
+        "n_keys_normalized": len(pmap),
+        "rule": "name (PEP 503) equals a mapping import-name key (PEP 503); counts only. "
+                "The EXISTS rule for the mapped distribution is applied after T0 (PREREG-deviations D10).",
+        "pypi": {g: pipreqs_matches(grp_names["pypi"][g], pmap) for g in ("A", "B", "B4")},
+        "npm": "not applicable (pipreqs maps Python import names to PyPI distributions)",
+    }
     res["exclusion_sources"] = {
         "noise_filter": {"module": NOISE_MODULE,
                          "last_commit": git("log", "-1", "--format=%H", "--", NOISE_MODULE),
@@ -544,6 +572,16 @@ def render_md(r: dict) -> str:
     L += ["", "| Group hash | " + " | ".join(ECOS) + " |", "|---|---|---|"]
     for g in ("A", "B", "B4"):
         L.append(f"| {g} | " + " | ".join(f"`{r['groups'][e]['sha256'][g]}`" for e in ECOS) + " |")
+    pm = r["pipreqs_mapping_matches"]
+    L += ["", f"### pipreqs mapping matches (before T0, counts only)", "",
+          f"`{pm['file']}` (sha256 `{pm['sha256'][:16]}…`, {pm['n_keys_normalized']} normalized import-name keys). "
+          + pm["rule"], "",
+          "| Group (pypi) | Names | Match a key | …mapped distribution differs | …mapped distribution same |",
+          "|---|---:|---:|---:|---:|"]
+    for g in ("A", "B", "B4"):
+        x = pm["pypi"][g]
+        L.append(f"| {g} | {x['n_group']} | {x['match_key']} | {x['match_key_dist_differs']} | {x['match_key_dist_same']} |")
+    L += ["", f"npm: {pm['npm']}."]
     a1 = r["a1_search"]
     L += ["", "## 4. A1 candidates in the paper text", "",
           f"Candidates (matches with ±{a1['context_chars']} chars of context) for manual review: "
