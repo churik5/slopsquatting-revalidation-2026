@@ -154,10 +154,10 @@ def load_db(path: Path) -> dict:
         "SELECT package_norm, registry, exists_in_master, live_status FROM validations").fetchall()
     # generation time: own timestamp for sync calls, batch completion time for batch calls
     gens = cur.execute("""
-        SELECT g.id, g.model_key, g.language, g.dataset, g.created_at,
-               (SELECT MAX(a.batch) FROM api_calls a
-                 WHERE a.generation_id = g.id AND a.endpoint = 'code_gen') AS is_batch
-        FROM generations g""").fetchall()
+        WITH a AS (SELECT generation_id, MAX(batch) AS is_batch FROM api_calls
+                   WHERE endpoint = 'code_gen' GROUP BY generation_id)
+        SELECT g.id, g.model_key, g.language, g.dataset, g.created_at, a.is_batch
+        FROM generations g LEFT JOIN a ON a.generation_id = g.id""").fetchall()
     batches = {(m, l, d): c for m, l, d, c in cur.execute(
         "SELECT model_key, language, dataset, completed_at FROM batches")}
     gtime, gsrc = {}, {}
@@ -590,7 +590,7 @@ def render_md(r: dict) -> str:
     L += ["", "## 8. Provenance", "",
           f"- runs.db SHA-256: `{p['runs_db_sha256']}` ({p['runs_db_bytes']} bytes; WAL {p['runs_db_wal_bytes']} bytes; "
           f"opened with {p['runs_db_open_mode']}; unchanged after the run)",
-          f"- git HEAD at run: `{p['git_head']}` (tracked files modified: {p['git_worktree_dirty']})",
+          f"- Repository HEAD commit at run: `{p['git_head']}` (tracked files modified: {p['git_worktree_dirty']})",
           f"- PREREG.md commit: `{p['prereg_commit']}`", f"- network: {p['network']}", ""]
     return "\n".join(L)
 
