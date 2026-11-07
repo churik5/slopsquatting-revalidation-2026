@@ -42,3 +42,10 @@ D10. Clarification to D1: before T0 only the number of names that match the
     pipreqs mapping is reported (per group, from the offline baseline). The rule
     itself (mapped distribution EXISTS) is applied after the live checks, and the
     names it removes are counted then.
+D11. Refinement of D1. The pipreqs rule removes a name only if every extraction
+     of that name comes from an import statement. A name that appears at least once
+     as an install target (pip install, requirements, uv add and similar) stays a
+     candidate hallucination even if the mapping points to an existing distribution,
+     because installing it fetches whatever is registered under that exact name.
+     Decided before T0 on conceptual grounds; offline counts are in
+     reports/prereg_baseline.md (commit 9cc8b599498f08a562aa794914d3b50428939534).
