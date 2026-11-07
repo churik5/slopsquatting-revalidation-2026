@@ -1,0 +1,555 @@
+{
+  "a1_search": {
+    "context_chars": 60,
+    "decision": "manual (data/private/a1_candidates.txt)",
+    "n_candidates": 97,
+    "n_distinct_names": 19,
+    "pdfs": {
+      "v1": {
+        "sha256": "72bcf34680472ba6d2ee8430b5e4922f77f3034865b577a74680f10dad559ea6",
+        "text_chars": 44585
+      },
+      "v2": {
+        "sha256": "f04bb062401c177984ec5edbd9d17c9f9d4409bc2f45f4091c88ab572a63d2ad",
+        "text_chars": 48908
+      },
+      "v3": {
+        "sha256": "1617e52dda74987a06ea675b0d36bacea43ff5d043e5344f808a1d751b021bf9",
+        "text_chars": 49632
+      }
+    },
+    "pdftotext": "pdftotext version 26.03.0"
+  },
+  "exclusion_sources": {
+    "node_builtins": {
+      "18": {
+        "n_modules": 67,
+        "source": "official tarball https://nodejs.org/dist/v18.20.8/node-v18.20.8-darwin-arm64.tar.gz (SHA-256 verified against SHASUMS256.txt); node v18.20.8"
+      },
+      "20": {
+        "n_modules": 68,
+        "source": "local nvm install; node v20.20.2"
+      },
+      "22": {
+        "n_modules": 68,
+        "source": "official tarball https://nodejs.org/dist/v22.23.4/node-v22.23.4-darwin-arm64.tar.gz (SHA-256 verified against SHASUMS256.txt); node v22.23.4"
+      },
+      "file": "data/reference/node_builtin_modules.json",
+      "plus": "any name starting with 'node:'",
+      "sha256": "0b6aa7341bdd575e35a4e059c2219733b13a304e7a5bcf7e0dcedd0fda119cf3",
+      "union": 68
+    },
+    "noise_filter": {
+      "blob_sha1": "7d160d4e370d7583e5c638c24048ff571b25b363",
+      "last_commit": "e5546bdfccb642bab3a7c992aec120e1213ad341",
+      "module": "src/slop_bench/noise_filter.py",
+      "sha256": "2d9a682538e4509222a02c3aec181c92055642b6b23c9a774fb8717e45466c7a"
+    },
+    "py_false_positive": {
+      "column": 1,
+      "file": "data/master_lists/py_false_positive_packages.csv",
+      "n_import_names_normalized": 3882,
+      "sha256": "ba6ca534dd5de212326de8d1636357d20c44cc012701c37441dd5e35324b7aad"
+    },
+    "python_stdlib": {
+      "3.10": {
+        "n_modules": 303,
+        "source": "CPython source tag v3.10.22, Python/stdlib_module_names.h (the file sys.stdlib_module_names is built from)"
+      },
+      "3.11": {
+        "n_modules": 305,
+        "source": "local interpreter sys.stdlib_module_names (Python 3.11.9); cross-checked identical to CPython tag v3.11.9"
+      },
+      "3.12": {
+        "n_modules": 300,
+        "source": "local interpreter sys.stdlib_module_names (Python 3.12.5); cross-checked identical to CPython tag v3.12.5"
+      },
+      "3.13": {
+        "n_modules": 290,
+        "source": "CPython source tag v3.13.18, Python/stdlib_module_names.h (the file sys.stdlib_module_names is built from)"
+      },
+      "file": "data/reference/python_stdlib_modules.json",
+      "sha256": "25db15e08f4de3b5bf868d59dab56d75e190915bd5771342550382cf5c0384c7",
+      "union_normalized": 321
+    }
+  },
+  "exclusions": {
+    "npm": {
+      "universe": {
+        "_input": 4766,
+        "_kept": 4359,
+        "node_builtin_18_20_22_or_node_prefix": {
+          "matched": 39,
+          "removed": 8
+        },
+        "noise_filter": {
+          "matched": 399,
+          "removed": 399
+        }
+      },
+      "v3_candidates": {
+        "_input": 1146,
+        "_kept": 763,
+        "node_builtin_18_20_22_or_node_prefix": {
+          "matched": 31,
+          "removed": 0
+        },
+        "noise_filter": {
+          "matched": 383,
+          "removed": 383
+        }
+      },
+      "v3_universal_before_exclusions": {
+        "_input": 33,
+        "_kept": 18,
+        "node_builtin_18_20_22_or_node_prefix": {
+          "matched": 1,
+          "removed": 0
+        },
+        "noise_filter": {
+          "matched": 15,
+          "removed": 15
+        }
+      }
+    },
+    "pypi": {
+      "universe": {
+        "_input": 7190,
+        "_kept": 6848,
+        "noise_filter": {
+          "matched": 331,
+          "removed": 331
+        },
+        "py_false_positive_import_names": {
+          "matched": 0,
+          "removed": 0
+        },
+        "python_stdlib_3.10-3.13": {
+          "matched": 11,
+          "removed": 11
+        }
+      },
+      "v3_candidates": {
+        "_input": 2299,
+        "_kept": 1986,
+        "noise_filter": {
+          "matched": 313,
+          "removed": 313
+        },
+        "py_false_positive_import_names": {
+          "matched": 0,
+          "removed": 0
+        },
+        "python_stdlib_3.10-3.13": {
+          "matched": 0,
+          "removed": 0
+        }
+      },
+      "v3_universal_before_exclusions": {
+        "_input": 121,
+        "_kept": 120,
+        "noise_filter": {
+          "matched": 1,
+          "removed": 1
+        },
+        "py_false_positive_import_names": {
+          "matched": 0,
+          "removed": 0
+        },
+        "python_stdlib_3.10-3.13": {
+          "matched": 0,
+          "removed": 0
+        }
+      }
+    }
+  },
+  "groups": {
+    "npm": {
+      "A": 18,
+      "B": 745,
+      "B4": 39,
+      "B_by_n_models": {
+        "0": 0,
+        "1": 609,
+        "2": 62,
+        "3": 35,
+        "4": 39
+      },
+      "candidates_after_exclusions": 763,
+      "sha256": {
+        "A": "2c7c293a78d259473d6022bb960463a499ae96bdd4dedf8438b9a3889c611c27",
+        "B": "7b17a1c8cebdd049010feb704cac8bfff435d3067a3f6b175eb36a649b24514a",
+        "B4": "e0fda2cac1aa2828898951e96329e0f10857eab3d3bf92827a411f7ca6994f43"
+      },
+      "v3_candidates": 1146,
+      "v3_universal_before_exclusions": 33
+    },
+    "pypi": {
+      "A": 120,
+      "B": 1866,
+      "B4": 105,
+      "B_by_n_models": {
+        "0": 0,
+        "1": 1338,
+        "2": 244,
+        "3": 179,
+        "4": 105
+      },
+      "candidates_after_exclusions": 1986,
+      "sha256": {
+        "A": "0a69370f621bb917b83380dce77fc367383ead2038ddb5cf12887677ed6e9aef",
+        "B": "c2c138b6d25b89c48a013fbcd0506e5e896e2c0474bce1efc3c318a15a22c7c6",
+        "B4": "febeba111d8a4735216f06308c3912e9a860bef574d654e428fd701fce82c1be"
+      },
+      "v3_candidates": 2299,
+      "v3_universal_before_exclusions": 121
+    }
+  },
+  "mde": {
+    "alpha": 0.05,
+    "grid": "share in A from p0+step to 1.0; first point with power >= 0.8; new default_rng(42) for each (scope, p0)",
+    "grid_step": 0.005,
+    "power": 0.8,
+    "results": {
+      "npm": [
+        {
+          "mde_abs_diff": 0.635,
+          "mde_ratio": 64.5,
+          "mde_share_a": 0.645,
+          "n_a": 18,
+          "n_b": 6,
+          "p0": 0.01,
+          "power_at_mde": 0.8109,
+          "power_previous_grid_point": 0.79965
+        },
+        {
+          "mde_abs_diff": 0.64,
+          "mde_ratio": 33.0,
+          "mde_share_a": 0.66,
+          "n_a": 18,
+          "n_b": 6,
+          "p0": 0.02,
+          "power_at_mde": 0.8058,
+          "power_previous_grid_point": 0.79385
+        },
+        {
+          "mde_abs_diff": 0.665,
+          "mde_ratio": 14.3,
+          "mde_share_a": 0.715,
+          "n_a": 18,
+          "n_b": 6,
+          "p0": 0.05,
+          "power_at_mde": 0.8019,
+          "power_previous_grid_point": 0.7878
+        }
+      ],
+      "pooled": [
+        {
+          "mde_abs_diff": 0.075,
+          "mde_ratio": 8.5,
+          "mde_share_a": 0.085,
+          "n_a": 138,
+          "n_b": 111,
+          "p0": 0.01,
+          "power_at_mde": 0.8122,
+          "power_previous_grid_point": 0.77655
+        },
+        {
+          "mde_abs_diff": 0.09,
+          "mde_ratio": 5.5,
+          "mde_share_a": 0.11,
+          "n_a": 138,
+          "n_b": 111,
+          "p0": 0.02,
+          "power_at_mde": 0.81645,
+          "power_previous_grid_point": 0.77835
+        },
+        {
+          "mde_abs_diff": 0.115,
+          "mde_ratio": 3.3,
+          "mde_share_a": 0.165,
+          "n_a": 138,
+          "n_b": 111,
+          "p0": 0.05,
+          "power_at_mde": 0.82055,
+          "power_previous_grid_point": 0.78715
+        }
+      ],
+      "pypi": [
+        {
+          "mde_abs_diff": 0.08,
+          "mde_ratio": 9.0,
+          "mde_share_a": 0.09,
+          "n_a": 120,
+          "n_b": 105,
+          "p0": 0.01,
+          "power_at_mde": 0.80765,
+          "power_previous_grid_point": 0.76185
+        },
+        {
+          "mde_abs_diff": 0.095,
+          "mde_ratio": 5.75,
+          "mde_share_a": 0.115,
+          "n_a": 120,
+          "n_b": 105,
+          "p0": 0.02,
+          "power_at_mde": 0.8177,
+          "power_previous_grid_point": 0.79335
+        },
+        {
+          "mde_abs_diff": 0.12,
+          "mde_ratio": 3.4,
+          "mde_share_a": 0.17,
+          "n_a": 120,
+          "n_b": 105,
+          "p0": 0.05,
+          "power_at_mde": 0.81205,
+          "power_previous_grid_point": 0.7837
+        }
+      ]
+    },
+    "seed": 42,
+    "simulations_per_point": 20000,
+    "sizes": "A and B4 inside common strata",
+    "test": "Fisher exact, two-sided"
+  },
+  "provenance": {
+    "git_head": "f186d69b7cd6f28b79eba6a48af5e03ac33aac89",
+    "git_worktree_dirty": false,
+    "network": "blocked (socket.socket replaced)",
+    "prereg_commit": "686f648",
+    "runs_db_bytes": 840286208,
+    "runs_db_open_mode": "sqlite URI mode=ro",
+    "runs_db_sha256": "ad82fc69d3e16edc6aa85f89e4eed367a778fa412965219c1f92a192fcf9fdcd",
+    "runs_db_wal_bytes": 0
+  },
+  "seed": 42,
+  "strata": {
+    "method": "tertile cut points = numpy.quantile (linear) at 1/3, 2/3 of pooled A∪B4 within ecosystem; value <= cut goes to the lower tertile. Frequency = mentions in heuristic_hits (all models). Length = characters of the normalized name. A stratum is empty if A or B4 has 0 names in it.",
+    "npm": {
+      "A_dropped": 0,
+      "A_in_common": 18,
+      "B4_dropped": 33,
+      "B4_in_common": 6,
+      "cells": {
+        "f1_l1": {
+          "A": 0,
+          "B4": 13,
+          "empty": true
+        },
+        "f1_l2": {
+          "A": 0,
+          "B4": 6,
+          "empty": true
+        },
+        "f1_l3": {
+          "A": 0,
+          "B4": 11,
+          "empty": true
+        },
+        "f2_l1": {
+          "A": 5,
+          "B4": 2,
+          "empty": false
+        },
+        "f2_l2": {
+          "A": 4,
+          "B4": 1,
+          "empty": false
+        },
+        "f2_l3": {
+          "A": 3,
+          "B4": 2,
+          "empty": false
+        },
+        "f3_l1": {
+          "A": 0,
+          "B4": 2,
+          "empty": true
+        },
+        "f3_l2": {
+          "A": 6,
+          "B4": 1,
+          "empty": false
+        },
+        "f3_l3": {
+          "A": 0,
+          "B4": 1,
+          "empty": true
+        }
+      },
+      "freq_cuts": [
+        4.0,
+        5.0
+      ],
+      "len_cuts": [
+        12.0,
+        17.0
+      ],
+      "n_common_strata": 4
+    },
+    "pypi": {
+      "A_dropped": 0,
+      "A_in_common": 120,
+      "B4_dropped": 0,
+      "B4_in_common": 105,
+      "cells": {
+        "f1_l1": {
+          "A": 17,
+          "B4": 24,
+          "empty": false
+        },
+        "f1_l2": {
+          "A": 11,
+          "B4": 21,
+          "empty": false
+        },
+        "f1_l3": {
+          "A": 9,
+          "B4": 35,
+          "empty": false
+        },
+        "f2_l1": {
+          "A": 8,
+          "B4": 4,
+          "empty": false
+        },
+        "f2_l2": {
+          "A": 9,
+          "B4": 4,
+          "empty": false
+        },
+        "f2_l3": {
+          "A": 6,
+          "B4": 4,
+          "empty": false
+        },
+        "f3_l1": {
+          "A": 31,
+          "B4": 5,
+          "empty": false
+        },
+        "f3_l2": {
+          "A": 12,
+          "B4": 6,
+          "empty": false
+        },
+        "f3_l3": {
+          "A": 17,
+          "B4": 2,
+          "empty": false
+        }
+      },
+      "freq_cuts": [
+        5.0,
+        8.0
+      ],
+      "len_cuts": [
+        7.0,
+        11.0
+      ],
+      "n_common_strata": 9
+    }
+  },
+  "time_coverage": {
+    "generations": {
+      "batch": 35566,
+      "none": 0,
+      "own": 164274,
+      "total": 199840
+    },
+    "names_by_source_of_earliest_generation": {
+      "npm.A": {
+        "batch": 16,
+        "none": 0,
+        "own": 2
+      },
+      "npm.B": {
+        "batch": 133,
+        "none": 0,
+        "own": 612
+      },
+      "npm.B4": {
+        "batch": 23,
+        "none": 0,
+        "own": 16
+      },
+      "pypi.A": {
+        "batch": 80,
+        "none": 0,
+        "own": 40
+      },
+      "pypi.B": {
+        "batch": 433,
+        "none": 0,
+        "own": 1433
+      },
+      "pypi.B4": {
+        "batch": 47,
+        "none": 0,
+        "own": 58
+      }
+    },
+    "rule": "own = sync API call, generations.created_at; batch = batch API call, batches.completed_at of the (model, language, dataset) batch; none = neither"
+  },
+  "universe": {
+    "npm": {
+      "n_never_mentioned": 0,
+      "n_normalized": 4766,
+      "n_raw_keys": 4776,
+      "normalization_merges": 10,
+      "per_model": {
+        "deepseek-v3.2": {
+          "n": 2147,
+          "sha256": "07d2196122622a2ba0d1bdc36950c5852c4e77505ada7c7a0c87a73cc907ce13"
+        },
+        "gemini-2.5-pro": {
+          "n": 2606,
+          "sha256": "18954f12ae83589e02ee8e15ae9ad2a008487757225223ff97a3e1ce46edf621"
+        },
+        "gpt-5.4-mini": {
+          "n": 1669,
+          "sha256": "7a58b108b5bd28fd39b29bbce522778662d567ca8ba8530cf4e8f976a9d91b27"
+        },
+        "haiku-4-5": {
+          "n": 1999,
+          "sha256": "38d6eec16e0e1e8d3feb052d606ca852825d075843154f0d8ab00716435ee3a7"
+        },
+        "sonnet-4-6": {
+          "n": 2420,
+          "sha256": "b694add1e545bcd8d8fd0639c8b727b30b0ff15afba4ce541503423be2d6f125"
+        }
+      },
+      "sha256": "57e24f2874202fa92ada5908027965061b63a09564bc7f6072005ad51da54d18"
+    },
+    "pypi": {
+      "n_never_mentioned": 0,
+      "n_normalized": 7190,
+      "n_raw_keys": 7190,
+      "normalization_merges": 0,
+      "per_model": {
+        "deepseek-v3.2": {
+          "n": 3261,
+          "sha256": "c30182364f7914a073f9d31eef20811acc4ef2a898c5775514436e41e1c3bffd"
+        },
+        "gemini-2.5-pro": {
+          "n": 4135,
+          "sha256": "550d168f3176e345514272e5b26da07b2cb28b738c68c595984b1200f0c074ac"
+        },
+        "gpt-5.4-mini": {
+          "n": 2749,
+          "sha256": "9f2199ea9d7e78c461d1f4673177b2274e8a7f44e35ea4425b35371ecc1672e5"
+        },
+        "haiku-4-5": {
+          "n": 2979,
+          "sha256": "c333c240d77d2c7ad8c4b43c7450e1f1bb5131da5d574abc0db8e1b1aa350fbf"
+        },
+        "sonnet-4-6": {
+          "n": 4319,
+          "sha256": "0e258b107f34deb4e375ab354e780bf71dc32b29fbd8071b654a4167fb9d2be7"
+        }
+      },
+      "sha256": "b3fc420a912cc3f75fd405dfe64e7a4b750a194275be9d15b0b0966022d169b6"
+    }
+  }
+}
