@@ -190,7 +190,7 @@ def load_db(path: Path) -> dict:
     out["gtime"], out["gsrc"] = gtime, gsrc
     out["gen_meta"] = {gid: (m, lang) for gid, m, lang, *_ in gens}
     out["hits"] = cur.execute("""
-        SELECT h.generation_id, h.package_norm FROM heuristic_hits h
+        SELECT h.generation_id, h.package_norm, h.heuristic FROM heuristic_hits h
         JOIN generations g ON g.id = h.generation_id
         JOIN validations v ON v.package_norm = h.package_norm
              AND v.registry = (CASE WHEN g.language='python' THEN 'pypi' ELSE 'npm' END)
@@ -205,15 +205,16 @@ def build_names(db: dict) -> dict:
     for raw, reg, exists, live in db["validations"]:
         n = NORM[reg](raw)
         r = names[reg].setdefault(n, {"raw": set(), "cand_flags": [], "models": set(), "freq": 0,
-                                      "first_time": None, "first_src": None})
+                                      "heur": set(), "first_time": None, "first_src": None})
         r["raw"].add(raw)
         # v3 rule: absent from master list and not confirmed by a live HTTP 200
         r["cand_flags"].append(exists == 0 and live != 200)
-    for gid, raw in db["hits"]:
+    for gid, raw, heur in db["hits"]:
         m, lang = db["gen_meta"][gid]
         eco = LANG2ECO[lang]
         r = names[eco][NORM[eco](raw)]
         r["models"].add(m)
+        r["heur"].add(heur)
         r["freq"] += 1
         t = db["gtime"][gid]
         if t is not None and (r["first_time"] is None or t < r["first_time"]):
@@ -262,6 +263,27 @@ def tertile_cuts(values) -> list[float]:
 
 def tertile(v: float, cuts: list[float]) -> int:
     return 0 if v <= cuts[0] else (1 if v <= cuts[1] else 2)
+
+
+def compute_strata(nm: dict, A: set[str], B4: set[str]) -> tuple[dict, list[str]]:
+    """3x3 frequency x length tertile cells for one ecosystem (cuts from pooled A∪B4)."""
+    pool = A | B4
+    fcuts = tertile_cuts([nm[n]["freq"] for n in pool])
+    lcuts = tertile_cuts([len(n) for n in pool])
+    cells = {f"f{fi}_l{li}": {"A": 0, "B4": 0} for fi in range(1, 4) for li in range(1, 4)}
+    lines = []
+    for g, grp in (("A", A), ("B4", B4)):
+        for n in sorted(grp):
+            k = f"f{tertile(nm[n]['freq'], fcuts) + 1}_l{tertile(len(n), lcuts) + 1}"
+            cells[k][g] += 1
+            lines.append(f"{g}\t{k}\t{nm[n]['freq']}\t{len(n)}\t{n}")
+    for c in cells.values():
+        c["empty"] = c["A"] == 0 or c["B4"] == 0
+    common = [c for c in cells.values() if not c["empty"]]
+    a_in, b_in = sum(c["A"] for c in common), sum(c["B4"] for c in common)
+    return ({"freq_cuts": fcuts, "len_cuts": lcuts, "cells": cells, "n_common_strata": len(common),
+             "A_in_common": a_in, "B4_in_common": b_in,
+             "A_dropped": len(A) - a_in, "B4_dropped": len(B4) - b_in}, lines)
 
 
 # ── power / MDE ───────────────────────────────────────────────────────────────
@@ -432,29 +454,9 @@ def main() -> dict:
     # 5. strata
     strata, common_sizes = {}, {}
     for e in ECOS:
-        A, B4 = grp_names[e]["A"], grp_names[e]["B4"]
-        pool = A | B4
-        fcuts = tertile_cuts([names[e][n]["freq"] for n in pool])
-        lcuts = tertile_cuts([len(n) for n in pool])
-        cells = {}
-        for fi in range(3):
-            for li in range(3):
-                cells[f"f{fi + 1}_l{li + 1}"] = {"A": 0, "B4": 0}
-        lines = []
-        for g, s in (("A", A), ("B4", B4)):
-            for n in sorted(s):
-                k = f"f{tertile(names[e][n]['freq'], fcuts) + 1}_l{tertile(len(n), lcuts) + 1}"
-                cells[k][g] += 1
-                lines.append(f"{g}\t{k}\t{names[e][n]['freq']}\t{len(n)}\t{n}")
+        strata[e], lines = compute_strata(names[e], grp_names[e]["A"], grp_names[e]["B4"])
         write_private(PRIVATE / f"strata_{e}.tsv", lines)
-        for c in cells.values():
-            c["empty"] = c["A"] == 0 or c["B4"] == 0
-        common = [c for c in cells.values() if not c["empty"]]
-        common_sizes[e] = (sum(c["A"] for c in common), sum(c["B4"] for c in common))
-        strata[e] = {"freq_cuts": fcuts, "len_cuts": lcuts, "cells": cells,
-                     "n_common_strata": len(common),
-                     "A_in_common": common_sizes[e][0], "B4_in_common": common_sizes[e][1],
-                     "A_dropped": len(A) - common_sizes[e][0], "B4_dropped": len(B4) - common_sizes[e][1]}
+        common_sizes[e] = (strata[e]["A_in_common"], strata[e]["B4_in_common"])
     res["strata"] = {"method": "tertile cut points = numpy.quantile (linear) at 1/3, 2/3 of pooled A∪B4 "
                                "within ecosystem; value <= cut goes to the lower tertile. Frequency = "
                                "mentions in heuristic_hits (all models). Length = characters of the "
@@ -487,6 +489,38 @@ def main() -> dict:
                           "new default_rng(42) for each (scope, p0)",
                   "sizes": "A and B4 inside common strata",
                   "results": {sc: [mde(na, nb, p0) for p0 in BASELINES] for sc, (na, nb) in scopes.items()}}
+
+    # 7b. D11 variant: drop pipreqs matches whose every extraction is an import
+    var_groups, split = {}, {}
+    for g in ("A", "B", "B4"):
+        hit = {n for n in grp_names["pypi"][g] if n in pmap}
+        install = {n for n in hit if "H1" in names["pypi"][n]["heur"]}
+        split[g] = {"match_key": len(hit), "install_target_at_least_once": len(install),
+                    "import_only": len(hit - install)}
+        var_groups[g] = grp_names["pypi"][g] - (hit - install)
+    write_private(PRIVATE / "pipreqs_import_only_pypi.txt",
+                  sorted(n for g in ("A", "B") for n in grp_names["pypi"][g] - var_groups[g]))
+    v_strata, v_sizes = {}, {}
+    for e in ECOS:
+        A = var_groups["A"] if e == "pypi" else grp_names[e]["A"]
+        B4 = var_groups["B4"] if e == "pypi" else grp_names[e]["B4"]
+        v_strata[e], _ = compute_strata(names[e], A, B4)
+        v_sizes[e] = (v_strata[e]["A_in_common"], v_strata[e]["B4_in_common"])
+    v_pooled = (sum(v_sizes[e][0] for e in ECOS), sum(v_sizes[e][1] for e in ECOS))
+    res["pipreqs_import_only_variant"] = {
+        "rule": "heuristic_hits.heuristic: 'H1' = install-command regex (Python: `pip install X` anywhere "
+                "in the response; JS: `npm install X` inside fenced code), 'IMPORTS' = ast/tree-sitter "
+                "import extraction. A pipreqs-key match is 'install target' if it has >= 1 H1 extraction, "
+                "else 'import only'. Variant groups = groups minus import-only matches (pypi only; npm unchanged). "
+                "Strata and MDE recomputed with the same method and seed.",
+        "split_pypi": split,
+        "groups": {"pypi": {g: len(var_groups[g]) for g in ("A", "B", "B4")},
+                   "npm": {g: len(grp_names["npm"][g]) for g in ("A", "B", "B4")}},
+        "group_sha256_pypi": {g: list_sha256(var_groups[g]) for g in ("A", "B", "B4")},
+        "strata": v_strata,
+        "mde": {sc: [mde(na, nb, p0) for p0 in BASELINES]
+                for sc, (na, nb) in {"pooled": v_pooled, **v_sizes}.items()},
+    }
 
     # 8. hashes
     db_sha_after = file_sha256(DB)
@@ -620,6 +654,28 @@ def render_md(r: dict) -> str:
           "| Scope | n A | n B4 | Baseline p0 | Min. share in A | Difference | Ratio | Power at MDE |",
           "|---|---:|---:|---:|---:|---:|---:|---:|"]
     for sc, rows in md["results"].items():
+        for x in rows:
+            if x.get("mde_share_a") is None:
+                L.append(f"| {sc} | {x['n_a']} | {x['n_b']} | {x['p0']} | — | — | — | {x.get('note', '')} |")
+            else:
+                L.append(f"| {sc} | {x['n_a']} | {x['n_b']} | {x['p0']} | {x['mde_share_a']:.3f} | "
+                         f"{x['mde_abs_diff']:.3f} | {x['mde_ratio']:.2f} | {x['power_at_mde']:.4f} |")
+    v = r["pipreqs_import_only_variant"]
+    L += ["", "## 7b. Variant (PREREG-deviations D11): pipreqs matches that are import-only removed", "",
+          v["rule"], "", "| Group (pypi) | pipreqs matches | Install target ≥ 1× | Import only |",
+          "|---|---:|---:|---:|"]
+    for g in ("A", "B", "B4"):
+        x = v["split_pypi"][g]
+        L.append(f"| {g} | {x['match_key']} | {x['install_target_at_least_once']} | {x['import_only']} |")
+    L += ["", "| Ecosystem | A | B | B4 | Common strata | A in common | B4 in common |",
+          "|---|---:|---:|---:|---:|---:|---:|"]
+    for e in ECOS:
+        gsz, st = v["groups"][e], v["strata"][e]
+        L.append(f"| {e} | {gsz['A']} | {gsz['B']} | {gsz['B4']} | {st['n_common_strata']}/9 | "
+                 f"{st['A_in_common']} | {st['B4_in_common']} |")
+    L += ["", "| Scope | n A | n B4 | Baseline p0 | Min. share in A | Difference | Ratio | Power at MDE |",
+          "|---|---:|---:|---:|---:|---:|---:|---:|"]
+    for sc, rows in v["mde"].items():
         for x in rows:
             if x.get("mde_share_a") is None:
                 L.append(f"| {sc} | {x['n_a']} | {x['n_b']} | {x['p0']} | — | — | — | {x.get('note', '')} |")
