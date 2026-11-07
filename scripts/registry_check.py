@@ -1,8 +1,12 @@
 """Live registry checks for Task 1 (PREREG.md §2, PREREG-deviations.md D0-D12).
 
-    caffeinate -i .venv/bin/python scripts/registry_check.py --round 1
-    caffeinate -i .venv/bin/python scripts/registry_check.py --round 2   # >= 12 h after round 1 ended
-    .venv/bin/python scripts/registry_check.py --summary 1               # rewrite reports/round1_summary.json
+    PY=~/.local/share/slop-bench/venv-check/bin/python
+    caffeinate -i $PY scripts/registry_check.py --round 1
+    caffeinate -i $PY scripts/registry_check.py --round 2   # >= 12 h after round 1 ended
+    $PY scripts/registry_check.py --summary 1               # rewrite reports/round1_summary.json
+
+The interpreter is a plain venv outside iCloud Drive (python3.11 -m venv; pip install httpx==0.28.1):
+the project .venv lives in an iCloud-synced folder, its files get evicted, and imports can block.
 
 What is checked (lists stay in data/private/; nothing name-bearing is printed):
   * role "study"   — every name of groups A and B after exclusions (offline baseline files);
@@ -552,7 +556,7 @@ def write_summary(store: Store, rnd: int) -> dict:
         "retries": f"429/5xx/timeout/network: up to {MAX_ATTEMPTS} attempts, pause max(Retry-After, 5*2^(n-1) s)",
         "round2": {"eligible_pairs": len({(n, e) for n, e, _ in round2_targets(store)}) if rnd == 1 else None,
                    "earliest_start_utc": (end + ROUND2_DELAY).strftime("%Y-%m-%dT%H:%M:%SZ") if end else None,
-                   "command": "caffeinate -i .venv/bin/python scripts/registry_check.py --round 2"},
+                   "command": "caffeinate -i ~/.local/share/slop-bench/venv-check/bin/python scripts/registry_check.py --round 2"},
         "storage": "data/private/registry_checks.db (append-only; not committed)",
     }
     REPORTS.mkdir(exist_ok=True)
