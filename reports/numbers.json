@@ -1,0 +1,5525 @@
+{
+  "asof_generation": {
+    "npm": {
+      "names": {
+        "FALSE_POSITIVE": 77,
+        "H_ABSENT": 533,
+        "H_REGISTERED_LATER": 3,
+        "UNKNOWN_D2_BATCH_INTERVAL": 0,
+        "UNKNOWN_EXISTS_SIMPLE_ONLY": 0,
+        "UNKNOWN_FINAL_STATE": 0,
+        "UNKNOWN_NO_CREATION_DATE": 0,
+        "UNKNOWN_NO_GENERATION_TIME": 0,
+        "UNKNOWN_REMOVED_MALICIOUS": 0
+      },
+      "names_with_mixed_status_across_mentions": 0,
+      "rule": "name-level status uses the name's earliest generation (smallest upper time bound)"
+    },
+    "pypi": {
+      "creation_date_possibly_late_flag": {
+        "by_status": {},
+        "names": 0
+      },
+      "names": {
+        "FALSE_POSITIVE": 84,
+        "H_ABSENT": 1724,
+        "H_REGISTERED_LATER": 22,
+        "UNKNOWN_D2_BATCH_INTERVAL": 0,
+        "UNKNOWN_EXISTS_SIMPLE_ONLY": 10,
+        "UNKNOWN_FINAL_STATE": 0,
+        "UNKNOWN_NO_CREATION_DATE": 0,
+        "UNKNOWN_NO_GENERATION_TIME": 0,
+        "UNKNOWN_REMOVED_MALICIOUS": 11
+      },
+      "names_with_mixed_status_across_mentions": 0,
+      "rule": "name-level status uses the name's earliest generation (smallest upper time bound)"
+    }
+  },
+  "control_sample": {
+    "npm": {
+      "by_category": {
+        "EXISTS": 200
+      },
+      "not_found_now": 0,
+      "osv_mal_flag": 2,
+      "sample": 200
+    },
+    "pypi": {
+      "by_category": {
+        "ABSENT": 1,
+        "EXISTS": 197,
+        "EXISTS_SIMPLE_ONLY": 2
+      },
+      "not_found_now": 3,
+      "osv_mal_flag": 0,
+      "sample": 200
+    }
+  },
+  "decomposition_v3_to_c": {
+    "generation": {
+      "deepseek-v3.2": {
+        "generations_counted_a_b_c": {
+          "a0_b0_c0": 13758,
+          "a1_b1_c0": 246,
+          "a1_b1_c1": 1063
+        }
+      },
+      "gemini-2.5-pro": {
+        "generations_counted_a_b_c": {
+          "a0_b0_c0": 15540,
+          "a1_b1_c0": 293,
+          "a1_b1_c1": 1354
+        }
+      },
+      "gpt-5.4-mini": {
+        "generations_counted_a_b_c": {
+          "a0_b0_c0": 10826,
+          "a1_b1_c0": 193,
+          "a1_b1_c1": 858
+        }
+      },
+      "haiku-4-5": {
+        "generations_counted_a_b_c": {
+          "a0_b0_c0": 15774,
+          "a1_b1_c0": 261,
+          "a1_b1_c1": 936
+        }
+      },
+      "sonnet-4-6": {
+        "generations_counted_a_b_c": {
+          "a0_b0_c0": 14678,
+          "a1_b1_c0": 329,
+          "a1_b1_c1": 1100
+        }
+      }
+    },
+    "mention": {
+      "deepseek-v3.2": {
+        "v3_halluc_now_D15_noise": 36,
+        "v3_halluc_now_D1_D11_pipreqs_import_only": 164,
+        "v3_halluc_now_FALSE_POSITIVE": 63,
+        "v3_halluc_now_UNKNOWN_EXISTS_SIMPLE_ONLY": 4,
+        "v3_halluc_now_UNKNOWN_REMOVED_MALICIOUS": 11,
+        "v3_halluc_now_v3_existing": 2,
+        "v3_halluc_still_halluc": 1251
+      },
+      "gemini-2.5-pro": {
+        "v3_halluc_now_D15_noise": 49,
+        "v3_halluc_now_D1_D11_pipreqs_import_only": 207,
+        "v3_halluc_now_FALSE_POSITIVE": 77,
+        "v3_halluc_now_UNKNOWN_EXISTS_SIMPLE_ONLY": 4,
+        "v3_halluc_now_UNKNOWN_REMOVED_MALICIOUS": 10,
+        "v3_halluc_now_noise_filter": 1,
+        "v3_halluc_now_v3_existing": 1,
+        "v3_halluc_still_halluc": 1625
+      },
+      "gpt-5.4-mini": {
+        "v3_halluc_now_D15_noise": 7,
+        "v3_halluc_now_D1_D11_pipreqs_import_only": 144,
+        "v3_halluc_now_FALSE_POSITIVE": 45,
+        "v3_halluc_now_UNKNOWN_EXISTS_SIMPLE_ONLY": 2,
+        "v3_halluc_now_UNKNOWN_REMOVED_MALICIOUS": 10,
+        "v3_halluc_still_halluc": 982
+      },
+      "haiku-4-5": {
+        "v3_halluc_now_D15_noise": 44,
+        "v3_halluc_now_D1_D11_pipreqs_import_only": 189,
+        "v3_halluc_now_FALSE_POSITIVE": 51,
+        "v3_halluc_now_UNKNOWN_EXISTS_SIMPLE_ONLY": 4,
+        "v3_halluc_now_UNKNOWN_REMOVED_MALICIOUS": 7,
+        "v3_halluc_now_v3_existing": 1,
+        "v3_halluc_still_halluc": 1098
+      },
+      "sonnet-4-6": {
+        "v3_halluc_now_D15_noise": 169,
+        "v3_halluc_now_D1_D11_pipreqs_import_only": 202,
+        "v3_halluc_now_FALSE_POSITIVE": 63,
+        "v3_halluc_now_UNKNOWN_EXISTS_SIMPLE_ONLY": 4,
+        "v3_halluc_now_UNKNOWN_REMOVED_MALICIOUS": 19,
+        "v3_halluc_now_noise_filter": 1,
+        "v3_halluc_now_v3_existing": 1,
+        "v3_halluc_still_halluc": 1407
+      }
+    }
+  },
+  "exclusions": {
+    "D1_D11_case_difference": {
+      "all_code_spellings_differ_from_mapping_by_case_only": 0,
+      "any_code_spelling_differs_from_mapping_module_by_case_only": 0,
+      "exact_match": 54,
+      "names_removed_by_D1_D11": 54,
+      "no_exact_match_other_difference": 0,
+      "some_code_spellings_differ_by_case_only": 0
+    },
+    "note": "noise filter, stdlib/built-ins and the py FP list run on all v3 candidates (as in the offline baseline; the result equals the committed groups A∪B); D15 and D1/D11 run on the live-checked study names.",
+    "order": [
+      "noise_filter",
+      "stdlib_or_builtin",
+      "py_false_positive_import_names",
+      "D15_invalid_name",
+      "D1_D11_pipreqs_import_only"
+    ],
+    "per_ecosystem": {
+      "npm": {
+        "D15_invalid_name": 150,
+        "input_v3_candidates": 1146,
+        "noise_filter": 383,
+        "retained": 613,
+        "stdlib_or_builtin": 0,
+        "study_names_live_checked": 763
+      },
+      "pypi": {
+        "D15_invalid_name": 81,
+        "D1_D11_detail": {
+          "import_only_but_no_mapped_distribution_EXISTS": 0,
+          "import_only_matches": 54,
+          "import_only_with_zero_extractions": 0,
+          "pipreqs_key_matches_after_D15": 55
+        },
+        "D1_D11_pipreqs_import_only": 54,
+        "input_v3_candidates": 2299,
+        "noise_filter": 313,
+        "py_false_positive_import_names": 0,
+        "retained": 1851,
+        "stdlib_or_builtin": 0,
+        "study_names_live_checked": 1986
+      }
+    }
+  },
+  "final_state_rules": {
+    "ABSENT": "both methods ABSENT in round 1 and in round 2, >= 12 h apart for every method",
+    "BLOCKED_BY_REGISTRY": "not assigned: the April 2026 PyPI reply gives a count (68 of 109), not a name list",
+    "EXISTS": "both registry methods EXISTS in the latest round that checked the name",
+    "EXISTS_SIMPLE_ONLY": "PyPI Simple EXISTS and JSON ABSENT in both rounds (D14); UNKNOWN in the primary analysis",
+    "REMOVED_MALICIOUS": "OSV has a MAL- record and the name is not EXISTS now (creation date unknown)",
+    "UNKNOWN": "every other case; never merged into ABSENT",
+    "UNPUBLISHED / SECURITY_HOLDING": "npm registry document of the latest round: time.unpublished / only version 0.0.1-security; overrides the two-method rule (D13)"
+  },
+  "final_states": {
+    "npm": {
+      "all_study_names": {
+        "ABSENT": 679,
+        "EXISTS": 50,
+        "EXISTS_SIMPLE_ONLY": 0,
+        "REMOVED_MALICIOUS": 0,
+        "SECURITY_HOLDING": 15,
+        "UNKNOWN": 4,
+        "UNPUBLISHED": 15
+      },
+      "base_state_before_D13_retained": {
+        "SECURITY_HOLDING<-EXISTS": 15,
+        "UNPUBLISHED<-UNKNOWN": 15
+      },
+      "checked_in_round2_retained": 548,
+      "osv_mal_flag_by_category_retained": {
+        "SECURITY_HOLDING": 14,
+        "UNPUBLISHED": 2
+      },
+      "osv_mal_flag_retained": 16,
+      "retained_after_exclusions": {
+        "ABSENT": 533,
+        "EXISTS": 50,
+        "EXISTS_SIMPLE_ONLY": 0,
+        "REMOVED_MALICIOUS": 0,
+        "SECURITY_HOLDING": 15,
+        "UNKNOWN": 0,
+        "UNPUBLISHED": 15
+      },
+      "unknown_reasons_retained": {}
+    },
+    "pypi": {
+      "all_study_names": {
+        "ABSENT": 1857,
+        "EXISTS": 106,
+        "EXISTS_SIMPLE_ONLY": 11,
+        "REMOVED_MALICIOUS": 12,
+        "SECURITY_HOLDING": 0,
+        "UNKNOWN": 0,
+        "UNPUBLISHED": 0
+      },
+      "base_state_before_D13_retained": {
+        "REMOVED_MALICIOUS<-ABSENT": 11
+      },
+      "checked_in_round2_retained": 1745,
+      "osv_mal_flag_by_category_retained": {
+        "REMOVED_MALICIOUS": 11
+      },
+      "osv_mal_flag_retained": 11,
+      "retained_after_exclusions": {
+        "ABSENT": 1724,
+        "EXISTS": 106,
+        "EXISTS_SIMPLE_ONLY": 10,
+        "REMOVED_MALICIOUS": 11,
+        "SECURITY_HOLDING": 0,
+        "UNKNOWN": 0,
+        "UNPUBLISHED": 0
+      },
+      "unknown_reasons_retained": {}
+    }
+  },
+  "generation_time": {
+    "batch_interval": 35566,
+    "no_time": 0,
+    "own_timestamp": 164274,
+    "rule": "sync call: generations.created_at; batch call: [batches.submitted_at, batches.completed_at] (D2: creation inside the interval -> UNKNOWN)",
+    "total": 199840
+  },
+  "generations_table": {
+    "distinct_prompts": 39969,
+    "missing_per_model": {
+      "deepseek-v3.2": 0,
+      "gemini-2.5-pro": 0,
+      "gpt-5.4-mini": 0,
+      "haiku-4-5": 0,
+      "sonnet-4-6": 5
+    },
+    "per_model": {
+      "deepseek-v3.2": 39969,
+      "gemini-2.5-pro": 39969,
+      "gpt-5.4-mini": 39969,
+      "haiku-4-5": 39969,
+      "sonnet-4-6": 39964
+    },
+    "prompts_x_models": 199845,
+    "rows": 199840
+  },
+  "provenance": {
+    "classification_db_sha256_canonical": "9acfe4360f5dc5b05ce7172e90e139f1d6a2c1f409a9546cee0774971f425171",
+    "classification_db_sha256_file": "697fe2c9581978d1827e72a734f0dc0fc08142820cbbfaa0bb97df42d07b15c9",
+    "databases": "sqlite mode=ro",
+    "git_head": "73da8b9c8851cd2da9d988551e0408c7efff6ab4",
+    "git_worktree_dirty": false,
+    "network": "blocked (socket.socket replaced)",
+    "noise_filter_blob": "7d160d4e370d7583e5c638c24048ff571b25b363",
+    "pipreqs_mapping_sha256": "bc02385c473b7ccfdc2c67697df423feaa394023f5f1d59693c86a5a0dcd7e50",
+    "quick_run_without_permutations": false,
+    "registry_checks_db_sha256": "b5cdff5d35bb9119a737a81b7729dce82acf3947889597c924e9f2e058dd33d2",
+    "round2_summary_commit": "b14bf30131980a35dd9214720f025abf0c74b1e7",
+    "runs_db_sha256": "ad82fc69d3e16edc6aa85f89e4eed367a778fa412965219c1f92a192fcf9fdcd"
+  },
+  "pypi_april_list": {
+    "D15_invalid_name": 0,
+    "D1_D11_import_only": 26,
+    "false_positive_existed_before_generation": 3,
+    "n": 121,
+    "noise_filter": 1,
+    "note": "the rest is not split further: registration outcomes of the universal names belong to stage B (task 2)",
+    "rest_hallucination_or_unknown_as_of_generation": 91
+  },
+  "recompute": {
+    "a_generation": {
+      "by_dataset": {
+        "LLM_AT": {
+          "ci95": [
+            4.6317608848974805,
+            5.008690594692375
+          ],
+          "halluc": 2389,
+          "rate": 4.816726480906488,
+          "rate_upper_if_unknown_counted": 4.816726480906488,
+          "total": 49598,
+          "unknown_only": 0
+        },
+        "LLM_LY": {
+          "ci95": [
+            5.534159942699716,
+            5.944182912433342
+          ],
+          "halluc": 2835,
+          "rate": 5.735731482792806,
+          "rate_upper_if_unknown_counted": 5.735731482792805,
+          "total": 49427,
+          "unknown_only": 0
+        },
+        "SO_AT": {
+          "ci95": [
+            0.8155091712575453,
+            0.9797493963328734
+          ],
+          "halluc": 452,
+          "rate": 0.8938989419558983,
+          "rate_upper_if_unknown_counted": 0.8938989419558984,
+          "total": 50565,
+          "unknown_only": 0
+        },
+        "SO_LY": {
+          "ci95": [
+            1.788595323064988,
+            2.027712849897716
+          ],
+          "halluc": 957,
+          "rate": 1.9044776119402984,
+          "rate_upper_if_unknown_counted": 1.9044776119402984,
+          "total": 50250,
+          "unknown_only": 0
+        }
+      },
+      "by_language": {
+        "javascript": {
+          "ci95": [
+            0.9728182347623879,
+            1.0954834697274978
+          ],
+          "halluc": 1078,
+          "rate": 1.0323495048936049,
+          "rate_upper_if_unknown_counted": 1.0323495048936049,
+          "total": 104422,
+          "unknown_only": 0
+        },
+        "python": {
+          "ci95": [
+            5.67495220152048,
+            5.972110241323776
+          ],
+          "halluc": 5555,
+          "rate": 5.821752709132449,
+          "rate_upper_if_unknown_counted": 5.821752709132449,
+          "total": 95418,
+          "unknown_only": 0
+        }
+      },
+      "by_model_dataset": {
+        "deepseek-v3.2": {
+          "LLM_AT": {
+            "ci95": [
+              4.230901037180237,
+              5.058258434440765
+            ],
+            "halluc": 459,
+            "rate": 4.627016129032258,
+            "rate_upper_if_unknown_counted": 4.627016129032258,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.031375117772602,
+              5.927763745409295
+            ],
+            "halluc": 540,
+            "rate": 5.462269876593162,
+            "rate_upper_if_unknown_counted": 5.462269876593162,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.8047986072278058,
+              1.1903049005444952
+            ],
+            "halluc": 99,
+            "rate": 0.9789380005932957,
+            "rate_upper_if_unknown_counted": 0.9789380005932957,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              1.8369660366519849,
+              2.3986434123818867
+            ],
+            "halluc": 211,
+            "rate": 2.099502487562189,
+            "rate_upper_if_unknown_counted": 2.099502487562189,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "LLM_AT": {
+            "ci95": [
+              5.353415365327065,
+              6.273548483386129
+            ],
+            "halluc": 575,
+            "rate": 5.796370967741935,
+            "rate_upper_if_unknown_counted": 5.796370967741935,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.4840473291595755,
+              7.4882844273645635
+            ],
+            "halluc": 689,
+            "rate": 6.969451749949424,
+            "rate_upper_if_unknown_counted": 6.969451749949424,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              1.119930782423054,
+              1.5670882830351711
+            ],
+            "halluc": 134,
+            "rate": 1.3250271927222386,
+            "rate_upper_if_unknown_counted": 1.3250271927222388,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              2.1913834828453784,
+              2.800155928992131
+            ],
+            "halluc": 249,
+            "rate": 2.4776119402985075,
+            "rate_upper_if_unknown_counted": 2.4776119402985075,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "LLM_AT": {
+            "ci95": [
+              4.047670659118268,
+              4.858572578323839
+            ],
+            "halluc": 440,
+            "rate": 4.435483870967742,
+            "rate_upper_if_unknown_counted": 4.435483870967742,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.914753061603605,
+              5.801712548423212
+            ],
+            "halluc": 528,
+            "rate": 5.340886101557758,
+            "rate_upper_if_unknown_counted": 5.340886101557758,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.13586347170011642,
+              0.3172567932292679
+            ],
+            "halluc": 21,
+            "rate": 0.20765351527736575,
+            "rate_upper_if_unknown_counted": 0.20765351527736578,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              0.48156919156790245,
+              0.7899990875253887
+            ],
+            "halluc": 62,
+            "rate": 0.6169154228855721,
+            "rate_upper_if_unknown_counted": 0.6169154228855721,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "LLM_AT": {
+            "ci95": [
+              3.6529991410425775,
+              4.426951170013495
+            ],
+            "halluc": 399,
+            "rate": 4.022177419354839,
+            "rate_upper_if_unknown_counted": 4.022177419354839,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.3907736574259975,
+              5.23366231340296
+            ],
+            "halluc": 474,
+            "rate": 4.794659113898443,
+            "rate_upper_if_unknown_counted": 4.794659113898442,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.8137310373001392,
+              1.2011414864060452
+            ],
+            "halluc": 100,
+            "rate": 0.9888262632255512,
+            "rate_upper_if_unknown_counted": 0.9888262632255512,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              1.9579769449457676,
+              2.5362401229419804
+            ],
+            "halluc": 224,
+            "rate": 2.228855721393035,
+            "rate_upper_if_unknown_counted": 2.228855721393035,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "LLM_AT": {
+            "ci95": [
+              4.7826807617954685,
+              5.6573314387604325
+            ],
+            "halluc": 516,
+            "rate": 5.202661826981246,
+            "rate_upper_if_unknown_counted": 5.202661826981246,
+            "total": 9918,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.65607804536155,
+              6.601036260234314
+            ],
+            "halluc": 604,
+            "rate": 6.111504603865224,
+            "rate_upper_if_unknown_counted": 6.111504603865223,
+            "total": 9883,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.7958710967184538,
+              1.1794633951199638
+            ],
+            "halluc": 98,
+            "rate": 0.9690497379610403,
+            "rate_upper_if_unknown_counted": 0.9690497379610402,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              1.8369660366519849,
+              2.3986434123818867
+            ],
+            "halluc": 211,
+            "rate": 2.099502487562189,
+            "rate_upper_if_unknown_counted": 2.099502487562189,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        }
+      },
+      "by_model_language": {
+        "deepseek-v3.2": {
+          "javascript": {
+            "ci95": [
+              0.9460412043864809,
+              1.2266090103962606
+            ],
+            "halluc": 225,
+            "rate": 1.0773282259995212,
+            "rate_upper_if_unknown_counted": 1.0773282259995212,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.36058853748961,
+              6.017552167975349
+            ],
+            "halluc": 1084,
+            "rate": 5.680150911758542,
+            "rate_upper_if_unknown_counted": 5.680150911758541,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "javascript": {
+            "ci95": [
+              1.279240315853759,
+              1.6019221459665234
+            ],
+            "halluc": 299,
+            "rate": 1.4316495092171415,
+            "rate_upper_if_unknown_counted": 1.4316495092171415,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.70857328036049,
+              7.435726192396648
+            ],
+            "halluc": 1348,
+            "rate": 7.063508698386083,
+            "rate_upper_if_unknown_counted": 7.063508698386083,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "javascript": {
+            "ci95": [
+              0.5903793632951028,
+              0.8163116655011077
+            ],
+            "halluc": 145,
+            "rate": 0.6942781900885803,
+            "rate_upper_if_unknown_counted": 0.6942781900885803,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.454728440135139,
+              5.058350672231306
+            ],
+            "halluc": 906,
+            "rate": 4.747432404108153,
+            "rate_upper_if_unknown_counted": 4.747432404108153,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "javascript": {
+            "ci95": [
+              0.8208884401294525,
+              1.083676059558003
+            ],
+            "halluc": 197,
+            "rate": 0.9432607134306918,
+            "rate_upper_if_unknown_counted": 0.9432607134306918,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.93275455952943,
+              5.565244719978928
+            ],
+            "halluc": 1000,
+            "rate": 5.239991616013414,
+            "rate_upper_if_unknown_counted": 5.239991616013414,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "javascript": {
+            "ci95": [
+              0.8879870085635965,
+              1.160489035191893
+            ],
+            "halluc": 212,
+            "rate": 1.015228426395939,
+            "rate_upper_if_unknown_counted": 1.015228426395939,
+            "total": 20882,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.039737719579379,
+              6.733298586315446
+            ],
+            "halluc": 1217,
+            "rate": 6.377738182580442,
+            "rate_upper_if_unknown_counted": 6.377738182580442,
+            "total": 19082,
+            "unknown_only": 0
+          }
+        }
+      },
+      "chi2": {
+        "n_pairs": 10,
+        "n_significant": 10,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "chi2": 5.075720419974395,
+            "delta_pp": 0.2802171683054362,
+            "p_holm": 0.040950948964503325,
+            "p_raw": 0.024263187385806156,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "chi2": 21.040398492315834,
+            "delta_pp": 0.580897160067344,
+            "p_holm": 2.248503490238268e-05,
+            "p_raw": 4.497006980476536e-06,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "chi2": 9.623384857419921,
+            "delta_pp": 0.3652830943981584,
+            "p_holm": 0.005763459824696837,
+            "p_raw": 0.0019211532748989457,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "chi2": 73.50143003133114,
+            "delta_pp": 1.1258725512272005,
+            "p_holm": 9.050695149370799e-17,
+            "p_raw": 1.0056327943745332e-17,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "chi2": 5.3708945187698305,
+            "delta_pp": 0.30067999176190785,
+            "p_holm": 0.040950948964503325,
+            "p_raw": 0.020475474482251663,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "chi2": 28.838252686962186,
+            "delta_pp": 0.6455002627035946,
+            "p_holm": 4.7209003123567447e-07,
+            "p_raw": 7.868167187261242e-08,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "chi2": 39.895091032123254,
+            "delta_pp": 0.8456553829217643,
+            "p_holm": 1.875830920270053e-09,
+            "p_raw": 2.6797584575286473e-10,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "chi2": 59.19380101220675,
+            "delta_pp": 0.9461802544655025,
+            "p_holm": 1.143065953634389e-13,
+            "p_raw": 1.4288324420429863e-14,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "chi2": 15.892979176656395,
+            "delta_pp": 0.5449753911598565,
+            "p_holm": 0.00026810759367030526,
+            "p_raw": 6.702689841757631e-05,
+            "significant": true
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "chi2": 135.8010097914753,
+            "delta_pp": 1.491155645625359,
+            "p_holm": 2.20563064047538e-30,
+            "p_raw": 2.20563064047538e-31,
+            "significant": true
+          }
+        ]
+      },
+      "jaccard": {
+        "max": 0.34444444444444444,
+        "mean": 0.22216295915818135,
+        "min": 0.17878585723815876,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "inter": 319,
+            "jaccard": 0.2459521973785659,
+            "union": 1297
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "inter": 268,
+            "jaccard": 0.17878585723815876,
+            "union": 1499
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.23190932868352224,
+            "union": 1147
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "inter": 291,
+            "jaccard": 0.18558673469387754,
+            "union": 1568
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "inter": 317,
+            "jaccard": 0.1968944099378882,
+            "union": 1610
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "inter": 403,
+            "jaccard": 0.34444444444444444,
+            "union": 1170
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "inter": 390,
+            "jaccard": 0.23941068139963168,
+            "union": 1629
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.18244170096021947,
+            "union": 1458
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "inter": 331,
+            "jaccard": 0.17998912452419794,
+            "union": 1839
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "inter": 347,
+            "jaccard": 0.236215112321307,
+            "union": 1469
+          }
+        ],
+        "unique_per_model": {
+          "deepseek-v3.2": 888,
+          "gemini-2.5-pro": 1131,
+          "gpt-5.4-mini": 685,
+          "haiku-4-5": 728,
+          "sonnet-4-6": 1039
+        }
+      },
+      "labels": "classification classification.db, variant a",
+      "level": "generation",
+      "per_model": {
+        "deepseek-v3.2": {
+          "ci95": [
+            3.1049917792551915,
+            3.4540652282924653
+          ],
+          "halluc": 1309,
+          "rate": 3.275038154569791,
+          "rate_upper_if_unknown_counted": 3.2750381545697915,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            3.930197011385359,
+            4.320008224132037
+          ],
+          "halluc": 1647,
+          "rate": 4.120693537491555,
+          "rate_upper_if_unknown_counted": 4.120693537491556,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            2.477161809467636,
+            2.791018740043947
+          ],
+          "halluc": 1051,
+          "rate": 2.6295378918661965,
+          "rate_upper_if_unknown_counted": 2.6295378918661965,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "haiku-4-5": {
+          "ci95": [
+            2.8321879766624765,
+            3.166488552978048
+          ],
+          "halluc": 1197,
+          "rate": 2.994820986264355,
+          "rate_upper_if_unknown_counted": 2.994820986264355,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            3.3980851617685373,
+            3.762275153834898
+          ],
+          "halluc": 1429,
+          "rate": 3.575718146331699,
+          "rate_upper_if_unknown_counted": 3.5757181463316985,
+          "total": 39964,
+          "unknown_only": 0
+        }
+      },
+      "permutation": {
+        "max_p": 0.0248,
+        "n_permutations": 10000,
+        "n_significant": 10,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "delta_pp": 0.2802171683054362,
+            "p_perm": 0.0248
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.5808971600673438,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.36528309439815865,
+            "p_perm": 0.0017
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.1258725512272008,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.3006799917619075,
+            "p_perm": 0.0229
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.6455002627035948,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.8456553829217645,
+            "p_perm": 0.0
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.9461802544655025,
+            "p_perm": 0.0
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.5449753911598569,
+            "p_perm": 0.0001
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.4911556456253594,
+            "p_perm": 0.0
+          }
+        ],
+        "seed": 42
+      },
+      "refusals": {
+        "deepseek-v3.2": {
+          "generations": 39969,
+          "rate": 1.9740298731516925,
+          "refusals": 789
+        },
+        "gemini-2.5-pro": {
+          "generations": 39969,
+          "rate": 8.111286246841303,
+          "refusals": 3242
+        },
+        "gpt-5.4-mini": {
+          "generations": 39969,
+          "rate": 31.50691786134254,
+          "refusals": 12593
+        },
+        "haiku-4-5": {
+          "generations": 39969,
+          "rate": 1.2709850133853737,
+          "refusals": 508
+        },
+        "sonnet-4-6": {
+          "generations": 39964,
+          "rate": 18.76939245320789,
+          "refusals": 7501
+        }
+      },
+      "top_names": {
+        "npm": {
+          "counts": [
+            55,
+            53,
+            25,
+            15,
+            10,
+            10,
+            8,
+            8,
+            7,
+            7
+          ],
+          "sha256": "3c5b481f88f9770a3875c2055e59a5ebf8b3b51dfb9556218516d268ef46ebf8"
+        },
+        "pypi": {
+          "counts": [
+            429,
+            375,
+            374,
+            315,
+            215,
+            117,
+            103,
+            102,
+            91,
+            62
+          ],
+          "sha256": "a2068b6278f26c72dee5efea87678655a55c732adb2db27f606e69d043e332bc"
+        }
+      },
+      "universal": {
+        "n_npm": 18,
+        "n_pypi": 120,
+        "sha256_npm": "2c7c293a78d259473d6022bb960463a499ae96bdd4dedf8438b9a3889c611c27",
+        "sha256_pypi": "0a69370f621bb917b83380dce77fc367383ead2038ddb5cf12887677ed6e9aef",
+        "total": 138
+      }
+    },
+    "a_mention": {
+      "by_dataset": {
+        "LLM_AT": {
+          "ci95": [
+            5.8433615783021295,
+            6.272950810960203
+          ],
+          "halluc": 2868,
+          "rate": 6.054592666089636,
+          "rate_upper_if_unknown_counted": 6.054592666089636,
+          "total": 47369,
+          "unknown_only": 0
+        },
+        "LLM_LY": {
+          "ci95": [
+            6.1631914831627554,
+            6.580655448830456
+          ],
+          "halluc": 3349,
+          "rate": 6.368736331653513,
+          "rate_upper_if_unknown_counted": 6.368736331653514,
+          "total": 52585,
+          "unknown_only": 0
+        },
+        "SO_AT": {
+          "ci95": [
+            2.8971346425776847,
+            3.4201205551351124
+          ],
+          "halluc": 540,
+          "rate": 3.148137352066694,
+          "rate_upper_if_unknown_counted": 3.1481373520666938,
+          "total": 17153,
+          "unknown_only": 0
+        },
+        "SO_LY": {
+          "ci95": [
+            4.117820772560562,
+            4.600049324194581
+          ],
+          "halluc": 1198,
+          "rate": 4.352565034152013,
+          "rate_upper_if_unknown_counted": 4.352565034152013,
+          "total": 27524,
+          "unknown_only": 0
+        }
+      },
+      "by_language": {
+        "javascript": {
+          "ci95": [
+            2.972728909218085,
+            3.3015456311441738
+          ],
+          "halluc": 1352,
+          "rate": 3.132965657876442,
+          "rate_upper_if_unknown_counted": 3.1329656578764427,
+          "total": 43154,
+          "unknown_only": 0
+        },
+        "python": {
+          "ci95": [
+            6.356779249853019,
+            6.660299904128015
+          ],
+          "halluc": 6603,
+          "rate": 6.506893187618869,
+          "rate_upper_if_unknown_counted": 6.50689318761887,
+          "total": 101477,
+          "unknown_only": 0
+        }
+      },
+      "by_model_dataset": {
+        "deepseek-v3.2": {
+          "LLM_AT": {
+            "ci95": [
+              5.7581335946099115,
+              6.7824288344332615
+            ],
+            "halluc": 537,
+            "rate": 6.250727505529043,
+            "rate_upper_if_unknown_counted": 6.250727505529042,
+            "total": 8591,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.094151700134949,
+              7.100603847655819
+            ],
+            "halluc": 614,
+            "rate": 6.579511358765538,
+            "rate_upper_if_unknown_counted": 6.579511358765538,
+            "total": 9332,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              3.035814647901989,
+              4.357340064718255
+            ],
+            "halluc": 113,
+            "rate": 3.639291465378422,
+            "rate_upper_if_unknown_counted": 3.639291465378422,
+            "total": 3105,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              4.698561856215753,
+              5.933150230410392
+            ],
+            "halluc": 267,
+            "rate": 5.281899109792285,
+            "rate_upper_if_unknown_counted": 5.281899109792285,
+            "total": 5055,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "LLM_AT": {
+            "ci95": [
+              6.088294918629067,
+              7.029174076390071
+            ],
+            "halluc": 695,
+            "rate": 6.543023912634155,
+            "rate_upper_if_unknown_counted": 6.543023912634156,
+            "total": 10622,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.5303647161051135,
+              7.458453956128697
+            ],
+            "halluc": 809,
+            "rate": 6.980155306298533,
+            "rate_upper_if_unknown_counted": 6.980155306298533,
+            "total": 11590,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              3.026642606722378,
+              4.068681341616298
+            ],
+            "halluc": 169,
+            "rate": 3.5105941005400916,
+            "rate_upper_if_unknown_counted": 3.5105941005400916,
+            "total": 4814,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              3.796594339413828,
+              4.735372784962896
+            ],
+            "halluc": 301,
+            "rate": 4.241228688178103,
+            "rate_upper_if_unknown_counted": 4.241228688178103,
+            "total": 7097,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "LLM_AT": {
+            "ci95": [
+              6.178133922017051,
+              7.3210930890001915
+            ],
+            "halluc": 497,
+            "rate": 6.727125067677314,
+            "rate_upper_if_unknown_counted": 6.727125067677314,
+            "total": 7388,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.680094911284895,
+              7.79800856405691
+            ],
+            "halluc": 595,
+            "rate": 7.219121572433876,
+            "rate_upper_if_unknown_counted": 7.219121572433875,
+            "total": 8242,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              1.1632497721163493,
+              2.6462644372345623
+            ],
+            "halluc": 22,
+            "rate": 1.7571884984025559,
+            "rate_upper_if_unknown_counted": 1.7571884984025559,
+            "total": 1252,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              2.259030385080263,
+              3.5153532235364424
+            ],
+            "halluc": 76,
+            "rate": 2.8200371057513918,
+            "rate_upper_if_unknown_counted": 2.8200371057513913,
+            "total": 2695,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "LLM_AT": {
+            "ci95": [
+              4.445050487851249,
+              5.307005901516968
+            ],
+            "halluc": 465,
+            "rate": 4.857918930213121,
+            "rate_upper_if_unknown_counted": 4.857918930213121,
+            "total": 9572,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.547850471991535,
+              5.3687899155859435
+            ],
+            "halluc": 530,
+            "rate": 4.942185751585229,
+            "rate_upper_if_unknown_counted": 4.942185751585229,
+            "total": 10724,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              2.5103780815651464,
+              3.5691805677660273
+            ],
+            "halluc": 120,
+            "rate": 2.9947591714499624,
+            "rate_upper_if_unknown_counted": 2.9947591714499624,
+            "total": 4007,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              4.177008632316465,
+              5.251694290950895
+            ],
+            "halluc": 279,
+            "rate": 4.685138539042821,
+            "rate_upper_if_unknown_counted": 4.685138539042821,
+            "total": 5955,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "LLM_AT": {
+            "ci95": [
+              5.594321111878448,
+              6.475862772340914
+            ],
+            "halluc": 674,
+            "rate": 6.020007145409075,
+            "rate_upper_if_unknown_counted": 6.020007145409075,
+            "total": 11196,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.898772996219069,
+              6.744810218540629
+            ],
+            "halluc": 801,
+            "rate": 6.308576829172245,
+            "rate_upper_if_unknown_counted": 6.308576829172245,
+            "total": 12697,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              2.438726624539307,
+              3.488663578401732
+            ],
+            "halluc": 116,
+            "rate": 2.918238993710692,
+            "rate_upper_if_unknown_counted": 2.9182389937106916,
+            "total": 3975,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              3.643146987493634,
+              4.591383401181398
+            ],
+            "halluc": 275,
+            "rate": 4.091044332044034,
+            "rate_upper_if_unknown_counted": 4.091044332044034,
+            "total": 6722,
+            "unknown_only": 0
+          }
+        }
+      },
+      "by_model_language": {
+        "deepseek-v3.2": {
+          "javascript": {
+            "ci95": [
+              3.373161595101403,
+              4.256275821587219
+            ],
+            "halluc": 273,
+            "rate": 3.7900874635568513,
+            "rate_upper_if_unknown_counted": 3.7900874635568513,
+            "total": 7203,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.316154490636484,
+              7.027748360463066
+            ],
+            "halluc": 1258,
+            "rate": 6.663135593220339,
+            "rate_upper_if_unknown_counted": 6.663135593220339,
+            "total": 18880,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "javascript": {
+            "ci95": [
+              3.2461560456087875,
+              3.9669949209048276
+            ],
+            "halluc": 368,
+            "rate": 3.5891934068077633,
+            "rate_upper_if_unknown_counted": 3.5891934068077638,
+            "total": 10253,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.417229991679588,
+              7.052916672264741
+            ],
+            "halluc": 1606,
+            "rate": 6.728110599078341,
+            "rate_upper_if_unknown_counted": 6.728110599078341,
+            "total": 23870,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "javascript": {
+            "ci95": [
+              2.677821659882594,
+              3.589670195656547
+            ],
+            "halluc": 173,
+            "rate": 3.101470060953747,
+            "rate_upper_if_unknown_counted": 3.101470060953747,
+            "total": 5578,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.846461774115585,
+              7.706594938077739
+            ],
+            "halluc": 1017,
+            "rate": 7.2648046289020645,
+            "rate_upper_if_unknown_counted": 7.2648046289020645,
+            "total": 13999,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "javascript": {
+            "ci95": [
+              2.426604412184611,
+              3.077951433483444
+            ],
+            "halluc": 264,
+            "rate": 2.733485193621868,
+            "rate_upper_if_unknown_counted": 2.733485193621868,
+            "total": 9658,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.182719699637834,
+              5.804753016774098
+            ],
+            "halluc": 1130,
+            "rate": 5.485436893203883,
+            "rate_upper_if_unknown_counted": 5.485436893203883,
+            "total": 20600,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "javascript": {
+            "ci95": [
+              2.3299383234763096,
+              2.9428480166568853
+            ],
+            "halluc": 274,
+            "rate": 2.619002102848404,
+            "rate_upper_if_unknown_counted": 2.6190021028484036,
+            "total": 10462,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.291761797227558,
+              6.918342637862998
+            ],
+            "halluc": 1592,
+            "rate": 6.598143236074271,
+            "rate_upper_if_unknown_counted": 6.598143236074271,
+            "total": 24128,
+            "unknown_only": 0
+          }
+        }
+      },
+      "chi2": {
+        "n_pairs": 10,
+        "n_significant": 5,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "chi2": 45.11813163092202,
+            "delta_pp": 1.2626775042814646,
+            "p_holm": 1.6694993797495013e-10,
+            "p_raw": 1.8549993108327792e-11,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "chi2": 20.803479070058106,
+            "delta_pp": 0.7875766528697383,
+            "p_holm": 3.5623303529917124e-05,
+            "p_raw": 5.089043361416732e-06,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "chi2": 52.05476512815596,
+            "delta_pp": 1.4715155069004844,
+            "p_holm": 5.397408945654882e-12,
+            "p_raw": 5.397408945654882e-13,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "chi2": 44.64487568643586,
+            "delta_pp": 1.1779083591029327,
+            "p_holm": 1.8897200980302822e-10,
+            "p_raw": 2.3621501225378527e-11,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "chi2": 6.260914680766289,
+            "delta_pp": 0.4751008514117263,
+            "p_holm": 0.06171523012842826,
+            "p_raw": 0.012343046025685651,
+            "significant": false
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "chi2": 0.8334523568341183,
+            "delta_pp": 0.20883800261901975,
+            "p_holm": 0.722552279979924,
+            "p_raw": 0.361276139989962,
+            "significant": false
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "chi2": 0.1785972630068242,
+            "delta_pp": 0.08476914517853196,
+            "p_holm": 0.722552279979924,
+            "p_raw": 0.6725815121322494,
+            "significant": false
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "chi2": 10.856856224419548,
+            "delta_pp": 0.6839388540307461,
+            "p_holm": 0.005905839012973321,
+            "p_raw": 0.0009843065021622201,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "chi2": 4.886609057729194,
+            "delta_pp": 0.39033170623319435,
+            "p_holm": 0.10826318148202081,
+            "p_raw": 0.027065795370505203,
+            "significant": false
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "chi2": 1.8814424824895242,
+            "delta_pp": 0.2936071477975517,
+            "p_holm": 0.5105108722120636,
+            "p_raw": 0.17017029073735454,
+            "significant": false
+          }
+        ]
+      },
+      "jaccard": {
+        "max": 0.34444444444444444,
+        "mean": 0.22216295915818135,
+        "min": 0.17878585723815876,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "inter": 319,
+            "jaccard": 0.2459521973785659,
+            "union": 1297
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "inter": 268,
+            "jaccard": 0.17878585723815876,
+            "union": 1499
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.23190932868352224,
+            "union": 1147
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "inter": 291,
+            "jaccard": 0.18558673469387754,
+            "union": 1568
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "inter": 317,
+            "jaccard": 0.1968944099378882,
+            "union": 1610
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "inter": 403,
+            "jaccard": 0.34444444444444444,
+            "union": 1170
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "inter": 390,
+            "jaccard": 0.23941068139963168,
+            "union": 1629
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.18244170096021947,
+            "union": 1458
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "inter": 331,
+            "jaccard": 0.17998912452419794,
+            "union": 1839
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "inter": 347,
+            "jaccard": 0.236215112321307,
+            "union": 1469
+          }
+        ],
+        "unique_per_model": {
+          "deepseek-v3.2": 888,
+          "gemini-2.5-pro": 1131,
+          "gpt-5.4-mini": 685,
+          "haiku-4-5": 728,
+          "sonnet-4-6": 1039
+        }
+      },
+      "labels": "classification classification.db, variant a",
+      "level": "mention",
+      "per_model": {
+        "deepseek-v3.2": {
+          "ci95": [
+            5.5909077655963255,
+            6.161536330252799
+          ],
+          "halluc": 1531,
+          "rate": 5.869723574742169,
+          "rate_upper_if_unknown_counted": 5.869723574742169,
+          "total": 26083,
+          "unknown_only": 0
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            5.542190506017004,
+            6.037672410945883
+          ],
+          "halluc": 1974,
+          "rate": 5.784954429563637,
+          "rate_upper_if_unknown_counted": 5.784954429563637,
+          "total": 34123,
+          "unknown_only": 0
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            5.752398602352822,
+            6.421957968757821
+          ],
+          "halluc": 1190,
+          "rate": 6.078561577361189,
+          "rate_upper_if_unknown_counted": 6.078561577361189,
+          "total": 19577,
+          "unknown_only": 0
+        },
+        "haiku-4-5": {
+          "ci95": [
+            4.376543472717328,
+            4.8490730933457105
+          ],
+          "halluc": 1394,
+          "rate": 4.607046070460704,
+          "rate_upper_if_unknown_counted": 4.607046070460704,
+          "total": 30258,
+          "unknown_only": 0
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            5.161463993021485,
+            5.637687824991295
+          ],
+          "halluc": 1866,
+          "rate": 5.394622723330443,
+          "rate_upper_if_unknown_counted": 5.394622723330443,
+          "total": 34590,
+          "unknown_only": 0
+        }
+      },
+      "permutation": {
+        "max_p": 0.6705,
+        "n_permutations": 10000,
+        "n_significant": 7,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "delta_pp": 1.2626775042814646,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.7875766528697377,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 1.4715155069004844,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.1779083591029325,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.4751008514117271,
+            "p_perm": 0.0121
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.20883800261901966,
+            "p_perm": 0.3489
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.08476914517853221,
+            "p_perm": 0.6705
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.6839388540307467,
+            "p_perm": 0.0007
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.39033170623319485,
+            "p_perm": 0.0234
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.29360714779755187,
+            "p_perm": 0.168
+          }
+        ],
+        "seed": 42
+      },
+      "refusals": {
+        "deepseek-v3.2": {
+          "generations": 39969,
+          "rate": 1.9740298731516925,
+          "refusals": 789
+        },
+        "gemini-2.5-pro": {
+          "generations": 39969,
+          "rate": 8.111286246841303,
+          "refusals": 3242
+        },
+        "gpt-5.4-mini": {
+          "generations": 39969,
+          "rate": 31.50691786134254,
+          "refusals": 12593
+        },
+        "haiku-4-5": {
+          "generations": 39969,
+          "rate": 1.2709850133853737,
+          "refusals": 508
+        },
+        "sonnet-4-6": {
+          "generations": 39964,
+          "rate": 18.76939245320789,
+          "refusals": 7501
+        }
+      },
+      "top_names": {
+        "npm": {
+          "counts": [
+            55,
+            53,
+            25,
+            15,
+            10,
+            10,
+            8,
+            8,
+            7,
+            7
+          ],
+          "sha256": "3c5b481f88f9770a3875c2055e59a5ebf8b3b51dfb9556218516d268ef46ebf8"
+        },
+        "pypi": {
+          "counts": [
+            429,
+            375,
+            374,
+            315,
+            215,
+            117,
+            103,
+            102,
+            91,
+            62
+          ],
+          "sha256": "a2068b6278f26c72dee5efea87678655a55c732adb2db27f606e69d043e332bc"
+        }
+      },
+      "universal": {
+        "n_npm": 18,
+        "n_pypi": 120,
+        "sha256_npm": "2c7c293a78d259473d6022bb960463a499ae96bdd4dedf8438b9a3889c611c27",
+        "sha256_pypi": "0a69370f621bb917b83380dce77fc367383ead2038ddb5cf12887677ed6e9aef",
+        "total": 138
+      }
+    },
+    "b_generation": {
+      "by_dataset": {
+        "LLM_AT": {
+          "ci95": [
+            4.6317608848974805,
+            5.008690594692375
+          ],
+          "halluc": 2389,
+          "rate": 4.816726480906488,
+          "rate_upper_if_unknown_counted": 4.816726480906488,
+          "total": 49598,
+          "unknown_only": 0
+        },
+        "LLM_LY": {
+          "ci95": [
+            5.534159942699716,
+            5.944182912433342
+          ],
+          "halluc": 2835,
+          "rate": 5.735731482792806,
+          "rate_upper_if_unknown_counted": 5.735731482792805,
+          "total": 49427,
+          "unknown_only": 0
+        },
+        "SO_AT": {
+          "ci95": [
+            0.8155091712575453,
+            0.9797493963328734
+          ],
+          "halluc": 452,
+          "rate": 0.8938989419558983,
+          "rate_upper_if_unknown_counted": 0.8938989419558984,
+          "total": 50565,
+          "unknown_only": 0
+        },
+        "SO_LY": {
+          "ci95": [
+            1.788595323064988,
+            2.027712849897716
+          ],
+          "halluc": 957,
+          "rate": 1.9044776119402984,
+          "rate_upper_if_unknown_counted": 1.9044776119402984,
+          "total": 50250,
+          "unknown_only": 0
+        }
+      },
+      "by_language": {
+        "javascript": {
+          "ci95": [
+            0.9728182347623879,
+            1.0954834697274978
+          ],
+          "halluc": 1078,
+          "rate": 1.0323495048936049,
+          "rate_upper_if_unknown_counted": 1.0323495048936049,
+          "total": 104422,
+          "unknown_only": 0
+        },
+        "python": {
+          "ci95": [
+            5.67495220152048,
+            5.972110241323776
+          ],
+          "halluc": 5555,
+          "rate": 5.821752709132449,
+          "rate_upper_if_unknown_counted": 5.821752709132449,
+          "total": 95418,
+          "unknown_only": 0
+        }
+      },
+      "by_model_dataset": {
+        "deepseek-v3.2": {
+          "LLM_AT": {
+            "ci95": [
+              4.230901037180237,
+              5.058258434440765
+            ],
+            "halluc": 459,
+            "rate": 4.627016129032258,
+            "rate_upper_if_unknown_counted": 4.627016129032258,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.031375117772602,
+              5.927763745409295
+            ],
+            "halluc": 540,
+            "rate": 5.462269876593162,
+            "rate_upper_if_unknown_counted": 5.462269876593162,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.8047986072278058,
+              1.1903049005444952
+            ],
+            "halluc": 99,
+            "rate": 0.9789380005932957,
+            "rate_upper_if_unknown_counted": 0.9789380005932957,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              1.8369660366519849,
+              2.3986434123818867
+            ],
+            "halluc": 211,
+            "rate": 2.099502487562189,
+            "rate_upper_if_unknown_counted": 2.099502487562189,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "LLM_AT": {
+            "ci95": [
+              5.353415365327065,
+              6.273548483386129
+            ],
+            "halluc": 575,
+            "rate": 5.796370967741935,
+            "rate_upper_if_unknown_counted": 5.796370967741935,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.4840473291595755,
+              7.4882844273645635
+            ],
+            "halluc": 689,
+            "rate": 6.969451749949424,
+            "rate_upper_if_unknown_counted": 6.969451749949424,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              1.119930782423054,
+              1.5670882830351711
+            ],
+            "halluc": 134,
+            "rate": 1.3250271927222386,
+            "rate_upper_if_unknown_counted": 1.3250271927222388,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              2.1913834828453784,
+              2.800155928992131
+            ],
+            "halluc": 249,
+            "rate": 2.4776119402985075,
+            "rate_upper_if_unknown_counted": 2.4776119402985075,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "LLM_AT": {
+            "ci95": [
+              4.047670659118268,
+              4.858572578323839
+            ],
+            "halluc": 440,
+            "rate": 4.435483870967742,
+            "rate_upper_if_unknown_counted": 4.435483870967742,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.914753061603605,
+              5.801712548423212
+            ],
+            "halluc": 528,
+            "rate": 5.340886101557758,
+            "rate_upper_if_unknown_counted": 5.340886101557758,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.13586347170011642,
+              0.3172567932292679
+            ],
+            "halluc": 21,
+            "rate": 0.20765351527736575,
+            "rate_upper_if_unknown_counted": 0.20765351527736578,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              0.48156919156790245,
+              0.7899990875253887
+            ],
+            "halluc": 62,
+            "rate": 0.6169154228855721,
+            "rate_upper_if_unknown_counted": 0.6169154228855721,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "LLM_AT": {
+            "ci95": [
+              3.6529991410425775,
+              4.426951170013495
+            ],
+            "halluc": 399,
+            "rate": 4.022177419354839,
+            "rate_upper_if_unknown_counted": 4.022177419354839,
+            "total": 9920,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.3907736574259975,
+              5.23366231340296
+            ],
+            "halluc": 474,
+            "rate": 4.794659113898443,
+            "rate_upper_if_unknown_counted": 4.794659113898442,
+            "total": 9886,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.8137310373001392,
+              1.2011414864060452
+            ],
+            "halluc": 100,
+            "rate": 0.9888262632255512,
+            "rate_upper_if_unknown_counted": 0.9888262632255512,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              1.9579769449457676,
+              2.5362401229419804
+            ],
+            "halluc": 224,
+            "rate": 2.228855721393035,
+            "rate_upper_if_unknown_counted": 2.228855721393035,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "LLM_AT": {
+            "ci95": [
+              4.7826807617954685,
+              5.6573314387604325
+            ],
+            "halluc": 516,
+            "rate": 5.202661826981246,
+            "rate_upper_if_unknown_counted": 5.202661826981246,
+            "total": 9918,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.65607804536155,
+              6.601036260234314
+            ],
+            "halluc": 604,
+            "rate": 6.111504603865224,
+            "rate_upper_if_unknown_counted": 6.111504603865223,
+            "total": 9883,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              0.7958710967184538,
+              1.1794633951199638
+            ],
+            "halluc": 98,
+            "rate": 0.9690497379610403,
+            "rate_upper_if_unknown_counted": 0.9690497379610402,
+            "total": 10113,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              1.8369660366519849,
+              2.3986434123818867
+            ],
+            "halluc": 211,
+            "rate": 2.099502487562189,
+            "rate_upper_if_unknown_counted": 2.099502487562189,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        }
+      },
+      "by_model_language": {
+        "deepseek-v3.2": {
+          "javascript": {
+            "ci95": [
+              0.9460412043864809,
+              1.2266090103962606
+            ],
+            "halluc": 225,
+            "rate": 1.0773282259995212,
+            "rate_upper_if_unknown_counted": 1.0773282259995212,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.36058853748961,
+              6.017552167975349
+            ],
+            "halluc": 1084,
+            "rate": 5.680150911758542,
+            "rate_upper_if_unknown_counted": 5.680150911758541,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "javascript": {
+            "ci95": [
+              1.279240315853759,
+              1.6019221459665234
+            ],
+            "halluc": 299,
+            "rate": 1.4316495092171415,
+            "rate_upper_if_unknown_counted": 1.4316495092171415,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.70857328036049,
+              7.435726192396648
+            ],
+            "halluc": 1348,
+            "rate": 7.063508698386083,
+            "rate_upper_if_unknown_counted": 7.063508698386083,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "javascript": {
+            "ci95": [
+              0.5903793632951028,
+              0.8163116655011077
+            ],
+            "halluc": 145,
+            "rate": 0.6942781900885803,
+            "rate_upper_if_unknown_counted": 0.6942781900885803,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.454728440135139,
+              5.058350672231306
+            ],
+            "halluc": 906,
+            "rate": 4.747432404108153,
+            "rate_upper_if_unknown_counted": 4.747432404108153,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "javascript": {
+            "ci95": [
+              0.8208884401294525,
+              1.083676059558003
+            ],
+            "halluc": 197,
+            "rate": 0.9432607134306918,
+            "rate_upper_if_unknown_counted": 0.9432607134306918,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.93275455952943,
+              5.565244719978928
+            ],
+            "halluc": 1000,
+            "rate": 5.239991616013414,
+            "rate_upper_if_unknown_counted": 5.239991616013414,
+            "total": 19084,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "javascript": {
+            "ci95": [
+              0.8879870085635965,
+              1.160489035191893
+            ],
+            "halluc": 212,
+            "rate": 1.015228426395939,
+            "rate_upper_if_unknown_counted": 1.015228426395939,
+            "total": 20882,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.039737719579379,
+              6.733298586315446
+            ],
+            "halluc": 1217,
+            "rate": 6.377738182580442,
+            "rate_upper_if_unknown_counted": 6.377738182580442,
+            "total": 19082,
+            "unknown_only": 0
+          }
+        }
+      },
+      "chi2": {
+        "n_pairs": 10,
+        "n_significant": 10,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "chi2": 5.075720419974395,
+            "delta_pp": 0.2802171683054362,
+            "p_holm": 0.040950948964503325,
+            "p_raw": 0.024263187385806156,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "chi2": 21.040398492315834,
+            "delta_pp": 0.580897160067344,
+            "p_holm": 2.248503490238268e-05,
+            "p_raw": 4.497006980476536e-06,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "chi2": 9.623384857419921,
+            "delta_pp": 0.3652830943981584,
+            "p_holm": 0.005763459824696837,
+            "p_raw": 0.0019211532748989457,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "chi2": 73.50143003133114,
+            "delta_pp": 1.1258725512272005,
+            "p_holm": 9.050695149370799e-17,
+            "p_raw": 1.0056327943745332e-17,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "chi2": 5.3708945187698305,
+            "delta_pp": 0.30067999176190785,
+            "p_holm": 0.040950948964503325,
+            "p_raw": 0.020475474482251663,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "chi2": 28.838252686962186,
+            "delta_pp": 0.6455002627035946,
+            "p_holm": 4.7209003123567447e-07,
+            "p_raw": 7.868167187261242e-08,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "chi2": 39.895091032123254,
+            "delta_pp": 0.8456553829217643,
+            "p_holm": 1.875830920270053e-09,
+            "p_raw": 2.6797584575286473e-10,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "chi2": 59.19380101220675,
+            "delta_pp": 0.9461802544655025,
+            "p_holm": 1.143065953634389e-13,
+            "p_raw": 1.4288324420429863e-14,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "chi2": 15.892979176656395,
+            "delta_pp": 0.5449753911598565,
+            "p_holm": 0.00026810759367030526,
+            "p_raw": 6.702689841757631e-05,
+            "significant": true
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "chi2": 135.8010097914753,
+            "delta_pp": 1.491155645625359,
+            "p_holm": 2.20563064047538e-30,
+            "p_raw": 2.20563064047538e-31,
+            "significant": true
+          }
+        ]
+      },
+      "jaccard": {
+        "max": 0.34444444444444444,
+        "mean": 0.22216295915818135,
+        "min": 0.17878585723815876,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "inter": 319,
+            "jaccard": 0.2459521973785659,
+            "union": 1297
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "inter": 268,
+            "jaccard": 0.17878585723815876,
+            "union": 1499
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.23190932868352224,
+            "union": 1147
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "inter": 291,
+            "jaccard": 0.18558673469387754,
+            "union": 1568
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "inter": 317,
+            "jaccard": 0.1968944099378882,
+            "union": 1610
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "inter": 403,
+            "jaccard": 0.34444444444444444,
+            "union": 1170
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "inter": 390,
+            "jaccard": 0.23941068139963168,
+            "union": 1629
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.18244170096021947,
+            "union": 1458
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "inter": 331,
+            "jaccard": 0.17998912452419794,
+            "union": 1839
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "inter": 347,
+            "jaccard": 0.236215112321307,
+            "union": 1469
+          }
+        ],
+        "unique_per_model": {
+          "deepseek-v3.2": 888,
+          "gemini-2.5-pro": 1131,
+          "gpt-5.4-mini": 685,
+          "haiku-4-5": 728,
+          "sonnet-4-6": 1039
+        }
+      },
+      "labels": "classification classification.db, variant b",
+      "level": "generation",
+      "per_model": {
+        "deepseek-v3.2": {
+          "ci95": [
+            3.1049917792551915,
+            3.4540652282924653
+          ],
+          "halluc": 1309,
+          "rate": 3.275038154569791,
+          "rate_upper_if_unknown_counted": 3.2750381545697915,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            3.930197011385359,
+            4.320008224132037
+          ],
+          "halluc": 1647,
+          "rate": 4.120693537491555,
+          "rate_upper_if_unknown_counted": 4.120693537491556,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            2.477161809467636,
+            2.791018740043947
+          ],
+          "halluc": 1051,
+          "rate": 2.6295378918661965,
+          "rate_upper_if_unknown_counted": 2.6295378918661965,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "haiku-4-5": {
+          "ci95": [
+            2.8321879766624765,
+            3.166488552978048
+          ],
+          "halluc": 1197,
+          "rate": 2.994820986264355,
+          "rate_upper_if_unknown_counted": 2.994820986264355,
+          "total": 39969,
+          "unknown_only": 0
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            3.3980851617685373,
+            3.762275153834898
+          ],
+          "halluc": 1429,
+          "rate": 3.575718146331699,
+          "rate_upper_if_unknown_counted": 3.5757181463316985,
+          "total": 39964,
+          "unknown_only": 0
+        }
+      },
+      "permutation": {
+        "max_p": 0.0248,
+        "n_permutations": 10000,
+        "n_significant": 10,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "delta_pp": 0.2802171683054362,
+            "p_perm": 0.0248
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.5808971600673438,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.36528309439815865,
+            "p_perm": 0.0017
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.1258725512272008,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.3006799917619075,
+            "p_perm": 0.0229
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.6455002627035948,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.8456553829217645,
+            "p_perm": 0.0
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.9461802544655025,
+            "p_perm": 0.0
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.5449753911598569,
+            "p_perm": 0.0001
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.4911556456253594,
+            "p_perm": 0.0
+          }
+        ],
+        "seed": 42
+      },
+      "refusals": {
+        "deepseek-v3.2": {
+          "generations": 39969,
+          "rate": 1.9740298731516925,
+          "refusals": 789
+        },
+        "gemini-2.5-pro": {
+          "generations": 39969,
+          "rate": 8.111286246841303,
+          "refusals": 3242
+        },
+        "gpt-5.4-mini": {
+          "generations": 39969,
+          "rate": 31.50691786134254,
+          "refusals": 12593
+        },
+        "haiku-4-5": {
+          "generations": 39969,
+          "rate": 1.2709850133853737,
+          "refusals": 508
+        },
+        "sonnet-4-6": {
+          "generations": 39964,
+          "rate": 18.76939245320789,
+          "refusals": 7501
+        }
+      },
+      "top_names": {
+        "npm": {
+          "counts": [
+            55,
+            53,
+            25,
+            15,
+            10,
+            10,
+            8,
+            8,
+            7,
+            7
+          ],
+          "sha256": "3c5b481f88f9770a3875c2055e59a5ebf8b3b51dfb9556218516d268ef46ebf8"
+        },
+        "pypi": {
+          "counts": [
+            429,
+            375,
+            374,
+            315,
+            215,
+            117,
+            103,
+            102,
+            91,
+            62
+          ],
+          "sha256": "a2068b6278f26c72dee5efea87678655a55c732adb2db27f606e69d043e332bc"
+        }
+      },
+      "universal": {
+        "n_npm": 18,
+        "n_pypi": 120,
+        "sha256_npm": "2c7c293a78d259473d6022bb960463a499ae96bdd4dedf8438b9a3889c611c27",
+        "sha256_pypi": "0a69370f621bb917b83380dce77fc367383ead2038ddb5cf12887677ed6e9aef",
+        "total": 138
+      }
+    },
+    "b_mention": {
+      "by_dataset": {
+        "LLM_AT": {
+          "ci95": [
+            5.8433615783021295,
+            6.272950810960203
+          ],
+          "halluc": 2868,
+          "rate": 6.054592666089636,
+          "rate_upper_if_unknown_counted": 6.054592666089636,
+          "total": 47369,
+          "unknown_only": 0
+        },
+        "LLM_LY": {
+          "ci95": [
+            6.1631914831627554,
+            6.580655448830456
+          ],
+          "halluc": 3349,
+          "rate": 6.368736331653513,
+          "rate_upper_if_unknown_counted": 6.368736331653514,
+          "total": 52585,
+          "unknown_only": 0
+        },
+        "SO_AT": {
+          "ci95": [
+            2.8971346425776847,
+            3.4201205551351124
+          ],
+          "halluc": 540,
+          "rate": 3.148137352066694,
+          "rate_upper_if_unknown_counted": 3.1481373520666938,
+          "total": 17153,
+          "unknown_only": 0
+        },
+        "SO_LY": {
+          "ci95": [
+            4.117820772560562,
+            4.600049324194581
+          ],
+          "halluc": 1198,
+          "rate": 4.352565034152013,
+          "rate_upper_if_unknown_counted": 4.352565034152013,
+          "total": 27524,
+          "unknown_only": 0
+        }
+      },
+      "by_language": {
+        "javascript": {
+          "ci95": [
+            2.972728909218085,
+            3.3015456311441738
+          ],
+          "halluc": 1352,
+          "rate": 3.132965657876442,
+          "rate_upper_if_unknown_counted": 3.1329656578764427,
+          "total": 43154,
+          "unknown_only": 0
+        },
+        "python": {
+          "ci95": [
+            6.356779249853019,
+            6.660299904128015
+          ],
+          "halluc": 6603,
+          "rate": 6.506893187618869,
+          "rate_upper_if_unknown_counted": 6.50689318761887,
+          "total": 101477,
+          "unknown_only": 0
+        }
+      },
+      "by_model_dataset": {
+        "deepseek-v3.2": {
+          "LLM_AT": {
+            "ci95": [
+              5.7581335946099115,
+              6.7824288344332615
+            ],
+            "halluc": 537,
+            "rate": 6.250727505529043,
+            "rate_upper_if_unknown_counted": 6.250727505529042,
+            "total": 8591,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.094151700134949,
+              7.100603847655819
+            ],
+            "halluc": 614,
+            "rate": 6.579511358765538,
+            "rate_upper_if_unknown_counted": 6.579511358765538,
+            "total": 9332,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              3.035814647901989,
+              4.357340064718255
+            ],
+            "halluc": 113,
+            "rate": 3.639291465378422,
+            "rate_upper_if_unknown_counted": 3.639291465378422,
+            "total": 3105,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              4.698561856215753,
+              5.933150230410392
+            ],
+            "halluc": 267,
+            "rate": 5.281899109792285,
+            "rate_upper_if_unknown_counted": 5.281899109792285,
+            "total": 5055,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "LLM_AT": {
+            "ci95": [
+              6.088294918629067,
+              7.029174076390071
+            ],
+            "halluc": 695,
+            "rate": 6.543023912634155,
+            "rate_upper_if_unknown_counted": 6.543023912634156,
+            "total": 10622,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.5303647161051135,
+              7.458453956128697
+            ],
+            "halluc": 809,
+            "rate": 6.980155306298533,
+            "rate_upper_if_unknown_counted": 6.980155306298533,
+            "total": 11590,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              3.026642606722378,
+              4.068681341616298
+            ],
+            "halluc": 169,
+            "rate": 3.5105941005400916,
+            "rate_upper_if_unknown_counted": 3.5105941005400916,
+            "total": 4814,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              3.796594339413828,
+              4.735372784962896
+            ],
+            "halluc": 301,
+            "rate": 4.241228688178103,
+            "rate_upper_if_unknown_counted": 4.241228688178103,
+            "total": 7097,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "LLM_AT": {
+            "ci95": [
+              6.178133922017051,
+              7.3210930890001915
+            ],
+            "halluc": 497,
+            "rate": 6.727125067677314,
+            "rate_upper_if_unknown_counted": 6.727125067677314,
+            "total": 7388,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              6.680094911284895,
+              7.79800856405691
+            ],
+            "halluc": 595,
+            "rate": 7.219121572433876,
+            "rate_upper_if_unknown_counted": 7.219121572433875,
+            "total": 8242,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              1.1632497721163493,
+              2.6462644372345623
+            ],
+            "halluc": 22,
+            "rate": 1.7571884984025559,
+            "rate_upper_if_unknown_counted": 1.7571884984025559,
+            "total": 1252,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              2.259030385080263,
+              3.5153532235364424
+            ],
+            "halluc": 76,
+            "rate": 2.8200371057513918,
+            "rate_upper_if_unknown_counted": 2.8200371057513913,
+            "total": 2695,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "LLM_AT": {
+            "ci95": [
+              4.445050487851249,
+              5.307005901516968
+            ],
+            "halluc": 465,
+            "rate": 4.857918930213121,
+            "rate_upper_if_unknown_counted": 4.857918930213121,
+            "total": 9572,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.547850471991535,
+              5.3687899155859435
+            ],
+            "halluc": 530,
+            "rate": 4.942185751585229,
+            "rate_upper_if_unknown_counted": 4.942185751585229,
+            "total": 10724,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              2.5103780815651464,
+              3.5691805677660273
+            ],
+            "halluc": 120,
+            "rate": 2.9947591714499624,
+            "rate_upper_if_unknown_counted": 2.9947591714499624,
+            "total": 4007,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              4.177008632316465,
+              5.251694290950895
+            ],
+            "halluc": 279,
+            "rate": 4.685138539042821,
+            "rate_upper_if_unknown_counted": 4.685138539042821,
+            "total": 5955,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "LLM_AT": {
+            "ci95": [
+              5.594321111878448,
+              6.475862772340914
+            ],
+            "halluc": 674,
+            "rate": 6.020007145409075,
+            "rate_upper_if_unknown_counted": 6.020007145409075,
+            "total": 11196,
+            "unknown_only": 0
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.898772996219069,
+              6.744810218540629
+            ],
+            "halluc": 801,
+            "rate": 6.308576829172245,
+            "rate_upper_if_unknown_counted": 6.308576829172245,
+            "total": 12697,
+            "unknown_only": 0
+          },
+          "SO_AT": {
+            "ci95": [
+              2.438726624539307,
+              3.488663578401732
+            ],
+            "halluc": 116,
+            "rate": 2.918238993710692,
+            "rate_upper_if_unknown_counted": 2.9182389937106916,
+            "total": 3975,
+            "unknown_only": 0
+          },
+          "SO_LY": {
+            "ci95": [
+              3.643146987493634,
+              4.591383401181398
+            ],
+            "halluc": 275,
+            "rate": 4.091044332044034,
+            "rate_upper_if_unknown_counted": 4.091044332044034,
+            "total": 6722,
+            "unknown_only": 0
+          }
+        }
+      },
+      "by_model_language": {
+        "deepseek-v3.2": {
+          "javascript": {
+            "ci95": [
+              3.373161595101403,
+              4.256275821587219
+            ],
+            "halluc": 273,
+            "rate": 3.7900874635568513,
+            "rate_upper_if_unknown_counted": 3.7900874635568513,
+            "total": 7203,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.316154490636484,
+              7.027748360463066
+            ],
+            "halluc": 1258,
+            "rate": 6.663135593220339,
+            "rate_upper_if_unknown_counted": 6.663135593220339,
+            "total": 18880,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "javascript": {
+            "ci95": [
+              3.2461560456087875,
+              3.9669949209048276
+            ],
+            "halluc": 368,
+            "rate": 3.5891934068077633,
+            "rate_upper_if_unknown_counted": 3.5891934068077638,
+            "total": 10253,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.417229991679588,
+              7.052916672264741
+            ],
+            "halluc": 1606,
+            "rate": 6.728110599078341,
+            "rate_upper_if_unknown_counted": 6.728110599078341,
+            "total": 23870,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "javascript": {
+            "ci95": [
+              2.677821659882594,
+              3.589670195656547
+            ],
+            "halluc": 173,
+            "rate": 3.101470060953747,
+            "rate_upper_if_unknown_counted": 3.101470060953747,
+            "total": 5578,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.846461774115585,
+              7.706594938077739
+            ],
+            "halluc": 1017,
+            "rate": 7.2648046289020645,
+            "rate_upper_if_unknown_counted": 7.2648046289020645,
+            "total": 13999,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "javascript": {
+            "ci95": [
+              2.426604412184611,
+              3.077951433483444
+            ],
+            "halluc": 264,
+            "rate": 2.733485193621868,
+            "rate_upper_if_unknown_counted": 2.733485193621868,
+            "total": 9658,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.182719699637834,
+              5.804753016774098
+            ],
+            "halluc": 1130,
+            "rate": 5.485436893203883,
+            "rate_upper_if_unknown_counted": 5.485436893203883,
+            "total": 20600,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "javascript": {
+            "ci95": [
+              2.3299383234763096,
+              2.9428480166568853
+            ],
+            "halluc": 274,
+            "rate": 2.619002102848404,
+            "rate_upper_if_unknown_counted": 2.6190021028484036,
+            "total": 10462,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              6.291761797227558,
+              6.918342637862998
+            ],
+            "halluc": 1592,
+            "rate": 6.598143236074271,
+            "rate_upper_if_unknown_counted": 6.598143236074271,
+            "total": 24128,
+            "unknown_only": 0
+          }
+        }
+      },
+      "chi2": {
+        "n_pairs": 10,
+        "n_significant": 5,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "chi2": 45.11813163092202,
+            "delta_pp": 1.2626775042814646,
+            "p_holm": 1.6694993797495013e-10,
+            "p_raw": 1.8549993108327792e-11,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "chi2": 20.803479070058106,
+            "delta_pp": 0.7875766528697383,
+            "p_holm": 3.5623303529917124e-05,
+            "p_raw": 5.089043361416732e-06,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "chi2": 52.05476512815596,
+            "delta_pp": 1.4715155069004844,
+            "p_holm": 5.397408945654882e-12,
+            "p_raw": 5.397408945654882e-13,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "chi2": 44.64487568643586,
+            "delta_pp": 1.1779083591029327,
+            "p_holm": 1.8897200980302822e-10,
+            "p_raw": 2.3621501225378527e-11,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "chi2": 6.260914680766289,
+            "delta_pp": 0.4751008514117263,
+            "p_holm": 0.06171523012842826,
+            "p_raw": 0.012343046025685651,
+            "significant": false
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "chi2": 0.8334523568341183,
+            "delta_pp": 0.20883800261901975,
+            "p_holm": 0.722552279979924,
+            "p_raw": 0.361276139989962,
+            "significant": false
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "chi2": 0.1785972630068242,
+            "delta_pp": 0.08476914517853196,
+            "p_holm": 0.722552279979924,
+            "p_raw": 0.6725815121322494,
+            "significant": false
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "chi2": 10.856856224419548,
+            "delta_pp": 0.6839388540307461,
+            "p_holm": 0.005905839012973321,
+            "p_raw": 0.0009843065021622201,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "chi2": 4.886609057729194,
+            "delta_pp": 0.39033170623319435,
+            "p_holm": 0.10826318148202081,
+            "p_raw": 0.027065795370505203,
+            "significant": false
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "chi2": 1.8814424824895242,
+            "delta_pp": 0.2936071477975517,
+            "p_holm": 0.5105108722120636,
+            "p_raw": 0.17017029073735454,
+            "significant": false
+          }
+        ]
+      },
+      "jaccard": {
+        "max": 0.34444444444444444,
+        "mean": 0.22216295915818135,
+        "min": 0.17878585723815876,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "inter": 319,
+            "jaccard": 0.2459521973785659,
+            "union": 1297
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "inter": 268,
+            "jaccard": 0.17878585723815876,
+            "union": 1499
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.23190932868352224,
+            "union": 1147
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "inter": 291,
+            "jaccard": 0.18558673469387754,
+            "union": 1568
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "inter": 317,
+            "jaccard": 0.1968944099378882,
+            "union": 1610
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "inter": 403,
+            "jaccard": 0.34444444444444444,
+            "union": 1170
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "inter": 390,
+            "jaccard": 0.23941068139963168,
+            "union": 1629
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "inter": 266,
+            "jaccard": 0.18244170096021947,
+            "union": 1458
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "inter": 331,
+            "jaccard": 0.17998912452419794,
+            "union": 1839
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "inter": 347,
+            "jaccard": 0.236215112321307,
+            "union": 1469
+          }
+        ],
+        "unique_per_model": {
+          "deepseek-v3.2": 888,
+          "gemini-2.5-pro": 1131,
+          "gpt-5.4-mini": 685,
+          "haiku-4-5": 728,
+          "sonnet-4-6": 1039
+        }
+      },
+      "labels": "classification classification.db, variant b",
+      "level": "mention",
+      "per_model": {
+        "deepseek-v3.2": {
+          "ci95": [
+            5.5909077655963255,
+            6.161536330252799
+          ],
+          "halluc": 1531,
+          "rate": 5.869723574742169,
+          "rate_upper_if_unknown_counted": 5.869723574742169,
+          "total": 26083,
+          "unknown_only": 0
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            5.542190506017004,
+            6.037672410945883
+          ],
+          "halluc": 1974,
+          "rate": 5.784954429563637,
+          "rate_upper_if_unknown_counted": 5.784954429563637,
+          "total": 34123,
+          "unknown_only": 0
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            5.752398602352822,
+            6.421957968757821
+          ],
+          "halluc": 1190,
+          "rate": 6.078561577361189,
+          "rate_upper_if_unknown_counted": 6.078561577361189,
+          "total": 19577,
+          "unknown_only": 0
+        },
+        "haiku-4-5": {
+          "ci95": [
+            4.376543472717328,
+            4.8490730933457105
+          ],
+          "halluc": 1394,
+          "rate": 4.607046070460704,
+          "rate_upper_if_unknown_counted": 4.607046070460704,
+          "total": 30258,
+          "unknown_only": 0
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            5.161463993021485,
+            5.637687824991295
+          ],
+          "halluc": 1866,
+          "rate": 5.394622723330443,
+          "rate_upper_if_unknown_counted": 5.394622723330443,
+          "total": 34590,
+          "unknown_only": 0
+        }
+      },
+      "permutation": {
+        "max_p": 0.6705,
+        "n_permutations": 10000,
+        "n_significant": 7,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "delta_pp": 1.2626775042814646,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.7875766528697377,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 1.4715155069004844,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.1779083591029325,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.4751008514117271,
+            "p_perm": 0.0121
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.20883800261901966,
+            "p_perm": 0.3489
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.08476914517853221,
+            "p_perm": 0.6705
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.6839388540307467,
+            "p_perm": 0.0007
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.39033170623319485,
+            "p_perm": 0.0234
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.29360714779755187,
+            "p_perm": 0.168
+          }
+        ],
+        "seed": 42
+      },
+      "refusals": {
+        "deepseek-v3.2": {
+          "generations": 39969,
+          "rate": 1.9740298731516925,
+          "refusals": 789
+        },
+        "gemini-2.5-pro": {
+          "generations": 39969,
+          "rate": 8.111286246841303,
+          "refusals": 3242
+        },
+        "gpt-5.4-mini": {
+          "generations": 39969,
+          "rate": 31.50691786134254,
+          "refusals": 12593
+        },
+        "haiku-4-5": {
+          "generations": 39969,
+          "rate": 1.2709850133853737,
+          "refusals": 508
+        },
+        "sonnet-4-6": {
+          "generations": 39964,
+          "rate": 18.76939245320789,
+          "refusals": 7501
+        }
+      },
+      "top_names": {
+        "npm": {
+          "counts": [
+            55,
+            53,
+            25,
+            15,
+            10,
+            10,
+            8,
+            8,
+            7,
+            7
+          ],
+          "sha256": "3c5b481f88f9770a3875c2055e59a5ebf8b3b51dfb9556218516d268ef46ebf8"
+        },
+        "pypi": {
+          "counts": [
+            429,
+            375,
+            374,
+            315,
+            215,
+            117,
+            103,
+            102,
+            91,
+            62
+          ],
+          "sha256": "a2068b6278f26c72dee5efea87678655a55c732adb2db27f606e69d043e332bc"
+        }
+      },
+      "universal": {
+        "n_npm": 18,
+        "n_pypi": 120,
+        "sha256_npm": "2c7c293a78d259473d6022bb960463a499ae96bdd4dedf8438b9a3889c611c27",
+        "sha256_pypi": "0a69370f621bb917b83380dce77fc367383ead2038ddb5cf12887677ed6e9aef",
+        "total": 138
+      }
+    },
+    "c_generation": {
+      "by_dataset": {
+        "LLM_AT": {
+          "ci95": [
+            3.6417451239950114,
+            3.9786200633714843
+          ],
+          "halluc": 1888,
+          "rate": 3.806605105044558,
+          "rate_upper_if_unknown_counted": 3.8449131013347313,
+          "total": 49598,
+          "unknown_only": 19
+        },
+        "LLM_LY": {
+          "ci95": [
+            4.741127874562013,
+            5.122838254524838
+          ],
+          "halluc": 2436,
+          "rate": 4.9284803852145584,
+          "rate_upper_if_unknown_counted": 4.972990470795314,
+          "total": 49427,
+          "unknown_only": 22
+        },
+        "SO_AT": {
+          "ci95": [
+            0.5842214672877597,
+            0.7245715359287486
+          ],
+          "halluc": 329,
+          "rate": 0.6506476812024128,
+          "rate_upper_if_unknown_counted": 0.6684465539404727,
+          "total": 50565,
+          "unknown_only": 9
+        },
+        "SO_LY": {
+          "ci95": [
+            1.2137142383130528,
+            1.412635152115551
+          ],
+          "halluc": 658,
+          "rate": 1.309452736318408,
+          "rate_upper_if_unknown_counted": 1.3134328358208955,
+          "total": 50250,
+          "unknown_only": 2
+        }
+      },
+      "by_language": {
+        "javascript": {
+          "ci95": [
+            0.7085449985758471,
+            0.813914803146347
+          ],
+          "halluc": 793,
+          "rate": 0.7594185133401007,
+          "rate_upper_if_unknown_counted": 0.7594185133401008,
+          "total": 104422,
+          "unknown_only": 0
+        },
+        "python": {
+          "ci95": [
+            4.602009355414093,
+            4.87154651043224
+          ],
+          "halluc": 4518,
+          "rate": 4.734955668741748,
+          "rate_upper_if_unknown_counted": 4.789452723804733,
+          "total": 95418,
+          "unknown_only": 52
+        }
+      },
+      "by_model_dataset": {
+        "deepseek-v3.2": {
+          "LLM_AT": {
+            "ci95": [
+              3.3073654601457463,
+              4.04705935457137
+            ],
+            "halluc": 363,
+            "rate": 3.659274193548387,
+            "rate_upper_if_unknown_counted": 3.7096774193548385,
+            "total": 9920,
+            "unknown_only": 5
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.313269408948055,
+              5.149384393110851
+            ],
+            "halluc": 466,
+            "rate": 4.7137365972081735,
+            "rate_upper_if_unknown_counted": 4.764313170139592,
+            "total": 9886,
+            "unknown_only": 5
+          },
+          "SO_AT": {
+            "ci95": [
+              0.5657719510125989,
+              0.8955681265448465
+            ],
+            "halluc": 72,
+            "rate": 0.7119549095223969,
+            "rate_upper_if_unknown_counted": 0.7218431721546524,
+            "total": 10113,
+            "unknown_only": 1
+          },
+          "SO_LY": {
+            "ci95": [
+              1.3835696852811175,
+              1.8772879696112212
+            ],
+            "halluc": 162,
+            "rate": 1.6119402985074627,
+            "rate_upper_if_unknown_counted": 1.6119402985074627,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "gemini-2.5-pro": {
+          "LLM_AT": {
+            "ci95": [
+              4.395008902789573,
+              5.23675983099149
+            ],
+            "halluc": 476,
+            "rate": 4.798387096774193,
+            "rate_upper_if_unknown_counted": 4.848790322580645,
+            "total": 9920,
+            "unknown_only": 5
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.634865523589946,
+              6.5780851475598645
+            ],
+            "halluc": 602,
+            "rate": 6.089419380942748,
+            "rate_upper_if_unknown_counted": 6.139995953874165,
+            "total": 9886,
+            "unknown_only": 5
+          },
+          "SO_AT": {
+            "ci95": [
+              0.8316103691471344,
+              1.2228001864268174
+            ],
+            "halluc": 102,
+            "rate": 1.0086027884900624,
+            "rate_upper_if_unknown_counted": 1.0283793137545734,
+            "total": 10113,
+            "unknown_only": 2
+          },
+          "SO_LY": {
+            "ci95": [
+              1.49415466848505,
+              2.0054177115031746
+            ],
+            "halluc": 174,
+            "rate": 1.7313432835820894,
+            "rate_upper_if_unknown_counted": 1.7313432835820894,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "LLM_AT": {
+            "ci95": [
+              3.1444806018889,
+              3.867334950668153
+            ],
+            "halluc": 346,
+            "rate": 3.487903225806452,
+            "rate_upper_if_unknown_counted": 3.528225806451613,
+            "total": 9920,
+            "unknown_only": 4
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.23579895553509,
+              5.06507267775376
+            ],
+            "halluc": 458,
+            "rate": 4.632814080517904,
+            "rate_upper_if_unknown_counted": 4.683390653449322,
+            "total": 9886,
+            "unknown_only": 5
+          },
+          "SO_AT": {
+            "ci95": [
+              0.1126198681631645,
+              0.28119334896456927
+            ],
+            "halluc": 18,
+            "rate": 0.17798872738059923,
+            "rate_upper_if_unknown_counted": 0.18787699001285474,
+            "total": 10113,
+            "unknown_only": 1
+          },
+          "SO_LY": {
+            "ci95": [
+              0.2588654926684407,
+              0.49548754871709805
+            ],
+            "halluc": 36,
+            "rate": 0.3582089552238806,
+            "rate_upper_if_unknown_counted": 0.3582089552238806,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "LLM_AT": {
+            "ci95": [
+              2.771713287790618,
+              3.454116310399232
+            ],
+            "halluc": 307,
+            "rate": 3.094758064516129,
+            "rate_upper_if_unknown_counted": 3.1149193548387095,
+            "total": 9920,
+            "unknown_only": 2
+          },
+          "LLM_LY": {
+            "ci95": [
+              3.6655855951011085,
+              4.442142543508599
+            ],
+            "halluc": 399,
+            "rate": 4.03601051992717,
+            "rate_upper_if_unknown_counted": 4.066356463686021,
+            "total": 9886,
+            "unknown_only": 3
+          },
+          "SO_AT": {
+            "ci95": [
+              0.539520055887824,
+              0.8625129738679707
+            ],
+            "halluc": 69,
+            "rate": 0.6822901216256304,
+            "rate_upper_if_unknown_counted": 0.6921783842578859,
+            "total": 10113,
+            "unknown_only": 1
+          },
+          "SO_LY": {
+            "ci95": [
+              1.3743693823054484,
+              1.8665953788288998
+            ],
+            "halluc": 161,
+            "rate": 1.6019900497512438,
+            "rate_upper_if_unknown_counted": 1.6019900497512438,
+            "total": 10050,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "LLM_AT": {
+            "ci95": [
+              3.624894376213665,
+              4.396212009367378
+            ],
+            "halluc": 396,
+            "rate": 3.9927404718693285,
+            "rate_upper_if_unknown_counted": 4.022988505747127,
+            "total": 9918,
+            "unknown_only": 3
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.751092832414618,
+              5.624733088263762
+            ],
+            "halluc": 511,
+            "rate": 5.17049478903167,
+            "rate_upper_if_unknown_counted": 5.210968329454619,
+            "total": 9883,
+            "unknown_only": 4
+          },
+          "SO_AT": {
+            "ci95": [
+              0.5307859224975062,
+              0.8514780913244048
+            ],
+            "halluc": 68,
+            "rate": 0.6724018589933749,
+            "rate_upper_if_unknown_counted": 0.7119549095223969,
+            "total": 10113,
+            "unknown_only": 4
+          },
+          "SO_LY": {
+            "ci95": [
+              1.0449719695947852,
+              1.4798486162519056
+            ],
+            "halluc": 125,
+            "rate": 1.2437810945273633,
+            "rate_upper_if_unknown_counted": 1.263681592039801,
+            "total": 10050,
+            "unknown_only": 2
+          }
+        }
+      },
+      "by_model_language": {
+        "deepseek-v3.2": {
+          "javascript": {
+            "ci95": [
+              0.696409661272859,
+              0.940069123319311
+            ],
+            "halluc": 169,
+            "rate": 0.8091932008618626,
+            "rate_upper_if_unknown_counted": 0.8091932008618625,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.393765540809863,
+              4.99357908213421
+            ],
+            "halluc": 894,
+            "rate": 4.684552504715993,
+            "rate_upper_if_unknown_counted": 4.74219241249214,
+            "total": 19084,
+            "unknown_only": 11
+          }
+        },
+        "gemini-2.5-pro": {
+          "javascript": {
+            "ci95": [
+              0.9729350131713345,
+              1.2571621405603968
+            ],
+            "halluc": 231,
+            "rate": 1.1060569786928418,
+            "rate_upper_if_unknown_counted": 1.1060569786928418,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.559417770249385,
+              6.227360025838282
+            ],
+            "halluc": 1123,
+            "rate": 5.884510584783064,
+            "rate_upper_if_unknown_counted": 5.947390484175226,
+            "total": 19084,
+            "unknown_only": 12
+          }
+        },
+        "gpt-5.4-mini": {
+          "javascript": {
+            "ci95": [
+              0.49823623589079324,
+              0.7073905065839527
+            ],
+            "halluc": 124,
+            "rate": 0.5937275556619583,
+            "rate_upper_if_unknown_counted": 0.5937275556619583,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              3.582470501795946,
+              4.12841426218317
+            ],
+            "halluc": 734,
+            "rate": 3.8461538461538463,
+            "rate_upper_if_unknown_counted": 3.89855376231398,
+            "total": 19084,
+            "unknown_only": 10
+          }
+        },
+        "haiku-4-5": {
+          "javascript": {
+            "ci95": [
+              0.585977045139253,
+              0.8111394938321258
+            ],
+            "halluc": 144,
+            "rate": 0.6894900646396935,
+            "rate_upper_if_unknown_counted": 0.6894900646396935,
+            "total": 20885,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              3.876210886269501,
+              4.442390576584412
+            ],
+            "halluc": 792,
+            "rate": 4.150073359882624,
+            "rate_upper_if_unknown_counted": 4.181513309578705,
+            "total": 19084,
+            "unknown_only": 6
+          }
+        },
+        "sonnet-4-6": {
+          "javascript": {
+            "ci95": [
+              0.5026806405385741,
+              0.712695140806781
+            ],
+            "halluc": 125,
+            "rate": 0.5986016665070396,
+            "rate_upper_if_unknown_counted": 0.5986016665070396,
+            "total": 20882,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.806044066670537,
+              5.4310809929516495
+            ],
+            "halluc": 975,
+            "rate": 5.109527303217692,
+            "rate_upper_if_unknown_counted": 5.177654333927261,
+            "total": 19082,
+            "unknown_only": 13
+          }
+        }
+      },
+      "chi2": {
+        "n_pairs": 10,
+        "n_significant": 8,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "chi2": 8.14566874912841,
+            "delta_pp": 0.31774625334634354,
+            "p_holm": 0.012949240169326852,
+            "p_raw": 0.004316413389775617,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "chi2": 13.411618971366824,
+            "delta_pp": 0.41066232295397764,
+            "p_holm": 0.0010002819601939656,
+            "p_raw": 0.0002500704900484914,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "chi2": 3.380777987435596,
+            "delta_pp": 0.19515124221271485,
+            "p_holm": 0.13192182458831186,
+            "p_raw": 0.06596091229415593,
+            "significant": false
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "chi2": 78.17351353594815,
+            "delta_pp": 1.0458105031399332,
+            "p_holm": 8.49379607029649e-18,
+            "p_raw": 9.437551189218322e-19,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "chi2": 0.6204700816031672,
+            "delta_pp": 0.0929160696076341,
+            "p_holm": 0.4308726543514102,
+            "p_raw": 0.4308726543514102,
+            "significant": false
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "chi2": 22.197139017012518,
+            "delta_pp": 0.5128974955590584,
+            "p_holm": 1.2302007684862316e-05,
+            "p_raw": 2.460401536972463e-06,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "chi2": 35.88006798825054,
+            "delta_pp": 0.7280642497935896,
+            "p_holm": 1.6787558822623717e-08,
+            "p_raw": 2.0984448528279646e-09,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "chi2": 30.439214332921168,
+            "delta_pp": 0.6058135651666925,
+            "p_holm": 2.411453502837682e-07,
+            "p_raw": 3.444933575482403e-08,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "chi2": 26.877039523825687,
+            "delta_pp": 0.6351481801859555,
+            "p_holm": 1.3009169138511105e-06,
+            "p_raw": 2.1681948564185175e-07,
+            "significant": true
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "chi2": 113.92321569966255,
+            "delta_pp": 1.240961745352648,
+            "p_holm": 1.354534436141086e-25,
+            "p_raw": 1.354534436141086e-26,
+            "significant": true
+          }
+        ]
+      },
+      "jaccard": {
+        "max": 0.34228855721393037,
+        "mean": 0.21933744139889227,
+        "min": 0.17336309523809523,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "inter": 265,
+            "jaccard": 0.24289642529789185,
+            "union": 1091
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "inter": 210,
+            "jaccard": 0.1760268231349539,
+            "union": 1193
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "inter": 219,
+            "jaccard": 0.2225609756097561,
+            "union": 984
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "inter": 233,
+            "jaccard": 0.17336309523809523,
+            "union": 1344
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "inter": 258,
+            "jaccard": 0.19984508133230056,
+            "union": 1291
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "inter": 344,
+            "jaccard": 0.34228855721393037,
+            "union": 1005
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "inter": 329,
+            "jaccard": 0.23601147776183645,
+            "union": 1394
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "inter": 220,
+            "jaccard": 0.1870748299319728,
+            "union": 1176
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "inter": 270,
+            "jaccard": 0.18,
+            "union": 1500
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "inter": 297,
+            "jaccard": 0.2333071484681854,
+            "union": 1273
+          }
+        ],
+        "unique_per_model": {
+          "deepseek-v3.2": 751,
+          "gemini-2.5-pro": 972,
+          "gpt-5.4-mini": 598,
+          "haiku-4-5": 605,
+          "sonnet-4-6": 798
+        }
+      },
+      "labels": "classification classification.db, variant c",
+      "level": "generation",
+      "per_model": {
+        "deepseek-v3.2": {
+          "ci95": [
+            2.506313999888085,
+            2.821907315113548
+          ],
+          "halluc": 1063,
+          "rate": 2.6595611598989217,
+          "rate_upper_if_unknown_counted": 2.6870824889289198,
+          "total": 39969,
+          "unknown_only": 11
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            3.214699005792713,
+            3.5695108723426316
+          ],
+          "halluc": 1354,
+          "rate": 3.3876254096925114,
+          "rate_upper_if_unknown_counted": 3.417648677725237,
+          "total": 39969,
+          "unknown_only": 12
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            2.0091072436594724,
+            2.2934176608871404
+          ],
+          "halluc": 858,
+          "rate": 2.1466636643398633,
+          "rate_upper_if_unknown_counted": 2.1716830543671346,
+          "total": 39969,
+          "unknown_only": 10
+        },
+        "haiku-4-5": {
+          "ci95": [
+            2.198073702222727,
+            2.4947161780092104
+          ],
+          "halluc": 936,
+          "rate": 2.341814906552578,
+          "rate_upper_if_unknown_counted": 2.356826540568941,
+          "total": 39969,
+          "unknown_only": 6
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            2.5965579644559713,
+            2.9174787670281046
+          ],
+          "halluc": 1100,
+          "rate": 2.752477229506556,
+          "rate_upper_if_unknown_counted": 2.7850065058552698,
+          "total": 39964,
+          "unknown_only": 13
+        }
+      },
+      "permutation": {
+        "max_p": 0.4235,
+        "n_permutations": 10000,
+        "n_significant": 8,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "delta_pp": 0.31774625334634354,
+            "p_perm": 0.0032
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.41066232295397764,
+            "p_perm": 0.0002
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.19515124221271482,
+            "p_perm": 0.0638
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.0458105031399334,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.09291606960763407,
+            "p_perm": 0.4235
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.5128974955590584,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.7280642497935897,
+            "p_perm": 0.0
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.6058135651666925,
+            "p_perm": 0.0
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.6351481801859558,
+            "p_perm": 0.0
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.2409617453526482,
+            "p_perm": 0.0
+          }
+        ],
+        "seed": 42
+      },
+      "refusals": {
+        "deepseek-v3.2": {
+          "generations": 39969,
+          "rate": 1.9740298731516925,
+          "refusals": 789
+        },
+        "gemini-2.5-pro": {
+          "generations": 39969,
+          "rate": 8.111286246841303,
+          "refusals": 3242
+        },
+        "gpt-5.4-mini": {
+          "generations": 39969,
+          "rate": 31.50691786134254,
+          "refusals": 12593
+        },
+        "haiku-4-5": {
+          "generations": 39969,
+          "rate": 1.2709850133853737,
+          "refusals": 508
+        },
+        "sonnet-4-6": {
+          "generations": 39964,
+          "rate": 18.76939245320789,
+          "refusals": 7501
+        }
+      },
+      "top_names": {
+        "npm": {
+          "counts": [
+            55,
+            53,
+            25,
+            15,
+            10,
+            8,
+            7,
+            7,
+            6,
+            6
+          ],
+          "sha256": "19af9a3685f621872a4cdd7e562cc4cfc87cb1b9e0a589b4f6b839d4f0048f73"
+        },
+        "pypi": {
+          "counts": [
+            429,
+            375,
+            374,
+            215,
+            117,
+            102,
+            62,
+            40,
+            33,
+            29
+          ],
+          "sha256": "0d3775538a073190de7d5960969fee57e3d469398ee20d19f86048278cf1a458"
+        }
+      },
+      "universal": {
+        "n_npm": 16,
+        "n_pypi": 88,
+        "sha256_npm": "17c151ed6c6ebc798cd0a4f307f48efe64bc12e24598dd171bcbb22f7308c4c9",
+        "sha256_pypi": "af55424c1a1ad8f0bfc2b81bb9ba9087bf6b5c960a99f6f4c1ae3ec2624b70f0",
+        "total": 104
+      }
+    },
+    "c_mention": {
+      "by_dataset": {
+        "LLM_AT": {
+          "ci95": [
+            4.600025115698511,
+            4.984863109510207
+          ],
+          "halluc": 2266,
+          "rate": 4.788774065385997,
+          "rate_upper_if_unknown_counted": 4.843720281493692,
+          "total": 47319,
+          "unknown_only": 26
+        },
+        "LLM_LY": {
+          "ci95": [
+            5.252275320062686,
+            5.640411408841149
+          ],
+          "halluc": 2858,
+          "rate": 5.443083779305616,
+          "rate_upper_if_unknown_counted": 5.49641000247586,
+          "total": 52507,
+          "unknown_only": 28
+        },
+        "SO_AT": {
+          "ci95": [
+            2.067795167927832,
+            2.5158474598820706
+          ],
+          "halluc": 390,
+          "rate": 2.2811019477101246,
+          "rate_upper_if_unknown_counted": 2.3805345967128737,
+          "total": 17097,
+          "unknown_only": 17
+        },
+        "SO_LY": {
+          "ci95": [
+            2.8995347873280632,
+            3.310014975557761
+          ],
+          "halluc": 849,
+          "rate": 3.0982009269058133,
+          "rate_upper_if_unknown_counted": 3.1127978688464766,
+          "total": 27403,
+          "unknown_only": 4
+        }
+      },
+      "by_language": {
+        "javascript": {
+          "ci95": [
+            2.2074333902799643,
+            2.4938255992278524
+          ],
+          "halluc": 1008,
+          "rate": 2.346368715083799,
+          "rate_upper_if_unknown_counted": 2.346368715083799,
+          "total": 42960,
+          "unknown_only": 0
+        },
+        "python": {
+          "ci95": [
+            5.14681816707502,
+            5.422243897772896
+          ],
+          "halluc": 5355,
+          "rate": 5.282836454037843,
+          "rate_upper_if_unknown_counted": 5.356825760116805,
+          "total": 101366,
+          "unknown_only": 75
+        }
+      },
+      "by_model_dataset": {
+        "deepseek-v3.2": {
+          "LLM_AT": {
+            "ci95": [
+              4.5315971198194,
+              5.451613473925534
+            ],
+            "halluc": 427,
+            "rate": 4.9714751426242865,
+            "rate_upper_if_unknown_counted": 5.041331936197462,
+            "total": 8589,
+            "unknown_only": 6
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.248368925037371,
+              6.189715831765944
+            ],
+            "halluc": 532,
+            "rate": 5.7008144020574365,
+            "rate_upper_if_unknown_counted": 5.754393484783541,
+            "total": 9332,
+            "unknown_only": 5
+          },
+          "SO_AT": {
+            "ci95": [
+              2.168592866634042,
+              3.3122121722055247
+            ],
+            "halluc": 83,
+            "rate": 2.6817447495961226,
+            "rate_upper_if_unknown_counted": 2.7463651050080777,
+            "total": 3095,
+            "unknown_only": 2
+          },
+          "SO_LY": {
+            "ci95": [
+              3.636941431183883,
+              4.74150429090846
+            ],
+            "halluc": 209,
+            "rate": 4.1542436891274095,
+            "rate_upper_if_unknown_counted": 4.193997217253031,
+            "total": 5031,
+            "unknown_only": 2
+          }
+        },
+        "gemini-2.5-pro": {
+          "LLM_AT": {
+            "ci95": [
+              4.9582576759477,
+              5.81659670801898
+            ],
+            "halluc": 570,
+            "rate": 5.371277798718432,
+            "rate_upper_if_unknown_counted": 5.427817565020732,
+            "total": 10612,
+            "unknown_only": 6
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.7229064193801715,
+              6.597923612632317
+            ],
+            "halluc": 712,
+            "rate": 6.145878290893396,
+            "rate_upper_if_unknown_counted": 6.189037548554165,
+            "total": 11585,
+            "unknown_only": 5
+          },
+          "SO_AT": {
+            "ci95": [
+              2.2492413472550195,
+              3.164301184304686
+            ],
+            "halluc": 128,
+            "rate": 2.6688907422852375,
+            "rate_upper_if_unknown_counted": 2.731442869057548,
+            "total": 4796,
+            "unknown_only": 3
+          },
+          "SO_LY": {
+            "ci95": [
+              2.6614084257386694,
+              3.462108400182077
+            ],
+            "halluc": 215,
+            "rate": 3.0362943087134586,
+            "rate_upper_if_unknown_counted": 3.0362943087134586,
+            "total": 7081,
+            "unknown_only": 0
+          }
+        },
+        "gpt-5.4-mini": {
+          "LLM_AT": {
+            "ci95": [
+              4.882192511232401,
+              5.911348763501363
+            ],
+            "halluc": 397,
+            "rate": 5.373578776394153,
+            "rate_upper_if_unknown_counted": 5.4277206280454795,
+            "total": 7388,
+            "unknown_only": 4
+          },
+          "LLM_LY": {
+            "ci95": [
+              5.771479879137555,
+              6.819341671968419
+            ],
+            "halluc": 517,
+            "rate": 6.275033377837117,
+            "rate_upper_if_unknown_counted": 6.359995145041874,
+            "total": 8239,
+            "unknown_only": 7
+          },
+          "SO_AT": {
+            "ci95": [
+              0.9736635257822649,
+              2.358083370038933
+            ],
+            "halluc": 19,
+            "rate": 1.5175718849840254,
+            "rate_upper_if_unknown_counted": 1.597444089456869,
+            "total": 1252,
+            "unknown_only": 1
+          },
+          "SO_LY": {
+            "ci95": [
+              1.3800977604271005,
+              2.399028409958506
+            ],
+            "halluc": 49,
+            "rate": 1.8208844295800817,
+            "rate_upper_if_unknown_counted": 1.8208844295800817,
+            "total": 2691,
+            "unknown_only": 0
+          }
+        },
+        "haiku-4-5": {
+          "LLM_AT": {
+            "ci95": [
+              3.428541590868343,
+              4.194745905168759
+            ],
+            "halluc": 363,
+            "rate": 3.793103448275862,
+            "rate_upper_if_unknown_counted": 3.8349007314524557,
+            "total": 9570,
+            "unknown_only": 4
+          },
+          "LLM_LY": {
+            "ci95": [
+              3.826056409310774,
+              4.585198898691968
+            ],
+            "halluc": 449,
+            "rate": 4.1892144056727005,
+            "rate_upper_if_unknown_counted": 4.217204702369845,
+            "total": 10718,
+            "unknown_only": 3
+          },
+          "SO_AT": {
+            "ci95": [
+              1.6343599839000158,
+              2.512877673018814
+            ],
+            "halluc": 81,
+            "rate": 2.0275344180225283,
+            "rate_upper_if_unknown_counted": 2.127659574468085,
+            "total": 3995,
+            "unknown_only": 4
+          },
+          "SO_LY": {
+            "ci95": [
+              3.0208176770147936,
+              3.952265962913274
+            ],
+            "halluc": 205,
+            "rate": 3.4564154442758386,
+            "rate_upper_if_unknown_counted": 3.456415444275839,
+            "total": 5931,
+            "unknown_only": 0
+          }
+        },
+        "sonnet-4-6": {
+          "LLM_AT": {
+            "ci95": [
+              4.189233710444965,
+              4.963901100631417
+            ],
+            "halluc": 509,
+            "rate": 4.560931899641577,
+            "rate_upper_if_unknown_counted": 4.614695340501792,
+            "total": 11160,
+            "unknown_only": 6
+          },
+          "LLM_LY": {
+            "ci95": [
+              4.758203972116229,
+              5.527922217378587
+            ],
+            "halluc": 648,
+            "rate": 5.129422939919259,
+            "rate_upper_if_unknown_counted": 5.192749149054065,
+            "total": 12633,
+            "unknown_only": 8
+          },
+          "SO_AT": {
+            "ci95": [
+              1.604107681629518,
+              2.479867428211407
+            ],
+            "halluc": 79,
+            "rate": 1.9954533973225563,
+            "rate_upper_if_unknown_counted": 2.172265723667593,
+            "total": 3959,
+            "unknown_only": 7
+          },
+          "SO_LY": {
+            "ci95": [
+              2.211183800802464,
+              2.9716376547190557
+            ],
+            "halluc": 171,
+            "rate": 2.564102564102564,
+            "rate_upper_if_unknown_counted": 2.594092067776278,
+            "total": 6669,
+            "unknown_only": 2
+          }
+        }
+      },
+      "by_model_language": {
+        "deepseek-v3.2": {
+          "javascript": {
+            "ci95": [
+              2.5627225864507897,
+              3.344605976184233
+            ],
+            "halluc": 210,
+            "rate": 2.9284618602705343,
+            "rate_upper_if_unknown_counted": 2.928461860270534,
+            "total": 7171,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.198252795882677,
+              5.849729060162969
+            ],
+            "halluc": 1041,
+            "rate": 5.514939605848697,
+            "rate_upper_if_unknown_counted": 5.594405594405594,
+            "total": 18876,
+            "unknown_only": 15
+          }
+        },
+        "gemini-2.5-pro": {
+          "javascript": {
+            "ci95": [
+              2.442720890685542,
+              3.077104953834121
+            ],
+            "halluc": 280,
+            "rate": 2.7421408285182647,
+            "rate_upper_if_unknown_counted": 2.7421408285182647,
+            "total": 10211,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.350809450622003,
+              5.936153105644974
+            ],
+            "halluc": 1345,
+            "rate": 5.636340778611239,
+            "rate_upper_if_unknown_counted": 5.69500900976407,
+            "total": 23863,
+            "unknown_only": 14
+          }
+        },
+        "gpt-5.4-mini": {
+          "javascript": {
+            "ci95": [
+              2.2815833253772135,
+              3.1308254915039275
+            ],
+            "halluc": 149,
+            "rate": 2.6736048806746813,
+            "rate_upper_if_unknown_counted": 2.6736048806746817,
+            "total": 5573,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              5.5712952938695635,
+              6.355426851596016
+            ],
+            "halluc": 833,
+            "rate": 5.951275273272844,
+            "rate_upper_if_unknown_counted": 6.037007930270772,
+            "total": 13997,
+            "unknown_only": 12
+          }
+        },
+        "haiku-4-5": {
+          "javascript": {
+            "ci95": [
+              1.774400172363806,
+              2.3404437210117583
+            ],
+            "halluc": 196,
+            "rate": 2.038269550748752,
+            "rate_upper_if_unknown_counted": 2.038269550748752,
+            "total": 9616,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.108019943415797,
+              4.667125047551337
+            ],
+            "halluc": 902,
+            "rate": 4.379065928730945,
+            "rate_upper_if_unknown_counted": 4.432469171764249,
+            "total": 20598,
+            "unknown_only": 11
+          }
+        },
+        "sonnet-4-6": {
+          "javascript": {
+            "ci95": [
+              1.4364205964656893,
+              1.9297565958532985
+            ],
+            "halluc": 173,
+            "rate": 1.6652228318413707,
+            "rate_upper_if_unknown_counted": 1.6652228318413707,
+            "total": 10389,
+            "unknown_only": 0
+          },
+          "python": {
+            "ci95": [
+              4.862879125361246,
+              5.421102249102243
+            ],
+            "halluc": 1234,
+            "rate": 5.134820239680426,
+            "rate_upper_if_unknown_counted": 5.230525965379494,
+            "total": 24032,
+            "unknown_only": 23
+          }
+        }
+      },
+      "chi2": {
+        "n_pairs": 10,
+        "n_significant": 7,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "chi2": 47.4689463819454,
+            "delta_pp": 1.1687794570293568,
+            "p_holm": 4.470577315096772e-11,
+            "p_raw": 5.588221643870965e-12,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "chi2": 8.763097012343652,
+            "delta_pp": 0.4535440110989497,
+            "p_holm": 0.012295465320881386,
+            "p_raw": 0.0030738663302203465,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "chi2": 56.46452737920191,
+            "delta_pp": 1.383807599132998,
+            "p_holm": 5.722139843798501e-13,
+            "p_raw": 5.722139843798501e-14,
+            "significant": true
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "chi2": 50.57598924412321,
+            "delta_pp": 1.134955188606496,
+            "p_holm": 1.0317510465987133e-11,
+            "p_raw": 1.1463900517763481e-12,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "chi2": 17.878948875175993,
+            "delta_pp": 0.7152354459304071,
+            "p_holm": 0.00011770537280450662,
+            "p_raw": 2.3541074560901324e-05,
+            "significant": true
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "chi2": 1.064099653372172,
+            "delta_pp": 0.21502814210364107,
+            "p_holm": 0.6128304354969313,
+            "p_raw": 0.3022820080311942,
+            "significant": false
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "chi2": 0.03002561372580439,
+            "delta_pp": 0.033824268422860904,
+            "p_holm": 0.8624321252935929,
+            "p_raw": 0.8624321252935929,
+            "significant": false
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "chi2": 25.311338773678393,
+            "delta_pp": 0.9302635880340482,
+            "p_holm": 3.41482817355098e-06,
+            "p_raw": 4.878325962215686e-07,
+            "significant": true
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "chi2": 18.632399444535903,
+            "delta_pp": 0.6814111775075462,
+            "p_holm": 9.510227483578694e-05,
+            "p_raw": 1.5850379139297823e-05,
+            "significant": true
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "chi2": 1.6115303756111656,
+            "delta_pp": 0.24885241052650198,
+            "p_holm": 0.6128304354969313,
+            "p_raw": 0.20427681183231042,
+            "significant": false
+          }
+        ]
+      },
+      "jaccard": {
+        "max": 0.34228855721393037,
+        "mean": 0.21933744139889227,
+        "min": 0.17336309523809523,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "inter": 265,
+            "jaccard": 0.24289642529789185,
+            "union": 1091
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "inter": 210,
+            "jaccard": 0.1760268231349539,
+            "union": 1193
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "inter": 219,
+            "jaccard": 0.2225609756097561,
+            "union": 984
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "inter": 233,
+            "jaccard": 0.17336309523809523,
+            "union": 1344
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "inter": 258,
+            "jaccard": 0.19984508133230056,
+            "union": 1291
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "inter": 344,
+            "jaccard": 0.34228855721393037,
+            "union": 1005
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "inter": 329,
+            "jaccard": 0.23601147776183645,
+            "union": 1394
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "inter": 220,
+            "jaccard": 0.1870748299319728,
+            "union": 1176
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "inter": 270,
+            "jaccard": 0.18,
+            "union": 1500
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "inter": 297,
+            "jaccard": 0.2333071484681854,
+            "union": 1273
+          }
+        ],
+        "unique_per_model": {
+          "deepseek-v3.2": 751,
+          "gemini-2.5-pro": 972,
+          "gpt-5.4-mini": 598,
+          "haiku-4-5": 605,
+          "sonnet-4-6": 798
+        }
+      },
+      "labels": "classification classification.db, variant c",
+      "level": "mention",
+      "per_model": {
+        "deepseek-v3.2": {
+          "ci95": [
+            4.54977926405475,
+            5.069263033606726
+          ],
+          "halluc": 1251,
+          "rate": 4.802856375014397,
+          "rate_upper_if_unknown_counted": 4.860444580949822,
+          "total": 26047,
+          "unknown_only": 15
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            4.5478089482540245,
+            5.0004526772735245
+          ],
+          "halluc": 1625,
+          "rate": 4.769032106591536,
+          "rate_upper_if_unknown_counted": 4.81011915243294,
+          "total": 34074,
+          "unknown_only": 14
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            4.720747184136671,
+            5.332677755268426
+          ],
+          "halluc": 982,
+          "rate": 5.017884517118038,
+          "rate_upper_if_unknown_counted": 5.079202861522739,
+          "total": 19570,
+          "unknown_only": 12
+        },
+        "haiku-4-5": {
+          "ci95": [
+            3.428892434465299,
+            3.8510499857056577
+          ],
+          "halluc": 1098,
+          "rate": 3.63407691798504,
+          "rate_upper_if_unknown_counted": 3.670483881644271,
+          "total": 30214,
+          "unknown_only": 11
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            3.883518592914175,
+            4.30196996537424
+          ],
+          "halluc": 1407,
+          "rate": 4.0876209290839896,
+          "rate_upper_if_unknown_counted": 4.154440603120189,
+          "total": 34421,
+          "unknown_only": 23
+        }
+      },
+      "permutation": {
+        "max_p": 0.8635,
+        "n_permutations": 10000,
+        "n_significant": 7,
+        "pairs": [
+          {
+            "a": "haiku-4-5",
+            "b": "deepseek-v3.2",
+            "delta_pp": 1.168779457029357,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.4535440110989497,
+            "p_perm": 0.003
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 1.3838075991329974,
+            "p_perm": 0.0
+          },
+          {
+            "a": "haiku-4-5",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 1.1349551886064957,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "sonnet-4-6",
+            "delta_pp": 0.7152354459304073,
+            "p_perm": 0.0
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.2150281421036404,
+            "p_perm": 0.2936
+          },
+          {
+            "a": "deepseek-v3.2",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.033824268422861375,
+            "p_perm": 0.8635
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gpt-5.4-mini",
+            "delta_pp": 0.9302635880340477,
+            "p_perm": 0.0
+          },
+          {
+            "a": "sonnet-4-6",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.681411177507546,
+            "p_perm": 0.0
+          },
+          {
+            "a": "gpt-5.4-mini",
+            "b": "gemini-2.5-pro",
+            "delta_pp": 0.24885241052650178,
+            "p_perm": 0.2053
+          }
+        ],
+        "seed": 42
+      },
+      "refusals": {
+        "deepseek-v3.2": {
+          "generations": 39969,
+          "rate": 1.9740298731516925,
+          "refusals": 789
+        },
+        "gemini-2.5-pro": {
+          "generations": 39969,
+          "rate": 8.111286246841303,
+          "refusals": 3242
+        },
+        "gpt-5.4-mini": {
+          "generations": 39969,
+          "rate": 31.50691786134254,
+          "refusals": 12593
+        },
+        "haiku-4-5": {
+          "generations": 39969,
+          "rate": 1.2709850133853737,
+          "refusals": 508
+        },
+        "sonnet-4-6": {
+          "generations": 39964,
+          "rate": 18.76939245320789,
+          "refusals": 7501
+        }
+      },
+      "top_names": {
+        "npm": {
+          "counts": [
+            55,
+            53,
+            25,
+            15,
+            10,
+            8,
+            7,
+            7,
+            6,
+            6
+          ],
+          "sha256": "19af9a3685f621872a4cdd7e562cc4cfc87cb1b9e0a589b4f6b839d4f0048f73"
+        },
+        "pypi": {
+          "counts": [
+            429,
+            375,
+            374,
+            215,
+            117,
+            102,
+            62,
+            40,
+            33,
+            29
+          ],
+          "sha256": "0d3775538a073190de7d5960969fee57e3d469398ee20d19f86048278cf1a458"
+        }
+      },
+      "universal": {
+        "n_npm": 16,
+        "n_pypi": 88,
+        "sha256_npm": "17c151ed6c6ebc798cd0a4f307f48efe64bc12e24598dd171bcbb22f7308c4c9",
+        "sha256_pypi": "af55424c1a1ad8f0bfc2b81bb9ba9087bf6b5c960a99f6f4c1ae3ec2624b70f0",
+        "total": 104
+      }
+    }
+  },
+  "seed": 42,
+  "status_transitions": {
+    "npm": [
+      {
+        "names": 533,
+        "new": "ABSENT / H_ABSENT",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 49,
+        "new": "EXISTS / FALSE_POSITIVE",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 1,
+        "new": "EXISTS / H_REGISTERED_LATER",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 13,
+        "new": "SECURITY_HOLDING / FALSE_POSITIVE",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 2,
+        "new": "SECURITY_HOLDING / H_REGISTERED_LATER",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 15,
+        "new": "UNPUBLISHED / FALSE_POSITIVE",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 150,
+        "new": "excluded:D15_invalid_name",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 383,
+        "new": "excluded:noise_filter",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 200,
+        "new": "control:EXISTS",
+        "v3": "v3_existing"
+      },
+      {
+        "names": 3420,
+        "new": "not_live_checked",
+        "v3": "v3_existing"
+      }
+    ],
+    "pypi": [
+      {
+        "names": 1724,
+        "new": "ABSENT / H_ABSENT",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 84,
+        "new": "EXISTS / FALSE_POSITIVE",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 22,
+        "new": "EXISTS / H_REGISTERED_LATER",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 10,
+        "new": "EXISTS_SIMPLE_ONLY / UNKNOWN_EXISTS_SIMPLE_ONLY",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 11,
+        "new": "REMOVED_MALICIOUS / UNKNOWN_REMOVED_MALICIOUS",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 81,
+        "new": "excluded:D15_invalid_name",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 54,
+        "new": "excluded:D1_D11_pipreqs_import_only",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 313,
+        "new": "excluded:noise_filter",
+        "v3": "v3_candidate"
+      },
+      {
+        "names": 1,
+        "new": "control:ABSENT",
+        "v3": "v3_existing"
+      },
+      {
+        "names": 197,
+        "new": "control:EXISTS",
+        "v3": "v3_existing"
+      },
+      {
+        "names": 2,
+        "new": "control:EXISTS_SIMPLE_ONLY",
+        "v3": "v3_existing"
+      },
+      {
+        "names": 4691,
+        "new": "not_live_checked",
+        "v3": "v3_existing"
+      }
+    ]
+  },
+  "t0_utc": "2026-11-07T11:44:08Z",
+  "universal": {
+    "april_list_fate": {
+      "npm": {
+        "not_universal_FALSE_POSITIVE": 2,
+        "still_universal": 16
+      },
+      "pypi": {
+        "excluded_D1_D11_pipreqs_import_only": 26,
+        "excluded_noise_filter": 1,
+        "not_universal_FALSE_POSITIVE": 3,
+        "not_universal_UNKNOWN_as_of_generation": 3,
+        "still_universal": 88
+      }
+    },
+    "by_variant_mention_labels": {
+      "a": {
+        "npm": 18,
+        "pypi": 120
+      },
+      "b": {
+        "npm": 18,
+        "pypi": 120
+      },
+      "c": {
+        "npm": 16,
+        "pypi": 88
+      }
+    },
+    "new_c": {
+      "npm": 16,
+      "pypi": 88
+    },
+    "new_c_in_april_lists": {
+      "npm": 16,
+      "pypi": 88
+    },
+    "new_c_sha256": {
+      "npm": "17c151ed6c6ebc798cd0a4f307f48efe64bc12e24598dd171bcbb22f7308c4c9",
+      "pypi": "af55424c1a1ad8f0bfc2b81bb9ba9087bf6b5c960a99f6f4c1ae3ec2624b70f0"
+    },
+    "new_c_total": 104,
+    "top10_new_universal": {
+      "npm": {
+        "mention_counts": [
+          55,
+          53,
+          25,
+          15,
+          6,
+          5,
+          5,
+          5,
+          5,
+          5
+        ],
+        "n": 10,
+        "sha256": "7da492358fed495fe2c975789f5e124205050bb2b45f0c74211b7f26c0099e8c"
+      },
+      "pypi": {
+        "mention_counts": [
+          429,
+          375,
+          374,
+          215,
+          117,
+          102,
+          62,
+          40,
+          33,
+          29
+        ],
+        "n": 10,
+        "sha256": "0d3775538a073190de7d5960969fee57e3d469398ee20d19f86048278cf1a458"
+      }
+    },
+    "v3_april_lists": {
+      "npm": 18,
+      "pypi": 121
+    }
+  },
+  "v3_to_new": {
+    "pdf_check": "26 quotes found",
+    "rows": [
+      {
+        "item": "Generations",
+        "new": "199,840 (stored rows, D6)",
+        "reason": "39,969 prompts × 5 = 199,845; rows missing in the DB: {'sonnet-4-6': 5}. Appendix B per-provider counts (Google 39,968, DeepSeek 39,975) differ from the DB (39,969, 39,969) and are not reproducible from it",
+        "repro": "199,840 rows",
+        "v3": "199,845"
+      },
+      {
+        "item": "Rate Claude Haiku 4.5",
+        "new": "mention 3.63% [3.43–3.85]; generation 2.34% [2.20–2.49]",
+        "reason": "hallucinated mentions 1394 → 1098: −44 D15, −189 D1/D11, −51 existed before generation, −11 UNKNOWN, −1 spelling variant of an existing name (PEP 503); denominator −44 (D15 noise). Published vs (a): later noise-filter revision",
+        "repro": "4.61% (1394/30258)",
+        "v3": "4.62%"
+      },
+      {
+        "item": "Rate Claude Sonnet 4.6",
+        "new": "mention 4.09% [3.88–4.30]; generation 2.75% [2.60–2.92]",
+        "reason": "hallucinated mentions 1866 → 1407: −169 D15, −202 D1/D11, −63 existed before generation, −23 UNKNOWN, −1 spelling variant of an existing name (PEP 503), −1 noise filter on the normalized name; denominator −169 (D15 noise). Published vs (a): later noise-filter revision",
+        "repro": "5.39% (1866/34590)",
+        "v3": "5.41%"
+      },
+      {
+        "item": "Rate Gemini 2.5 Pro",
+        "new": "mention 4.77% [4.55–5.00]; generation 3.39% [3.21–3.57]",
+        "reason": "hallucinated mentions 1974 → 1625: −49 D15, −207 D1/D11, −77 existed before generation, −14 UNKNOWN, −1 spelling variant of an existing name (PEP 503), −1 noise filter on the normalized name; denominator −49 (D15 noise). Published vs (a): later noise-filter revision",
+        "repro": "5.78% (1974/34123)",
+        "v3": "5.80%"
+      },
+      {
+        "item": "Rate DeepSeek V3.2",
+        "new": "mention 4.80% [4.55–5.07]; generation 2.66% [2.51–2.82]",
+        "reason": "hallucinated mentions 1531 → 1251: −36 D15, −164 D1/D11, −63 existed before generation, −15 UNKNOWN, −2 spelling variant of an existing name (PEP 503); denominator −36 (D15 noise). Published vs (a): later noise-filter revision",
+        "repro": "5.87% (1531/26083)",
+        "v3": "5.89%"
+      },
+      {
+        "item": "Rate GPT-5.4-mini",
+        "new": "mention 5.02% [4.72–5.33]; generation 2.15% [2.01–2.29]",
+        "reason": "hallucinated mentions 1190 → 982: −7 D15, −144 D1/D11, −45 existed before generation, −12 UNKNOWN; denominator −7 (D15 noise). Published vs (a): later noise-filter revision",
+        "repro": "6.08% (1190/19577)",
+        "v3": "6.10%"
+      },
+      {
+        "item": "Range (mention)",
+        "new": "3.63% (haiku-4-5) – 5.02% (gpt-5.4-mini); spread 1.38 pp",
+        "reason": "per-model changes above",
+        "repro": "4.61–6.08%",
+        "v3": "4.62–6.10%"
+      },
+      {
+        "item": "Range (generation)",
+        "new": "2.15% (gpt-5.4-mini) – 3.39% (gemini-2.5-pro); spread 1.24 pp",
+        "reason": "PREREG §3.1 unit (generation with ≥1 hallucination; denominator includes refusals and generations without any package)",
+        "repro": "",
+        "v3": "4.62–6.10%"
+      },
+      {
+        "item": "χ² + Holm (mention)",
+        "new": "7/10 significant; Haiku vs GPT χ² 56.46, Δ 1.38 pp",
+        "reason": "recomputed from the new per-model counts",
+        "repro": "5/10",
+        "v3": "5/10 significant; Haiku vs GPT χ² 52.49"
+      },
+      {
+        "item": "Permutation test (mention)",
+        "new": "7/10 with p<0.05; agrees with χ²+Holm on 10/10 pairs",
+        "reason": "10 000 resamples, seed 42",
+        "repro": "",
+        "v3": "agrees with χ² on all significant pairs"
+      },
+      {
+        "item": "DeepSeek vs Gemini Δ (mention)",
+        "new": "0.03 pp (ns)",
+        "reason": "recomputed",
+        "repro": "",
+        "v3": "0.08 pp (ns)"
+      },
+      {
+        "item": "χ² + Holm (generation)",
+        "new": "8/10 significant; Haiku vs GPT χ² 3.38, Δ 0.20 pp",
+        "reason": "recomputed from the new per-model counts",
+        "repro": "",
+        "v3": "5/10 significant; Haiku vs GPT χ² 52.49"
+      },
+      {
+        "item": "Permutation test (generation)",
+        "new": "8/10 with p<0.05; agrees with χ²+Holm on 10/10 pairs",
+        "reason": "10 000 resamples, seed 42",
+        "repro": "",
+        "v3": "agrees with χ² on all significant pairs"
+      },
+      {
+        "item": "DeepSeek vs Gemini Δ (generation)",
+        "new": "0.73 pp (significant)",
+        "reason": "recomputed",
+        "repro": "",
+        "v3": "0.08 pp (ns)"
+      },
+      {
+        "item": "Jaccard mean (range)",
+        "new": "0.219 (0.173–0.342); DeepSeek–GPT 0.342; Haiku–Sonnet 0.176",
+        "reason": "sets of names hallucinated as of generation (normalized names) instead of v3 raw keys",
+        "repro": "0.222 (0.179–0.344)",
+        "v3": "0.222 (0.179–0.343)"
+      },
+      {
+        "item": "Python / JS Claude Haiku 4.5",
+        "new": "mention 4.38 / 2.04; generation 4.15 / 0.69",
+        "reason": "per-language share of the changes above",
+        "repro": "5.49 / 2.73",
+        "v3": "5.49 / 2.76"
+      },
+      {
+        "item": "Python / JS Claude Sonnet 4.6",
+        "new": "mention 5.13 / 1.67; generation 5.11 / 0.60",
+        "reason": "per-language share of the changes above",
+        "repro": "6.60 / 2.62",
+        "v3": "6.63 / 2.62"
+      },
+      {
+        "item": "Python / JS Gemini 2.5 Pro",
+        "new": "mention 5.64 / 2.74; generation 5.88 / 1.11",
+        "reason": "per-language share of the changes above",
+        "repro": "6.73 / 3.59",
+        "v3": "6.75 / 3.61"
+      },
+      {
+        "item": "Python / JS DeepSeek V3.2",
+        "new": "mention 5.51 / 2.93; generation 4.68 / 0.81",
+        "reason": "per-language share of the changes above",
+        "repro": "6.66 / 3.79",
+        "v3": "6.69 / 3.78"
+      },
+      {
+        "item": "Python / JS GPT-5.4-mini",
+        "new": "mention 5.95 / 2.67; generation 3.85 / 0.59",
+        "reason": "per-language share of the changes above",
+        "repro": "7.26 / 3.10",
+        "v3": "7.27 / 3.14"
+      },
+      {
+        "item": "LLM vs SO prompts",
+        "new": "SO_AT 2.28%; SO_LY 3.10%; LLM_AT 4.79%; LLM_LY 5.44% (holds)",
+        "reason": "recomputed (mention level)",
+        "repro": "",
+        "v3": "LLM-synthesized > Stack Overflow"
+      },
+      {
+        "item": "Universal set, PyPI (109/121)",
+        "new": "88",
+        "reason": "fate of each April-list name: {\"excluded_D1_D11_pipreqs_import_only\": 26, \"excluded_noise_filter\": 1, \"not_universal_FALSE_POSITIVE\": 3, \"not_universal_UNKNOWN_as_of_generation\": 3, \"still_universal\": 88}",
+        "repro": "121 in DB/April list; 120 with the current noise filter",
+        "v3": "109"
+      },
+      {
+        "item": "Universal set, npm",
+        "new": "16",
+        "reason": "fate of each April-list name: {\"not_universal_FALSE_POSITIVE\": 2, \"still_universal\": 16}",
+        "repro": "18; 18 with the current noise filter",
+        "v3": "18"
+      },
+      {
+        "item": "Universal set, total (127/139)",
+        "new": "104",
+        "reason": "109 is not reproducible (the DB and the April list give 121); see the two rows above",
+        "repro": "139; 138 with the current noise filter",
+        "v3": "127"
+      },
+      {
+        "item": "Registrable (53 = 41 + 12)",
+        "new": "not recomputed",
+        "reason": "registrability is a registry decision (PREREG §2: BLOCKED_BY_REGISTRY only when the registry says so); the April PyPI reply gives a count, not names; HTTP 404 does not mean registrable",
+        "repro": "",
+        "v3": "53 (41 PyPI, 12 npm)"
+      },
+      {
+        "item": "Refusals Claude Haiku 4.5",
+        "new": "1.27%",
+        "reason": "refusals do not depend on the classification; difference = refusal definition in the v3 pipeline vs generated_code NULL/'none'/empty",
+        "repro": "1.27% (508/39969)",
+        "v3": "1.27%"
+      },
+      {
+        "item": "Refusals Claude Sonnet 4.6",
+        "new": "18.77%",
+        "reason": "refusals do not depend on the classification; difference = refusal definition in the v3 pipeline vs generated_code NULL/'none'/empty",
+        "repro": "18.77% (7501/39964)",
+        "v3": "18.79%"
+      },
+      {
+        "item": "Refusals Gemini 2.5 Pro",
+        "new": "8.11%",
+        "reason": "refusals do not depend on the classification; difference = refusal definition in the v3 pipeline vs generated_code NULL/'none'/empty",
+        "repro": "8.11% (3242/39969)",
+        "v3": "8.14%"
+      },
+      {
+        "item": "Refusals DeepSeek V3.2",
+        "new": "1.97%",
+        "reason": "refusals do not depend on the classification; difference = refusal definition in the v3 pipeline vs generated_code NULL/'none'/empty",
+        "repro": "1.97% (789/39969)",
+        "v3": "2.08%"
+      },
+      {
+        "item": "Refusals GPT-5.4-mini",
+        "new": "31.51%",
+        "reason": "refusals do not depend on the classification; difference = refusal definition in the v3 pipeline vs generated_code NULL/'none'/empty",
+        "repro": "31.51% (12593/39969)",
+        "v3": "32.14%"
+      },
+      {
+        "item": "Hallucinated mentions per model",
+        "new": "min 982",
+        "reason": "per-model changes above",
+        "repro": "min 1,190",
+        "v3": "more than 1,300"
+      }
+    ]
+  }
+}
