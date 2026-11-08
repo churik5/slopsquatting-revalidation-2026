@@ -293,6 +293,20 @@
     "noise_filter_blob": "7d160d4e370d7583e5c638c24048ff571b25b363",
     "pipreqs_mapping_sha256": "bc02385c473b7ccfdc2c67697df423feaa394023f5f1d59693c86a5a0dcd7e50",
     "quick_run_without_permutations": false,
+    "registry_checks_after_stage_A": {
+      "meta_rows": 18,
+      "meta_rows_by_method": {
+        "npm_registry": 16,
+        "osv": 2
+      },
+      "note": "after stage A (task1_analysis.py), rows of round 'meta' were appended to registry_checks by scripts/npm_placeholders.py; rounds 1 and 2 are unchanged and the task 1 classification reads only rounds 1 and 2. registry_checks_db_sha256 above is the file at stage A.",
+      "registry_checks_db_sha256_now": "6b27b561eec81df5ee9734eea892d23688935a7d8d19555f93c3e7616fc82e25",
+      "rows_by_round": {
+        "1": 9657,
+        "2": 5164,
+        "meta": 18
+      }
+    },
     "registry_checks_db_sha256": "b5cdff5d35bb9119a737a81b7729dce82acf3947889597c924e9f2e058dd33d2",
     "round2_summary_commit": "b14bf30131980a35dd9214720f025abf0c74b1e7",
     "runs_db_sha256": "ad82fc69d3e16edc6aa85f89e4eed367a778fa412965219c1f92a192fcf9fdcd"
