@@ -1,0 +1,118 @@
+{
+  "end_utc": "2026-11-08T11:22:31.048843Z",
+  "endpoints": {
+    "depsdev": "GET https://api.deps.dev/v3/systems/npm/packages/{name, fully percent-encoded ('@'->%40, '/'->%2F)} (deps.dev API v3 GetPackage, https://docs.deps.dev/api/v3/; 404 = not found, checked 2026-11-07)",
+    "npm_registry": "GET https://registry.npmjs.org/{name with '/' as %2F}",
+    "osv": "POST https://api.osv.dev/v1/query {\"package\": {\"name\": name, \"ecosystem\": \"PyPI\"|\"npm\"}} (no version = all records; follows next_page_token); MAL = any id starting with 'MAL-'",
+    "pypi_json": "GET https://pypi.org/pypi/{pep503_name}/json",
+    "pypi_simple": "GET https://pypi.org/simple/{pep503_name}/ with Accept: application/vnd.pypi.simple.v1+json"
+  },
+  "errors": {
+    "final_UNKNOWN": 4,
+    "http_429": 0,
+    "http_5xx": 0,
+    "other_non_200_non_404_final": 4,
+    "retried_responses_or_failures": 0,
+    "timeouts_or_network_errors": 0
+  },
+  "final_states": {
+    "control.pypi.pypi_json": {
+      "ABSENT": 3
+    },
+    "control.pypi.pypi_simple": {
+      "ABSENT": 1,
+      "EXISTS": 2
+    },
+    "mapped.pypi.pypi_json": {
+      "ABSENT": 1
+    },
+    "mapped.pypi.pypi_simple": {
+      "EXISTS": 1
+    },
+    "study.npm.depsdev": {
+      "ABSENT": 698
+    },
+    "study.npm.npm_registry": {
+      "ABSENT": 679,
+      "EXISTS": 15,
+      "UNKNOWN": 4
+    },
+    "study.pypi.pypi_json": {
+      "ABSENT": 1880
+    },
+    "study.pypi.pypi_simple": {
+      "ABSENT": 1869,
+      "EXISTS": 11
+    }
+  },
+  "first_check_utc": "2026-11-08T10:16:08.879011Z",
+  "first_start_utc": "2026-11-08T10:16:08.238627Z",
+  "last_check_utc": "2026-11-08T11:22:20.568159Z",
+  "method_disagreements": {
+    "control.pypi": {
+      "EXISTS_vs_ABSENT": 2,
+      "both_ABSENT": 1,
+      "both_EXISTS": 0,
+      "missing_final_row": 0,
+      "names": 3,
+      "one_or_both_UNKNOWN": 0
+    },
+    "mapped.pypi": {
+      "EXISTS_vs_ABSENT": 1,
+      "both_ABSENT": 0,
+      "both_EXISTS": 0,
+      "missing_final_row": 0,
+      "names": 1,
+      "one_or_both_UNKNOWN": 0
+    },
+    "study.npm": {
+      "EXISTS_vs_ABSENT": 15,
+      "both_ABSENT": 679,
+      "both_EXISTS": 0,
+      "missing_final_row": 0,
+      "names": 698,
+      "one_or_both_UNKNOWN": 4
+    },
+    "study.pypi": {
+      "EXISTS_vs_ABSENT": 11,
+      "both_ABSENT": 1869,
+      "both_EXISTS": 0,
+      "missing_final_row": 0,
+      "names": 1880,
+      "one_or_both_UNKNOWN": 0
+    }
+  },
+  "rate_limit": "<= 1 request/s per host (min interval 1.05s; pypi_json + pypi_simple share pypi.org)",
+  "requests": {
+    "by_http_status": {
+      "200": 29,
+      "404": 5131,
+      "405": 4
+    },
+    "by_method": {
+      "npm.depsdev": 698,
+      "npm.npm_registry": 698,
+      "pypi.pypi_json": 1884,
+      "pypi.pypi_simple": 1884
+    },
+    "http_requests_without_response": 0,
+    "total_rows": 5164
+  },
+  "retries": "429/5xx/timeout/network: up to 5 attempts, pause max(Retry-After, 5*2^(n-1) s)",
+  "role_note": "study = groups A and B together (no split); mapped = pipreqs-mapped distributions of PyPI study names; control = 200 random v3-existing names per ecosystem (quality check only). A name with several roles is counted once: study > mapped > control.",
+  "round": 2,
+  "round2": {
+    "command": "caffeinate -i ~/.local/share/slop-bench/venv-check/bin/python scripts/registry_check.py --round 2",
+    "earliest_start_utc": null,
+    "eligible_pairs": null
+  },
+  "storage": "data/private/registry_checks.db (append-only; not committed)",
+  "t0_utc": "2026-11-07T11:44:08Z",
+  "targets": {
+    "control.pypi": 3,
+    "mapped.pypi": 1,
+    "study.npm": 698,
+    "study.pypi": 1880
+  },
+  "user_agent": "slop-bench-revalidation/1.0 (research; contact: churik0509@gmail.com)"
+}
