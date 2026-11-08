@@ -1,0 +1,182 @@
+{
+  "examples_private": {
+    "candidates_per_kind": {
+      "LLM_AT": 47,
+      "LLM_LY": 42,
+      "SO_AT": 53,
+      "SO_LY": 131,
+      "import_only": 7
+    },
+    "picked": [
+      "LLM_AT",
+      "LLM_LY",
+      "SO_AT",
+      "SO_LY",
+      "import_only"
+    ]
+  },
+  "models": {
+    "appendix_b_v3": {
+      "anthropic": 79933,
+      "deepseek": 39975,
+      "google": 39968,
+      "openai": 39969
+    },
+    "database_per_provider": {
+      "anthropic": 79933,
+      "deepseek": 39969,
+      "google": 39969,
+      "openai": 39969
+    },
+    "per_model": {
+      "deepseek-v3.2": {
+        "api_calls": 39969,
+        "api_calls_without_generation_row": 0,
+        "duplicate_prompt_sample_rows": 0,
+        "generations": 39969,
+        "refusal_share": {
+          "ci95": [
+            0.01842198999262549,
+            0.021150915037162772
+          ],
+          "k": 789,
+          "n": 39969,
+          "share": 0.019740298731516927
+        },
+        "refusals": 789
+      },
+      "gemini-2.5-pro": {
+        "api_calls": 39969,
+        "api_calls_without_generation_row": 0,
+        "duplicate_prompt_sample_rows": 0,
+        "generations": 39969,
+        "refusal_share": {
+          "ci95": [
+            0.0784764739959013,
+            0.08382976248979743
+          ],
+          "k": 3242,
+          "n": 39969,
+          "share": 0.08111286246841302
+        },
+        "refusals": 3242
+      },
+      "gpt-5.4-mini": {
+        "api_calls": 55486,
+        "api_calls_without_generation_row": 15517,
+        "duplicate_prompt_sample_rows": 0,
+        "generations": 39969,
+        "refusal_share": {
+          "ci95": [
+            0.31053292796089066,
+            0.31964097360602234
+          ],
+          "k": 12593,
+          "n": 39969,
+          "share": 0.3150691786134254
+        },
+        "refusals": 12593
+      },
+      "haiku-4-5": {
+        "api_calls": 39969,
+        "api_calls_without_generation_row": 0,
+        "duplicate_prompt_sample_rows": 0,
+        "generations": 39969,
+        "refusal_share": {
+          "ci95": [
+            0.011657540276370275,
+            0.013855818834497949
+          ],
+          "k": 508,
+          "n": 39969,
+          "share": 0.012709850133853737
+        },
+        "refusals": 508
+      },
+      "sonnet-4-6": {
+        "api_calls": 39964,
+        "api_calls_without_generation_row": 0,
+        "duplicate_prompt_sample_rows": 0,
+        "generations": 39964,
+        "refusal_share": {
+          "ci95": [
+            0.1838957728663955,
+            0.1915521100091753
+          ],
+          "k": 7501,
+          "n": 39964,
+          "share": 0.18769392453207887
+        },
+        "refusals": 7501
+      }
+    }
+  },
+  "spracklen_gpt4_turbo": 3.59,
+  "table4": {
+    "categories": {
+      "near": {
+        "npm_mentions": 36,
+        "npm_names": 7,
+        "pypi_mentions": 2183,
+        "pypi_names": 74
+      },
+      "plausible": {
+        "npm_mentions": 25,
+        "npm_names": 5,
+        "pypi_mentions": 307,
+        "pypi_names": 14
+      },
+      "scope": {
+        "npm_mentions": 148,
+        "npm_names": 4,
+        "pypi_mentions": 0,
+        "pypi_names": 0
+      }
+    },
+    "stdlib_near_matches_not_counted": 0,
+    "universal_names_in_master_lists": 0
+  },
+  "text_numbers": {
+    "all_models_unique": {
+      "npm": 536,
+      "pypi": 1746
+    },
+    "per_model": {
+      "deepseek-v3.2": {
+        "hallucinated_mentions": 1251,
+        "unique_names": {
+          "npm": 175,
+          "pypi": 576
+        }
+      },
+      "gemini-2.5-pro": {
+        "hallucinated_mentions": 1625,
+        "unique_names": {
+          "npm": 220,
+          "pypi": 755
+        }
+      },
+      "gpt-5.4-mini": {
+        "hallucinated_mentions": 982,
+        "unique_names": {
+          "npm": 129,
+          "pypi": 469
+        }
+      },
+      "haiku-4-5": {
+        "hallucinated_mentions": 1098,
+        "unique_names": {
+          "npm": 143,
+          "pypi": 462
+        }
+      },
+      "sonnet-4-6": {
+        "hallucinated_mentions": 1407,
+        "unique_names": {
+          "npm": 124,
+          "pypi": 674
+        }
+      }
+    }
+  }
+}
