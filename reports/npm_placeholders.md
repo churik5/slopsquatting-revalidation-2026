@@ -42,6 +42,16 @@ Earliest `published` among the name's MAL records (OSV query in round `meta`).
 
 T0 = 2026-11-07T11:44:08Z (`reports/t0.json`).
 
+## 5. UNPUBLISHED: unpublication time (`time.unpublished.time`) vs generation time
+
+From the npm documents of rounds 1–2 (no new requests). See PREREG-deviations D17.
+
+| Unpublished | Names |
+|---|---:|
+| before generation | 14 |
+| after generation | 1 |
+| **total** | 15 |
+
 ## Notes
 
 - `npm_standard_malicious_code_text`: npm's standard README (the package contained malicious code and was removed by the npm security team).

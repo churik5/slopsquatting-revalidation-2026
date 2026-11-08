@@ -166,7 +166,19 @@ def main() -> None:
                      else "not_requested (UNPUBLISHED)", n in mal) for n in cat)
 
     t0 = T.ts(json.loads((REPO / "reports" / "t0.json").read_text())["t0_utc"])
-    gen = earliest_generation(set(after))
+    unpub = [n for n in cat if cat[n] == "UNPUBLISHED"]
+    gen = earliest_generation(set(after) | set(unpub))
+    # time.unpublished.time from the npm document of the latest round (1-2) that returned it
+    rc = sqlite3.connect(f"file:{RC.OUT_DB}?mode=ro", uri=True)
+    unpub_time = {}
+    for n, mj in rc.execute("SELECT name, meta_json FROM registry_checks WHERE round IN (1, 2) AND "
+                            "ecosystem = 'npm' AND method = 'npm_registry' AND is_final = 1 AND state = 'EXISTS' "
+                            "ORDER BY id"):
+        tu = json.loads(mj or "{}").get("time_unpublished")
+        if n in cat and tu:
+            unpub_time[n] = T.ts(tu.get("time")) if isinstance(tu, dict) else None
+    rc.close()
+    unpub_rel = Counter(rel(unpub_time.get(n), *gen[n]) if n in gen else "no_generation_time" for n in unpub)
     osv_rel = Counter()
     for n in after:
         st, m = osv_meta.get(n, (None, {}))
@@ -205,6 +217,14 @@ def main() -> None:
     for (k, g, t), v in sorted(osv_rel.items()):
         L.append(f"| {k} | {g} | {t} | {v} |")
     L += ["", f"T0 = {T.iso(t0)[:19]}Z (`reports/t0.json`).", "",
+          "## 5. UNPUBLISHED: unpublication time (`time.unpublished.time`) vs generation time", "",
+          "From the npm documents of rounds 1–2 (no new requests). See PREREG-deviations D17.", "",
+          "| Unpublished | Names |", "|---|---:|"]
+    for k in ("before", "after", "inside_batch_interval", "no_date", "no_generation_time"):
+        if unpub_rel[k] or k in ("before", "after"):
+            L.append(f"| {k} generation |" if k in ("before", "after") else f"| {k} |")
+            L[-1] += f" {unpub_rel[k]} |"
+    L += [f"| **total** | {len(unpub)} |", "",
           "## Notes", "",
           "- `npm_standard_malicious_code_text`: npm's standard README (the package contained malicious code and "
           "was removed by the npm security team).",

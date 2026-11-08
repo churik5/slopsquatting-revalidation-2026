@@ -72,3 +72,10 @@ D15. Names that are not valid package names under the registry's own naming rule
      (PyPI: PEP 508 name syntax; npm: validate-npm-package-name rules for new
      packages), including names with whitespace or line breaks, are extraction noise
      and are excluded. The number removed in each group is reported.
+
+D17. Written after the npm placeholder check and before any A/B breakdown. An npm name
+     whose package was unpublished (time.unpublished) before the name's generation time
+     was not installable at generation time. Stage A counts it as a false positive
+     (created before generation). Sensitivity for Task 1 and Task 2: count such names as
+     hallucinations as of generation (not registered unless republished later). The
+     primary analysis is unchanged.
