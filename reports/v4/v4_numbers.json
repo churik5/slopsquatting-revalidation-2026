@@ -1,4 +1,47 @@
 {
+  "costs": {
+    "early_gpt_run": {
+      "calls": 15517,
+      "cost_usd": 17.54726625,
+      "first": "2026-04-22 12:19:57",
+      "input_tokens": 7268583,
+      "last": "2026-04-24 13:19:58",
+      "output_tokens": 2687962,
+      "provider": "openai"
+    },
+    "per_provider": {
+      "anthropic": {
+        "calls": 79933,
+        "cost_usd": 629.0,
+        "input_tokens": 27986138,
+        "output_tokens": 69316505
+      },
+      "deepseek": {
+        "calls": 39969,
+        "cost_usd": 11.11,
+        "input_tokens": 12289735,
+        "output_tokens": 18252492
+      },
+      "google": {
+        "calls": 39969,
+        "cost_usd": 426.64,
+        "input_tokens": 12999217,
+        "output_tokens": 41039543
+      },
+      "openai": {
+        "calls": 55486,
+        "cost_usd": 93.54,
+        "input_tokens": 19215485,
+        "output_tokens": 17582981
+      }
+    },
+    "v3_appendix_b_cost": {
+      "anthropic": 375.26,
+      "deepseek": 11.11,
+      "google": 380.99,
+      "openai": 93.54
+    }
+  },
   "examples_private": {
     "candidates_per_kind": {
       "LLM_AT": 47,
@@ -119,6 +162,20 @@
         "npm_names": 7,
         "pypi_mentions": 2183,
         "pypi_names": 74
+      },
+      "near_match_variants": {
+        "distance_1": {
+          "npm_mentions": 25,
+          "npm_names": 5,
+          "pypi_mentions": 1546,
+          "pypi_names": 49
+        },
+        "distance_le_2_and_length_gt_8": {
+          "npm_mentions": 21,
+          "npm_names": 4,
+          "pypi_mentions": 844,
+          "pypi_names": 25
+        }
       },
       "plausible": {
         "npm_mentions": 25,

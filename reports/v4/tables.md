@@ -27,6 +27,20 @@ Appendix B (v3, per provider) vs the database:
 
 The database shows repeats only for GPT-5.4-mini: 15,517 API calls of an earlier partial run (2026-04-22 – 2026-04-24) whose generation rows were deleted before the full run. For DeepSeek the database has exactly 39,969 API calls and 39,969 generations, no duplicates; the v3 figure (39,975, +6) is not explained by the database. The same holds for Google (-1).
 
+## 1b. Appendix B: API spend recorded in `api_calls`
+
+`api_calls` has cost and token counts for every call (none missing). Cost = the pipeline's own estimate (tokens × list price, batch discount applied), not provider invoices. v3 values: Appendix B of v3.pdf (quotes checked against the PDF).
+
+| Provider | API calls | Input tokens | Output tokens | Cost (DB) | v3 Appendix B | DB − v3 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Anthropic | 79,933 | 27,986,138 | 69,316,505 | $629.00 | $375.26 | +253.74 |
+| DeepSeek | 39,969 | 12,289,735 | 18,252,492 | $11.11 | $11.11 | +0.00 |
+| Google | 39,969 | 12,999,217 | 41,039,543 | $426.64 | $380.99 | +45.65 |
+| OpenAI | 55,486 | 19,215,485 | 17,582,981 | $93.54 | $93.54 | +0.00 |
+| **Total** | 215,357 | 72,490,575 | 146,191,521 | $1,160.29 | $860.90 | +299.39 |
+
+Early partial run of GPT-5.4-mini (2026-04-22 – 2026-04-24; generation rows deleted): 15,517 calls, 7,268,583 input and 2,687,962 output tokens, $17.55 — included in the OpenAI total above.
+
 ## 2. Rates by language (v4 = live revalidation), % with 95% Wilson CI; Δ with 95% Newcombe CI
 
 **Mention level**
@@ -120,6 +134,14 @@ Categories are exclusive, assigned in the order shown. Mentions = hallucinated m
 | Near match: an existing package within Levenshtein distance ≤ 2 | 74 | 2,183 | 7 | 36 | 81 | 2,219 |
 | Plausible invention (neither of the above) | 14 | 307 | 5 | 25 | 19 | 332 |
 | **Total (universal set)** | 88 | 2,490 | 16 | 209 | 104 | 2,699 |
+
+**Near-match category, stricter variants** (same universal set, same master lists; names in an owned npm scope are not counted; length = characters of the normalized name, scope included)
+
+| Variant | PyPI names | PyPI mentions | npm names | npm mentions | Names | Mentions |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Levenshtein distance = 1 | 49 | 1,546 | 5 | 25 | 54 | 1,571 |
+| Distance ≤ 2, only names longer than 8 characters | 25 | 844 | 4 | 21 | 29 | 865 |
+| Reference: distance ≤ 2, any length (table above) | 74 | 2,183 | 7 | 36 | 81 | 2,219 |
 
 **Fate of the April lists (v3 universal set in the database), as in stage A**
 

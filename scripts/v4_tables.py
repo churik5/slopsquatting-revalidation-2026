@@ -29,7 +29,7 @@ import random  # noqa: E402
 import re  # noqa: E402
 import sqlite3  # noqa: E402
 import subprocess  # noqa: E402
-from collections import defaultdict  # noqa: E402
+from collections import Counter, defaultdict  # noqa: E402
 
 import matplotlib  # noqa: E402
 
@@ -144,6 +144,52 @@ def models_table(n: dict) -> tuple[list[str], dict]:
           f"and {gens['deepseek-v3.2']:,} generations, no duplicates; the v3 figure ({appx['deepseek']:,}, "
           f"{dd:+,}) is not explained by the database. The same holds for Google ({appx['google'] - db_prov['google']:+,})."]
     return L, {"per_model": out, "appendix_b_v3": appx, "database_per_provider": db_prov}
+
+
+def costs_table() -> tuple[list[str], dict]:
+    """API spend recorded by the pipeline (tokens x list price, batch discount applied), per provider."""
+    c = sqlite3.connect(f"file:{RUNS_DB}?mode=ro", uri=True)
+    rows = c.execute("""SELECT a.provider, a.batch, g.id IS NULL, COUNT(*), SUM(a.cost_usd), SUM(a.input_tokens),
+                        SUM(a.output_tokens), MIN(a.created_at), MAX(a.created_at)
+                        FROM api_calls a LEFT JOIN generations g ON g.id = a.generation_id GROUP BY 1, 2, 3""").fetchall()
+    c.close()
+    paper = {"anthropic": 375.26, "openai": 93.54, "google": 380.99, "deepseek": 11.11}   # checked below
+    quotes = {"anthropic": "79,933 $375.26", "openai": "39,969 $93.54", "google": "39,968 $380.99",
+              "deepseek": "39,975 $11.11"}
+    txt = DIFF._norm(subprocess.run(["pdftotext", "-enc", "UTF-8", "-layout", str(DIFF.PDF), "-"],
+                                    capture_output=True, text=True, check=True).stdout)
+    if any(DIFF._norm(q) not in txt for q in quotes.values()):
+        raise SystemExit("Appendix B cost quote not found in v3.pdf")
+    prov = {"anthropic": "anthropic", "openai": "openai", "gemini": "google", "deepseek": "deepseek"}
+    agg = defaultdict(lambda: [0, 0.0, 0, 0])
+    early = None
+    for p_, batch, orphan, k, cost, tin, tout, first, last in rows:
+        a = agg[prov[p_]]
+        a[0] += k
+        a[1] += cost
+        a[2] += tin
+        a[3] += tout
+        if orphan:
+            early = {"provider": prov[p_], "calls": k, "cost_usd": cost, "input_tokens": tin, "output_tokens": tout,
+                     "first": first, "last": last}
+    trows = [[{"anthropic": "Anthropic", "openai": "OpenAI", "google": "Google", "deepseek": "DeepSeek"}[k],
+              f"{v[0]:,}", f"{v[2]:,}", f"{v[3]:,}", f"${v[1]:,.2f}", f"${paper[k]:,.2f}", f"{round(v[1] - paper[k], 2) + 0.0:+,.2f}"]
+             for k, v in agg.items()]
+    tot = [sum(v[i] for v in agg.values()) for i in range(4)]
+    trows.append(["**Total**", f"{tot[0]:,}", f"{tot[2]:,}", f"{tot[3]:,}", f"${tot[1]:,.2f}",
+                  f"${sum(paper.values()):,.2f}", f"{tot[1] - sum(paper.values()):+,.2f}"])
+    L = ["## 1b. Appendix B: API spend recorded in `api_calls`", "",
+         "`api_calls` has cost and token counts for every call (none missing). Cost = the pipeline's own estimate "
+         "(tokens × list price, batch discount applied), not provider invoices. v3 values: Appendix B of v3.pdf "
+         "(quotes checked against the PDF).", ""]
+    L += table(["Provider", "API calls", "Input tokens", "Output tokens", "Cost (DB)", "v3 Appendix B", "DB − v3"], trows)
+    if early:
+        L += ["", f"Early partial run of GPT-5.4-mini ({early['first'][:10]} – {early['last'][:10]}; generation rows "
+              f"deleted): {early['calls']:,} calls, {early['input_tokens']:,} input and {early['output_tokens']:,} "
+              f"output tokens, ${early['cost_usd']:,.2f} — included in the OpenAI total above."]
+    return L + [""], {"per_provider": {k: {"calls": v[0], "cost_usd": round(v[1], 2), "input_tokens": v[2],
+                                          "output_tokens": v[3]} for k, v in agg.items()},
+                      "early_gpt_run": early, "v3_appendix_b_cost": paper}
 
 
 # ── 2. language ───────────────────────────────────────────────────────────────
@@ -303,7 +349,7 @@ def table4(n: dict, master: dict) -> tuple[list[str], dict]:
     ment = {(e, nm): k for e, nm, k in c.execute(
         "SELECT ecosystem, name_c, COUNT(*) FROM mentions WHERE halluc_c = 1 GROUP BY 1, 2")}
     c.close()
-    cat, extra_stdlib, exact = {}, 0, 0
+    cat, extra_stdlib, exact, dist = {}, 0, 0, {}
     for e in ("pypi", "npm"):
         targets = master[e] - (stdlib if e == "pypi" else set())
         by_len = defaultdict(list)
@@ -317,6 +363,7 @@ def table4(n: dict, master: dict) -> tuple[list[str], dict]:
                 continue
             cands = [x for d in range(-2, 3) for x in by_len.get(len(nm) + d, ()) if x != nm]
             hit = process.extractOne(nm, cands, scorer=Levenshtein.distance, score_cutoff=2) if cands else None
+            dist[(e, nm)] = None if hit is None else int(hit[1])          # smallest distance (1 or 2), else None
             if hit is not None:
                 cat[(e, nm)] = "near"
                 continue
@@ -347,6 +394,26 @@ def table4(n: dict, master: dict) -> tuple[list[str], dict]:
          f"the PyPI list are not counted as packages (counting them would move {extra_stdlib} more name(s) into this "
          f"category). Universal names present verbatim in the 2026-07-23 lists: {exact}.", ""]
     L += table(["Category", "PyPI names", "PyPI mentions", "npm names", "npm mentions", "Names", "Mentions"], rows)
+    variants = {"distance_1": lambda e, nm: dist.get((e, nm)) == 1,
+                "distance_le_2_and_length_gt_8": lambda e, nm: dist.get((e, nm)) is not None and len(nm) > 8}
+    vrows, vres = [], {}
+    for k, pred in variants.items():
+        r = []
+        for e in ("pypi", "npm"):
+            names = [nm for (ee, nm), v in cat.items() if ee == e and v != "scope" and pred(e, nm)]
+            r += [len(names), sum(ment.get((e, nm), 0) for nm in names)]
+        vres[k] = {"pypi_names": r[0], "pypi_mentions": r[1], "npm_names": r[2], "npm_mentions": r[3]}
+        vrows.append([{"distance_1": "Levenshtein distance = 1",
+                       "distance_le_2_and_length_gt_8": "Distance ≤ 2, only names longer than 8 characters"}[k]]
+                     + [f"{x:,}" for x in r] + [f"{r[0] + r[2]:,}", f"{r[1] + r[3]:,}"])
+    vrows.append(["Reference: distance ≤ 2, any length (table above)"] +
+                 [f"{res['near'][x]:,}" for x in ("pypi_names", "pypi_mentions", "npm_names", "npm_mentions")] +
+                 [f"{res['near']['pypi_names'] + res['near']['npm_names']:,}",
+                  f"{res['near']['pypi_mentions'] + res['near']['npm_mentions']:,}"])
+    L += ["", "**Near-match category, stricter variants** (same universal set, same master lists; names in an owned npm "
+          "scope are not counted; length = characters of the normalized name, scope included)", ""]
+    L += table(["Variant", "PyPI names", "PyPI mentions", "npm names", "npm mentions", "Names", "Mentions"], vrows)
+    res["near_match_variants"] = vres
     fate = n["universal"]["april_list_fate"]
     keys = sorted(set(fate["pypi"]) | set(fate["npm"]))
     L += ["", "**Fate of the April lists (v3 universal set in the database), as in stage A**", ""]
@@ -606,6 +673,149 @@ def examples(master: dict) -> dict:
     return {"candidates_per_kind": counts, "picked": sorted(picked)}
 
 
+# ── 12b. masked examples (private) ────────────────────────────────────────────
+MASK = "⟨withheld⟩"
+
+
+def name_rx(e: str, spellings: set[str]) -> re.Pattern:
+    alts = set()
+    for sp in spellings:
+        parts = [re.escape(x) for x in re.split(r"[-_.]", sp)] if e == "pypi" else [re.escape(sp)]
+        alts.add(r"[-_.]?".join(parts) if e == "pypi" else parts[0])
+    body = "|".join(sorted(alts, key=len, reverse=True))
+    return re.compile(r"(?<![A-Za-z0-9_@/.-])(?:" + body + r")(?![A-Za-z0-9_-])", re.IGNORECASE)
+
+
+def examples_masked(master: dict) -> dict:
+    """Appendix C: random (seed 42) generations with >= 1 hallucination; one per dataset + one import-only.
+    Every name that is not existing / closed is replaced by MASK. Private output only."""
+    stdlib, _ = PB.load_stdlib()
+    node_bi, _ = PB.load_node_builtins()
+    c = sqlite3.connect(f"file:{CLS_DB}?mode=ro", uri=True)
+    st = {(e, nm): (cat, asof, excl) for e, nm, cat, asof, excl in c.execute(
+        "SELECT ecosystem, name, category, asof_status, exclusion FROM names")}
+    halluc_gens = {gid for (gid,) in c.execute("SELECT DISTINCT generation_id FROM mentions WHERE halluc_c = 1")}
+    d11_gens = defaultdict(set)
+    for gid, nm in c.execute("SELECT generation_id, name_c FROM mentions WHERE status_c = 'D1_D11_pipreqs_import_only'"):
+        d11_gens[gid].add(nm)
+    c.close()
+
+    def keep(e, nm):
+        """True = may be shown: existing, owned npm scope, stdlib/built-in, invalid name, closed D1/D11 import."""
+        cat, asof, excl = st.get((e, nm), (None, None, None))
+        if excl == "D15_invalid_name" or not T.VALID[e](nm):
+            return True
+        if (e == "pypi" and nm in stdlib) or (e == "npm" and (nm in node_bi or nm.startswith("node:"))):
+            return True
+        scoped = e == "npm" and nm.startswith("@") and "/" in nm and nm.split("/", 1)[0] in master["npm_scopes"]
+        if cat is not None:
+            if asof == "H_REGISTERED_LATER" or cat in ("ABSENT", "UNPUBLISHED", "UNKNOWN"):
+                return scoped and cat == "ABSENT"
+            return True                       # EXISTS (before generation), EXISTS_SIMPLE_ONLY, SECURITY_HOLDING, REMOVED_MALICIOUS
+        return scoped or nm in master[e]
+
+    # every live-checked name that may not be shown, in both ecosystems (PyPI compared after PEP 503)
+    risky = {"pypi": {nm for (e, nm) in st if e == "pypi" and st[(e, nm)][0] is not None and not keep(e, nm)},
+             "npm": {nm for (e, nm) in st if e == "npm" and st[(e, nm)][0] is not None and not keep(e, nm)}}
+    dict_words = set()
+    if Path("/usr/share/dict/words").exists():
+        dict_words = {w.strip().lower() for w in open("/usr/share/dict/words", encoding="utf-8", errors="ignore")}
+    pkg_line = re.compile(r"\b(import|require|from|install|pip|npm|yarn|pnpm|add)\b")
+    tok_rx = re.compile(r"[A-Za-z0-9@][A-Za-z0-9@/._-]*")
+
+    def is_risky(tok: str) -> bool:
+        t = tok.lower().rstrip(".")
+        return t in risky["npm"] or PB.norm_pypi(t) in risky["pypi"]
+
+    def mask_tokens(line: str) -> str:
+        """Mask any token equal to a registrable / unknown name; ordinary English words only on package lines."""
+        on_pkg_line = bool(pkg_line.search(line))
+
+        def sub(m):
+            tok = m.group(0)
+            if not is_risky(tok):
+                return tok
+            if tok.lower().rstrip(".") in dict_words and not on_pkg_line:
+                return tok
+            return MASK
+        return tok_rx.sub(sub, line)
+
+    r = sqlite3.connect(f"file:{RUNS_DB}?mode=ro", uri=True)
+    hits = defaultdict(lambda: defaultdict(set))
+    for gid, key, praw in r.execute("SELECT generation_id, package_norm, package_raw FROM heuristic_hits"):
+        hits[gid][key].add(praw)
+    gens = {gid: (pid, m, lang, ds) for gid, pid, m, lang, ds in r.execute(
+        "SELECT id, prompt_id, model_key, language, dataset FROM generations")}
+    prompts = dict(r.execute("SELECT prompt_id, MAX(prompt_text) FROM generations WHERE prompt_text IS NOT NULL "
+                             "AND prompt_text <> '' GROUP BY prompt_id"))
+
+    def build(gid, focus_keys):
+        pid, m, lang, ds = gens[gid]
+        e = T.LANG2ECO[lang]
+        masked = [(PB.NORM[e](k), sp | {k}) for k, sp in hits[gid].items() if not keep(e, PB.NORM[e](k))]
+        rxs = [name_rx(e, sp) for _nm, sp in masked]
+
+        def mask(t):
+            for rx in rxs:
+                t = rx.sub(MASK, t)
+            return "\n".join(mask_tokens(x) for x in t.split("\n"))
+        code = r.execute("SELECT generated_code FROM generations WHERE id = ?", (gid,)).fetchone()[0] or ""
+        lines = [ln for ln in code.splitlines() if not ln.strip().startswith("```")]   # drop markdown fences
+        frx = name_rx(e, set().union(*(hits[gid][k] | {k} for k in focus_keys)))
+        idx = next((i for i, ln in enumerate(lines) if frx.search(ln)), None)
+        if idx is None:
+            return None
+        snip = [mask(ln)[:160] for ln in lines[max(0, idx - 1): idx + 2]][:3]
+        words = mask(prompts.get(pid, "")).split()[:20]
+        return {"pid": pid, "model": LABEL[m], "dataset": ds, "lang": lang, "prompt_words": " ".join(words),
+                "snippet": snip, "masked_names": len(masked), "names": len(hits[gid])}
+
+    rng = random.Random(SEED)
+    out = {}
+    for ds in DATASETS:
+        pool = sorted(g for g in halluc_gens if gens[g][3] == ds)
+        rng.shuffle(pool)
+        for gid in pool:
+            e = T.LANG2ECO[gens[gid][2]]
+            focus = [k for k in hits[gid] if (e, PB.NORM[e](k)) in st and st[(e, PB.NORM[e](k))][1] in
+                     ("H_ABSENT", "H_REGISTERED_LATER") and st[(e, PB.NORM[e](k))][2] is None]
+            ex = build(gid, focus) if focus else None
+            if ex:
+                out[ds] = ex
+                break
+    # import-only: a v3 hallucination that is a correct import of a differently named distribution (D1/D11);
+    # only names whose own PyPI name is taken or closed, so the shown import name is not registrable
+    pool = sorted(g for g, nms in d11_gens.items() if any(keep("pypi", nm) for nm in nms))
+    rng.shuffle(pool)
+    for gid in pool:
+        focus = [k for k in hits[gid] if PB.norm_pypi(k) in d11_gens[gid] and keep("pypi", PB.norm_pypi(k))]
+        ex = build(gid, focus)
+        if ex:
+            out["import_only"] = ex
+            break
+    r.close()
+    L = ["# v4 Appendix C examples, masked (PRIVATE — never commit)", "",
+         f"Random (seed 42) among generations with ≥ 1 hallucination (as of generation, v4); the import-only example is "
+         f"a v3 hallucination that is a correct import of a differently named distribution (D1/D11) whose own name "
+         f"is taken or closed. Every name that is not existing or closed is replaced by {MASK}; names in an owned "
+         f"npm scope are kept. Check by hand before publishing.", ""]
+    for k, x in out.items():
+        L += [f"## {k}", "", f"- prompt id: `{x['pid']}`; model: {x['model']}; dataset: {x['dataset']}; "
+              f"language: {x['lang']}", f"- names extracted from the response: {x['names']}; withheld: {x['masked_names']}",
+              f"- prompt (first 20 words): {x['prompt_words']}", "", "````" + x["lang"], *x["snippet"], "````", ""]
+    MASKED = REPO / "data" / "private" / "v4_examples_masked.md"
+    MASKED.write_text("\n".join(L))
+    # residual check over prompt words and snippets (same token rule as the masking)
+    body = "\n".join(x["prompt_words"] + "\n" + "\n".join(x["snippet"]) for x in out.values())
+    res = Counter()
+    for line in body.split("\n"):
+        for m in tok_rx.finditer(line):
+            if is_risky(m.group(0)):
+                res["english_word_outside_package_lines" if m.group(0).lower().rstrip(".") in dict_words
+                    and not pkg_line.search(line) else "other"] += 1
+    return {"picked": sorted(out), "residual_risky_tokens": dict(res)}
+
+
 # ── main ──────────────────────────────────────────────────────────────────────
 def main() -> None:
     n = json.loads(NUMBERS.read_text())
@@ -617,6 +827,8 @@ def main() -> None:
          "(offline). Aggregates and model names only. v4 = live revalidation (stage A, variant c).", ""]
     l1, j1 = models_table(n)
     L += l1 + [""]
+    lc, jc = costs_table()
+    L += lc
     L += language_tables(n)
     L += pairs_table(n)
     L += figure2(n, ref)
@@ -630,13 +842,15 @@ def main() -> None:
     L += l10
     L += thinking_check()
     ex = examples(master)
+    exm = examples_masked(master)
     (OUT / "tables.md").write_text("\n".join(L))
-    (OUT / "v4_numbers.json").write_text(json.dumps({"models": j1, "table4": j7, "text_numbers": j10,
+    (OUT / "v4_numbers.json").write_text(json.dumps({"models": j1, "costs": jc, "table4": j7, "text_numbers": j10,
                                                      "spracklen_gpt4_turbo": ref,
                                                      "examples_private": {"candidates_per_kind": ex["candidates_per_kind"],
                                                                           "picked": ex["picked"]}},
                                                     indent=2, sort_keys=True) + "\n")
     leak_check()
+    print(f"masked examples: {exm['picked']}; residual risky tokens: {exm['residual_risky_tokens']}")
     print("wrote reports/v4/tables.md, figure2_rates.png, figure3_jaccard.png, v4_numbers.json; examples: "
           + ", ".join(f"{k} {v}" for k, v in sorted(ex["candidates_per_kind"].items())))
 
