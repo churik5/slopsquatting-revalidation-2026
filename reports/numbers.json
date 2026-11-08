@@ -287,7 +287,7 @@
     "classification_db_sha256_canonical": "9acfe4360f5dc5b05ce7172e90e139f1d6a2c1f409a9546cee0774971f425171",
     "classification_db_sha256_file": "697fe2c9581978d1827e72a734f0dc0fc08142820cbbfaa0bb97df42d07b15c9",
     "databases": "sqlite mode=ro",
-    "git_head": "73da8b9c8851cd2da9d988551e0408c7efff6ab4",
+    "git_head": "0f6973a150ffc6a5e68df9b7bd926d1eee0e6a85",
     "git_worktree_dirty": false,
     "network": "blocked (socket.socket replaced)",
     "noise_filter_blob": "7d160d4e370d7583e5c638c24048ff571b25b363",
@@ -299,7 +299,8 @@
         "npm_registry": 16,
         "osv": 2
       },
-      "note": "after stage A (task1_analysis.py), rows of round 'meta' were appended to registry_checks by scripts/npm_placeholders.py; rounds 1 and 2 are unchanged and the task 1 classification reads only rounds 1 and 2. registry_checks_db_sha256 above is the file at stage A.",
+      "note": "after stage A (task1_analysis.py at 73da8b9, results 9dabc57), rows of round 'meta' were appended to registry_checks by scripts/npm_placeholders.py; rounds 1 and 2 are unchanged (registry_checks_rounds_1_2_sha256) and the task 1 classification reads only rounds 1 and 2.",
+      "registry_checks_db_sha256_at_stage_A": "b5cdff5d35bb9119a737a81b7729dce82acf3947889597c924e9f2e058dd33d2",
       "registry_checks_db_sha256_now": "6b27b561eec81df5ee9734eea892d23688935a7d8d19555f93c3e7616fc82e25",
       "rows_by_round": {
         "1": 9657,
@@ -307,7 +308,8 @@
         "meta": 18
       }
     },
-    "registry_checks_db_sha256": "b5cdff5d35bb9119a737a81b7729dce82acf3947889597c924e9f2e058dd33d2",
+    "registry_checks_db_sha256": "6b27b561eec81df5ee9734eea892d23688935a7d8d19555f93c3e7616fc82e25",
+    "registry_checks_rounds_1_2_sha256": "421edadeb7732f554f9d28001540d330bac18add79803ce7112879059e168492",
     "round2_summary_commit": "b14bf30131980a35dd9214720f025abf0c74b1e7",
     "runs_db_sha256": "ad82fc69d3e16edc6aa85f89e4eed367a778fa412965219c1f92a192fcf9fdcd"
   },
@@ -982,6 +984,63 @@
           "rate": 3.575718146331699,
           "rate_upper_if_unknown_counted": 3.5757181463316985,
           "total": 39964,
+          "unknown_only": 0
+        }
+      },
+      "per_model_excluding_refusals": {
+        "deepseek-v3.2": {
+          "ci95": [
+            3.167574098250948,
+            3.523555105035705
+          ],
+          "halluc": 1309,
+          "rate": 3.3409903011740685,
+          "rate_upper_if_unknown_counted": 3.3409903011740685,
+          "total": 39180,
+          "unknown_only": 0
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            4.277493229384911,
+            4.700905652431985
+          ],
+          "halluc": 1647,
+          "rate": 4.484439240885452,
+          "rate_upper_if_unknown_counted": 4.484439240885452,
+          "total": 36727,
+          "unknown_only": 0
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            3.6179261319180798,
+            4.0732851630336535
+          ],
+          "halluc": 1051,
+          "rate": 3.839129164231444,
+          "rate_upper_if_unknown_counted": 3.839129164231444,
+          "total": 27376,
+          "unknown_only": 0
+        },
+        "haiku-4-5": {
+          "ci95": [
+            2.868678133863338,
+            3.207214661303988
+          ],
+          "halluc": 1197,
+          "rate": 3.033374724411444,
+          "rate_upper_if_unknown_counted": 3.0333747244114444,
+          "total": 39461,
+          "unknown_only": 0
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            4.184125984914266,
+            4.630533311249514
+          ],
+          "halluc": 1429,
+          "rate": 4.401934510057604,
+          "rate_upper_if_unknown_counted": 4.401934510057604,
+          "total": 32463,
           "unknown_only": 0
         }
       },
@@ -2583,6 +2642,63 @@
           "unknown_only": 0
         }
       },
+      "per_model_excluding_refusals": {
+        "deepseek-v3.2": {
+          "ci95": [
+            3.167574098250948,
+            3.523555105035705
+          ],
+          "halluc": 1309,
+          "rate": 3.3409903011740685,
+          "rate_upper_if_unknown_counted": 3.3409903011740685,
+          "total": 39180,
+          "unknown_only": 0
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            4.277493229384911,
+            4.700905652431985
+          ],
+          "halluc": 1647,
+          "rate": 4.484439240885452,
+          "rate_upper_if_unknown_counted": 4.484439240885452,
+          "total": 36727,
+          "unknown_only": 0
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            3.6179261319180798,
+            4.0732851630336535
+          ],
+          "halluc": 1051,
+          "rate": 3.839129164231444,
+          "rate_upper_if_unknown_counted": 3.839129164231444,
+          "total": 27376,
+          "unknown_only": 0
+        },
+        "haiku-4-5": {
+          "ci95": [
+            2.868678133863338,
+            3.207214661303988
+          ],
+          "halluc": 1197,
+          "rate": 3.033374724411444,
+          "rate_upper_if_unknown_counted": 3.0333747244114444,
+          "total": 39461,
+          "unknown_only": 0
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            4.184125984914266,
+            4.630533311249514
+          ],
+          "halluc": 1429,
+          "rate": 4.401934510057604,
+          "rate_upper_if_unknown_counted": 4.401934510057604,
+          "total": 32463,
+          "unknown_only": 0
+        }
+      },
       "permutation": {
         "max_p": 0.0248,
         "n_permutations": 10000,
@@ -4181,6 +4297,63 @@
           "unknown_only": 13
         }
       },
+      "per_model_excluding_refusals": {
+        "deepseek-v3.2": {
+          "ci95": [
+            2.5568250154392076,
+            2.878684570977937
+          ],
+          "halluc": 1063,
+          "rate": 2.713118938233793,
+          "rate_upper_if_unknown_counted": 2.741194486983155,
+          "total": 39180,
+          "unknown_only": 11
+        },
+        "gemini-2.5-pro": {
+          "ci95": [
+            3.498739036502769,
+            3.8842703123600004
+          ],
+          "halluc": 1354,
+          "rate": 3.6866610395621753,
+          "rate_upper_if_unknown_counted": 3.7193345495139813,
+          "total": 36727,
+          "unknown_only": 12
+        },
+        "gpt-5.4-mini": {
+          "ci95": [
+            2.93421846097964,
+            3.3471965041410945
+          ],
+          "halluc": 858,
+          "rate": 3.134132086499123,
+          "rate_upper_if_unknown_counted": 3.1706604324956165,
+          "total": 27376,
+          "unknown_only": 10
+        },
+        "haiku-4-5": {
+          "ci95": [
+            2.2263909494019885,
+            2.5268055401316825
+          ],
+          "halluc": 936,
+          "rate": 2.3719621905172192,
+          "rate_upper_if_unknown_counted": 2.3871670763538684,
+          "total": 39461,
+          "unknown_only": 6
+        },
+        "sonnet-4-6": {
+          "ci95": [
+            3.197102002352504,
+            3.5908741597756664
+          ],
+          "halluc": 1100,
+          "rate": 3.388473030835105,
+          "rate_upper_if_unknown_counted": 3.4285186211995193,
+          "total": 32463,
+          "unknown_only": 13
+        }
+      },
       "permutation": {
         "max_p": 0.4235,
         "n_permutations": 10000,
@@ -5362,7 +5535,7 @@
       {
         "item": "Range (mention)",
         "new": "3.63% (haiku-4-5) – 5.02% (gpt-5.4-mini); spread 1.38 pp",
-        "reason": "per-model changes above",
+        "reason": "the exact published values 4.62–6.10% are not reproduced from the DB (v3 method gives 4.61–6.08%; later noise-filter revision); new values: per-model changes above",
         "repro": "4.61–6.08%",
         "v3": "4.62–6.10%"
       },
@@ -5370,8 +5543,8 @@
         "item": "Range (generation)",
         "new": "2.15% (gpt-5.4-mini) – 3.39% (gemini-2.5-pro); spread 1.24 pp",
         "reason": "PREREG §3.1 unit (generation with ≥1 hallucination; denominator includes refusals and generations without any package)",
-        "repro": "",
-        "v3": "4.62–6.10%"
+        "repro": "2.63–4.12% (generation level)",
+        "v3": "— (the paper reports the mention level only)"
       },
       {
         "item": "χ² + Holm (mention)",
