@@ -32,6 +32,7 @@ if __name__ == "__main__":
     PB.block_network()
 
 import csv  # noqa: E402
+import hashlib  # noqa: E402
 import html  # noqa: E402
 import json  # noqa: E402
 import math  # noqa: E402
@@ -56,6 +57,8 @@ UNIVERSAL = PRIVATE / "recompute" / "universal_c_mention.json"
 REPORTS = REPO / "reports"
 NUMBERS = REPORTS / "numbers.json"
 OUT = REPORTS / "task2_report.md"
+QUAR_REPORT = PRIVATE / "quarantine" / "report.md"
+QUAR_SHA = REPO / "notes" / "quarantine-report.sha256"
 ECOS = ("pypi", "npm")
 EXPOSURE_LIST = datetime(2026, 4, 30, tzinfo=timezone.utc)      # A2 and B (PREREG §4.2)
 Z = 1.959963984540054
@@ -400,12 +403,41 @@ def main() -> None:
            "exposure_to_creation_days": timing,
            "frozen_strata_cuts": {e: {"freq": cuts[e]["freq_cuts"], "len": cuts[e]["len_cuts"]} for e in ECOS},
            "baseline_common_strata_D3": 13}
+    res["safety_check_D19"] = safety_check()
     nums = json.loads(NUMBERS.read_text())
     nums["task2"] = res
     NUMBERS.write_text(json.dumps(nums, indent=2, sort_keys=True, ensure_ascii=False) + "\n")
     OUT.write_text(render(res))
     leak_check()
     print("wrote reports/task2_report.md and numbers.json['task2']")
+
+
+def safety_check() -> dict | None:
+    """Result of scripts/static_check.py (D19), read from the private report after checking its committed hash.
+    Outside the pre-registered analysis; it does not change any stage B number or category."""
+    if not QUAR_REPORT.exists():
+        return None
+    raw = QUAR_REPORT.read_bytes()
+    want = QUAR_SHA.read_text().split()[0]
+    if hashlib.sha256(raw).hexdigest() != want:
+        raise SystemExit("quarantine report does not match notes/quarantine-report.sha256")
+    t = raw.decode()
+    num = lambda rx: int(re.search(rx, t).group(1))  # noqa: E731
+    return {"report_sha256": want,
+            "versions": num(r"Versions in the registry document: (\d+)"),
+            "maintainers": num(r"maintainers: (\d+)"),
+            "tarball_bytes": num(r"Tarball: (\d+) bytes"),
+            "checksums_match": "shasum: True" in t and "integrity matches: True" in t,
+            "lifecycle_scripts": {k: re.search(rf"{k} (yes|no)", t).group(1) for k in ("preinstall", "install",
+                                                                                         "postinstall")},
+            "scripts_total": num(r"scripts total: (\d+)"),
+            "dependencies_total": sum(int(x) for x in re.findall(r"[a-zA-Z]+Dependencies (\d+)|dependencies (\d+)",
+                                                                  t.split("Dependencies:")[1].split("\n")[0])
+                                      for x in x if x),
+            "files": num(r"Files: (\d+)"),
+            "file_types": re.search(r"by type: (.*)", t).group(1),
+            "patterns": {k: num(rf"{k}: \w+ \((\d+) matches") for k in ("child_process", "eval", "network",
+                                                                          "long_base64")}}
 
 
 # ── report ────────────────────────────────────────────────────────────────────
@@ -532,6 +564,30 @@ def render(r: dict) -> str:
     for k, v in r["registered_categories"].items():
         for c, n in v.items():
             L.append(f"| {k} | {c} | {n} |")
+    sc = r.get("safety_check_D19")
+    if sc:
+        pats = sc["patterns"]
+        L += ["", "## Separate safety check (outside the pre-registered analysis, D19)", "",
+              "The only name of group A registered in the window (npm) was checked statically by "
+              "`scripts/static_check.py`: registry document and tarball downloaded once, checksums verified against "
+              "the registry, extracted into an isolated private folder, files scanned as text. Nothing was installed "
+              "or run. This does not change any number or category above (they stay based on registry metadata).", "",
+              "| Check | Result |", "|---|---|",
+              "| preinstall / install / postinstall | " + " / ".join(sc["lifecycle_scripts"].values())
+              + f" (scripts in total: {sc['scripts_total']}) |",
+              f"| Dependencies (all kinds) | {sc['dependencies_total']} |",
+              f"| Files | {sc['files']} ({sc['file_types']}) |",
+              "| child_process / eval / network calls / long base64 | "
+              + " / ".join(f"{'yes' if pats[k] else 'no'} ({pats[k]})" for k in ("child_process", "eval", "network",
+                                                                                   "long_base64")) + " |",
+              f"| Versions / maintainers | {sc['versions']} / {sc['maintainers']} |",
+              f"| Tarball | {sc['tarball_bytes']} bytes; checksums match the registry: "
+              f"{'yes' if sc['checksums_match'] else 'no'} |", "",
+              ("Result: an empty placeholder (package.json only; no scripts, no dependencies, no code)."
+               if sc["files"] == 1 and sc["file_types"] == ".json 1" and not sc["scripts_total"]
+               and not sc["dependencies_total"] and not any(pats.values())
+               else "Result: not an empty placeholder; see the counts above.")
+              + f" Private report sha256 `{sc['report_sha256']}` (`notes/quarantine-report.sha256`)."]
     L.append("")
     return "\n".join(L)
 

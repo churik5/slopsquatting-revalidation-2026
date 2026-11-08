@@ -5945,6 +5945,28 @@
         "removed malicious (MAL record year 2026)": 1
       }
     },
+    "safety_check_D19": {
+      "checksums_match": true,
+      "dependencies_total": 0,
+      "file_types": ".json 1",
+      "files": 1,
+      "lifecycle_scripts": {
+        "install": "no",
+        "postinstall": "no",
+        "preinstall": "no"
+      },
+      "maintainers": 1,
+      "patterns": {
+        "child_process": 0,
+        "eval": 0,
+        "long_base64": 0,
+        "network": 0
+      },
+      "report_sha256": "bd9672337f34ef0775804376612fe98c86a9e9a00569a51b058a3fd8a06914a4",
+      "scripts_total": 0,
+      "tarball_bytes": 147,
+      "versions": 1
+    },
     "sensitivity": {
       "D14_simple_only_registered": {
         "balance": {

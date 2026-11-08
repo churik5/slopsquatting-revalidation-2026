@@ -130,3 +130,18 @@ No intent is attributed; packages were not downloaded, installed or run; registr
 | removed_malicious_D16 | removed malicious (MAL record year 2024) | 2 |
 | removed_malicious_D16 | removed malicious (MAL record year 2025) | 6 |
 | removed_malicious_D16 | removed malicious (MAL record year 2026) | 1 |
+
+## Separate safety check (outside the pre-registered analysis, D19)
+
+The only name of group A registered in the window (npm) was checked statically by `scripts/static_check.py`: registry document and tarball downloaded once, checksums verified against the registry, extracted into an isolated private folder, files scanned as text. Nothing was installed or run. This does not change any number or category above (they stay based on registry metadata).
+
+| Check | Result |
+|---|---|
+| preinstall / install / postinstall | no / no / no (scripts in total: 0) |
+| Dependencies (all kinds) | 0 |
+| Files | 1 (.json 1) |
+| child_process / eval / network calls / long base64 | no (0) / no (0) / no (0) / no (0) |
+| Versions / maintainers | 1 / 1 |
+| Tarball | 147 bytes; checksums match the registry: yes |
+
+Result: an empty placeholder (package.json only; no scripts, no dependencies, no code). Private report sha256 `bd9672337f34ef0775804376612fe98c86a9e9a00569a51b058a3fd8a06914a4` (`notes/quarantine-report.sha256`).
