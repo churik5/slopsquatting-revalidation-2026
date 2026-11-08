@@ -23,6 +23,7 @@ import argparse
 import hashlib
 import json
 import sqlite3
+import subprocess
 import sys
 from collections import Counter
 from pathlib import Path
@@ -39,6 +40,7 @@ RUNS_DB = REPO / "data" / "runs.db"
 OUT = REPO / "reports" / "npm_placeholders.md"
 NUMBERS = REPO / "reports" / "numbers.json"
 ROUND = "meta"
+STAGE_A_RESULTS = "9dabc57"   # commit with the stage A numbers.json
 TYPES = ["npm_standard_malicious_code_text", "npm_standard_description_only", "other_text_publisher_placeholder",
          "no_text", "request_failed_no_response"]
 
@@ -243,9 +245,12 @@ def main() -> None:
         raise SystemExit("registry_checks.db has a non-empty WAL; its file hash would not be final")
     nums = json.loads(NUMBERS.read_text())
     nums["provenance"]["registry_checks_after_stage_A"] = {
-        "note": "after stage A (task1_analysis.py), rows of round 'meta' were appended to registry_checks by "
-                "scripts/npm_placeholders.py; rounds 1 and 2 are unchanged and the task 1 classification reads "
-                "only rounds 1 and 2. registry_checks_db_sha256 above is the file at stage A.",
+        "note": "after stage A (task1_analysis.py at 73da8b9, results 9dabc57), rows of round 'meta' were appended "
+                "to registry_checks by scripts/npm_placeholders.py; rounds 1 and 2 are unchanged "
+                "(registry_checks_rounds_1_2_sha256) and the task 1 classification reads only rounds 1 and 2.",
+        "registry_checks_db_sha256_at_stage_A": json.loads(subprocess.run(
+            ["git", "show", f"{STAGE_A_RESULTS}:reports/numbers.json"], cwd=REPO, capture_output=True, text=True,
+            check=True).stdout)["provenance"]["registry_checks_db_sha256"],
         "meta_rows": n_meta, "meta_rows_by_method": {m: k for m, k, _s, _e in meta_rows},
         "rows_by_round": rounds,
         "registry_checks_db_sha256_now": T.sha256_file(RC.OUT_DB)}

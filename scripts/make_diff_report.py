@@ -132,11 +132,17 @@ def build(n: dict) -> dict:
     for lvl, r in (("mention", rc), ("generation", rg)):
         rates = {m: r["per_model"][m]["rate"] for m in MODELS}
         lo, hi = min(rates, key=rates.get), max(rates, key=rates.get)
-        rows.append({"item": f"Range ({lvl})", "v3": f"{V3['range'][0][0]:.2f}–{V3['range'][0][1]:.2f}%",
-                     "repro": f"{min(ra['per_model'][m]['rate'] for m in MODELS):.2f}–"
-                              f"{max(ra['per_model'][m]['rate'] for m in MODELS):.2f}%" if lvl == "mention" else "",
+        ra_l = n["recompute"][f"a_{lvl}"]["per_model"]
+        repro = (f"{min(ra_l[m]['rate'] for m in MODELS):.2f}–{max(ra_l[m]['rate'] for m in MODELS):.2f}%"
+                 + (" (generation level)" if lvl == "generation" else ""))
+        rows.append({"item": f"Range ({lvl})",
+                     "v3": f"{V3['range'][0][0]:.2f}–{V3['range'][0][1]:.2f}%" if lvl == "mention"
+                     else "— (the paper reports the mention level only)",
+                     "repro": repro,
                      "new": f"{rates[lo]:.2f}% ({lo}) – {rates[hi]:.2f}% ({hi}); spread {rates[hi] - rates[lo]:.2f} pp",
-                     "reason": "per-model changes above" if lvl == "mention" else
+                     "reason": (f"the exact published values {V3['range'][0][0]:.2f}–{V3['range'][0][1]:.2f}% are not "
+                                f"reproduced from the DB (v3 method gives {repro}; later noise-filter revision); "
+                                "new values: per-model changes above") if lvl == "mention" else
                      "PREREG §3.1 unit (generation with ≥1 hallucination; denominator includes refusals and "
                      "generations without any package)"})
     for lvl, r in (("mention", rc), ("generation", rg)):

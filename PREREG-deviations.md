@@ -79,3 +79,13 @@ D17. Written after the npm placeholder check and before any A/B breakdown. An np
      (created before generation). Sensitivity for Task 1 and Task 2: count such names as
      hallucinations as of generation (not registered unless republished later). The
      primary analysis is unchanged.
+
+D16. Drafted with the stage B plan; committed after D17 and before any A/B breakdown.
+     REMOVED_MALICIOUS names have no creation date. In the primary Task 2 analysis they
+     are excluded as UNKNOWN, as in stage A. Sensitivity: a REMOVED_MALICIOUS name whose
+     OSV MAL record was published after the name's generation time counts as registered
+     after generation; one published before counts as pre-existing.
+D18. arXiv shows submission times for each version, not announcement times. The A1
+     exposure start is the submission time of the first version that prints the name
+     (from the arXiv submission history), used as a proxy for the announcement date.
+     The difference is at most a few days.

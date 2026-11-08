@@ -54,6 +54,7 @@ NOTES = REPO / "notes"
 DISCLOSURE = REPO / "disclosure"
 ECOS = PB.ECOS
 LANG2ECO = PB.LANG2ECO
+REFUSAL_SQL = "g.generated_code IS NULL OR LOWER(TRIM(g.generated_code)) IN ('none', '')"  # = recompute_all.refusals
 REG_METHODS = {"pypi": ("pypi_json", "pypi_simple"), "npm": ("npm_registry", "depsdev")}
 ROUND_GAP = timedelta(hours=12)
 OUTPUTS = ("reports/numbers.json", "reports/task1_report.md", "reports/diff_v3_vs_new.md",
@@ -68,6 +69,16 @@ CATEGORY_ORDER = ["EXISTS", "SECURITY_HOLDING", "UNPUBLISHED", "REMOVED_MALICIOU
                   "ABSENT", "UNKNOWN", "NOT_CHECKED"]
 EXCL_ORDER = ["noise_filter", "stdlib_or_builtin", "py_false_positive_import_names", "D15_invalid_name",
               "D1_D11_pipreqs_import_only"]
+
+
+def rounds12_sha() -> str:
+    """Canonical hash of the rows this analysis reads (rounds 1 and 2), stable when other rounds are appended."""
+    rc = sqlite3.connect(f"file:{RC_DB}?mode=ro", uri=True)
+    h = hashlib.sha256()
+    for row in rc.execute("SELECT * FROM registry_checks WHERE round IN (1, 2) ORDER BY id"):
+        h.update(("\t".join("" if x is None else str(x) for x in row) + "\n").encode())
+    rc.close()
+    return h.hexdigest()
 
 
 def sha256_file(p: Path) -> str:
@@ -172,7 +183,7 @@ def load_checks(rc) -> dict:
     out: dict = defaultdict(lambda: defaultdict(dict))
     for rnd, n, e, m, s, mj, at in rc.execute(
             "SELECT round, name, ecosystem, method, state, meta_json, checked_at_utc FROM registry_checks "
-            "WHERE is_final = 1 ORDER BY id"):
+            "WHERE is_final = 1 AND round IN (1, 2) ORDER BY id"):
         out[(e, n)][rnd][m] = (s, json.loads(mj) if mj else {}, ts(at))
     return out
 
@@ -416,6 +427,9 @@ def main() -> None:
             R.write_private(res, PRIVATE / "recompute", f"{v}_{lvl}")
             rec_names[(v, lvl)] = res["universal"], res["top_names"]
             rec[f"{v}_{lvl}"] = R.public(res)
+            if lvl == "generation":   # descriptive, not pre-registered: denominator without refusals
+                rec[f"{v}_{lvl}"]["per_model_excluding_refusals"] = {
+                    m: R.rate(conn.cursor(), lvl, f"g.model_key = ? AND NOT ({REFUSAL_SQL})", (m,)) for m in R.MODELS}
             print(f"recompute variant {v} / {lvl}: done", flush=True)
     a_m = rec["a_mention"]
     if any(native["per_model"][m]["halluc"] != a_m["per_model"][m]["halluc"] or
@@ -726,6 +740,7 @@ def assemble(pre, runs_sha, rc_sha, base, names, states, excl_rule, chain, case_
                                  "missing_per_model": {m: n_prompts - k for m, k in per_model.items()}}
 
     nums["provenance"] = {**pre, "runs_db_sha256": runs_sha, "registry_checks_db_sha256": rc_sha,
+                          "registry_checks_rounds_1_2_sha256": rounds12_sha(),
                           "classification_db_sha256_file": cls_file_sha,
                           "classification_db_sha256_canonical": cls_canon_sha,
                           "noise_filter_blob": PB.git("hash-object", PB.NOISE_MODULE),
@@ -846,6 +861,17 @@ def render(n: dict) -> str:
                      f"{'***' if x['significant'] else 'ns'} | {perm.get((x['a'], x['b']), float('nan')):.4f} |")
         L.append("")
     ref = n["recompute"]["c_mention"]["refusals"]
+    L += ["### Descriptive (not pre-registered): generation level without refusals", "",
+          "Denominator = generations that are not refusals. The DB marks refusals the same way as the refusal "
+          "rates below (generated_code NULL, 'none' or empty), so this denominator is used rather than "
+          "“generations with at least one extracted package”. Not pre-registered; descriptive only.", "",
+          "| Model | (a) v3 | (c) live |", "|---|---|---|"]
+    for m in R.MODELS:
+        xa = n["recompute"]["a_generation"]["per_model_excluding_refusals"][m]
+        xc = n["recompute"]["c_generation"]["per_model_excluding_refusals"][m]
+        L.append(f"| `{m}` | " + " | ".join(f"{x['rate']:.2f}% [{x['ci95'][0]:.2f}–{x['ci95'][1]:.2f}] "
+                                           f"({x['halluc']}/{x['total']})" for x in (xa, xc)) + " |")
+    L.append("")
     L += ["Refusals (same in every variant): " + "; ".join(
         f"`{m}` {ref[m]['refusals']}/{ref[m]['generations']} = {ref[m]['rate']:.2f}%" for m in R.MODELS), ""]
 
