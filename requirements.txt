@@ -1,0 +1,31 @@
+# Exact versions of the environments in which the checks and analyses were run (Python 3.11.9).
+# Direct dependencies imported by scripts/, src/ and tests/.
+
+# analysis, statistics, tables and figures (scripts/*_analysis.py, recompute_all.py, v4_tables.py)
+numpy==2.4.4
+scipy==1.17.1
+statsmodels==0.14.6
+matplotlib==3.10.8
+rapidfuzz==3.14.5
+
+# live registry checks (scripts/registry_check.py, fetch_arxiv_history.py)
+httpx==0.28.1
+
+# original benchmark pipeline (src/slop_bench/)
+litellm==1.83.11
+anthropic==0.96.0
+tenacity==9.1.4
+tqdm==4.67.3
+diskcache==5.6.3
+python-dotenv==1.0.1
+stdlib-list==0.12.0
+tree-sitter==0.25.2
+tree-sitter-python==0.25.0
+tree-sitter-javascript==0.25.0
+
+# tests
+pytest==9.0.3
+
+# The live registry checks ran in a separate minimal environment (Python 3.11.9) with exactly:
+#   httpx==0.28.1 anyio==4.16.0 certifi==2026.10.23 h11==0.16.0 httpcore==1.0.9
+#   idna==3.20 typing_extensions==4.16.0

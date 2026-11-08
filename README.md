@@ -40,6 +40,17 @@ For the same reason, four package-name strings in the test fixtures of
 `src/slop_bench/noise_filter.py` was hyphenated ("built-in"). The tests do not depend on the
 specific strings.
 
+## Notes for readers
+
+The author's email address appears in the User-Agent of the registry clients
+(`scripts/registry_check.py`, `scripts/fetch_master_lists.py`) and in the round summaries on
+purpose: it is the contact address for the registries whose APIs were queried. Commit hashes
+cited inside `reports/` and `PREREG-deviations.md` refer to the private working repository;
+the commits here carry the same dates and messages but new hashes. Older scripts from the v3
+paper (for example `scripts/make_erratum.py`, `scripts/final_table.py`,
+`scripts/run_p0_3.py`) are kept as part of the project history; the revalidation results come
+only from the scripts listed below.
+
 ## How to reproduce
 
 The analysis is deterministic (seed 42) and offline after the live checks. With access to
@@ -56,8 +67,8 @@ python scripts/task2_analysis.py                  # Task 2, stage B -> reports/t
 python scripts/v4_tables.py                       # tables and figures for v4 -> reports/v4/
 ```
 
-Environment used: Python 3.11.9, numpy 2.4.4, scipy 1.17.1, statsmodels 0.14.6,
-matplotlib 3.10.8, rapidfuzz 3.14.5, pandas 3.0.2, httpx 0.28.1. The analysis scripts block
+Environment used: Python 3.11.9; exact versions are pinned in `requirements.txt`
+(`pip install -r requirements.txt`). The analysis scripts block
 network access themselves (except the registry check), open databases read-only, refuse to
 run on a dirty working tree, and fail if any name appears in a public output.
 
@@ -78,3 +89,7 @@ prompt files or master lists fail with missing files (`test_prompts.py`, three t
 
 Name lists are reported privately to the registries' security teams, as described in
 `PREREG.md` §5 and `PREREG-deviations.md` (D0).
+
+## License
+
+MIT, see `LICENSE`.
