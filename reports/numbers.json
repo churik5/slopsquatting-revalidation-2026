@@ -5407,6 +5407,2109 @@
     ]
   },
   "t0_utc": "2026-11-07T11:44:08Z",
+  "task2": {
+    "a1_final_names": 18,
+    "a1_final_names_in_A": 13,
+    "baseline_common_strata_D3": 13,
+    "ember_names_in_A": 4,
+    "excluded": {
+      "no_generation_time": 0,
+      "pypi_creation_date_possibly_late": 0,
+      "unknown_as_of_generation": {
+        "npm": {},
+        "pypi": {
+          "A_candidate:UNKNOWN_EXISTS_SIMPLE_ONLY": 1,
+          "A_candidate:UNKNOWN_REMOVED_MALICIOUS": 2,
+          "B:UNKNOWN_EXISTS_SIMPLE_ONLY": 9,
+          "B:UNKNOWN_REMOVED_MALICIOUS": 9
+        }
+      }
+    },
+    "exposure_start": {
+      "A1_v1_submission": "2026-05-16T16:08:52.000000Z",
+      "A1_v2_submission": "2026-06-11T11:43:49.000000Z",
+      "A2_and_B": "2026-04-30T00:00:00.000000Z"
+    },
+    "exposure_to_creation_days": {
+      "A": {
+        "max_days": 47.31864646990741,
+        "median_days": 47.31864646990741,
+        "min_days": 47.31864646990741,
+        "n": 1
+      },
+      "B": {
+        "max_days": 152.72828951574076,
+        "median_days": 89.34840776057871,
+        "min_days": 13.057921921944446,
+        "n": 24
+      }
+    },
+    "frozen_strata_cuts": {
+      "npm": {
+        "freq": [
+          4.0,
+          5.0
+        ],
+        "len": [
+          12.0,
+          17.0
+        ]
+      },
+      "pypi": {
+        "freq": [
+          5.0,
+          8.0
+        ],
+        "len": [
+          7.0,
+          11.0
+        ]
+      }
+    },
+    "groups": {
+      "npm": {
+        "A": 16,
+        "A1": 7,
+        "A2": 9,
+        "B": 520,
+        "B4": 31,
+        "B_other": 489
+      },
+      "pypi": {
+        "A": 88,
+        "A1": 6,
+        "A2": 82,
+        "B": 1658,
+        "B4": 97,
+        "B_other": 1561
+      }
+    },
+    "mde_final_sizes": {
+      "npm": [
+        {
+          "mde_abs_diff": 0.785,
+          "mde_ratio": 79.5,
+          "mde_share_a": 0.795,
+          "n_a": 11,
+          "n_b": 4,
+          "p0": 0.01,
+          "power_at_mde": 0.8059,
+          "power_previous_grid_point": 0.79495
+        },
+        {
+          "mde_abs_diff": 0.78,
+          "mde_ratio": 40.0,
+          "mde_share_a": 0.8,
+          "n_a": 11,
+          "n_b": 4,
+          "p0": 0.02,
+          "power_at_mde": 0.80125,
+          "power_previous_grid_point": 0.79035
+        },
+        {
+          "mde_abs_diff": 0.78,
+          "mde_ratio": 16.6,
+          "mde_share_a": 0.83,
+          "n_a": 11,
+          "n_b": 4,
+          "p0": 0.05,
+          "power_at_mde": 0.80645,
+          "power_previous_grid_point": 0.7946
+        }
+      ],
+      "pooled": [
+        {
+          "mde_abs_diff": 0.095,
+          "mde_ratio": 10.5,
+          "mde_share_a": 0.105,
+          "n_a": 87,
+          "n_b": 101,
+          "p0": 0.01,
+          "power_at_mde": 0.82135,
+          "power_previous_grid_point": 0.79445
+        },
+        {
+          "mde_abs_diff": 0.105,
+          "mde_ratio": 6.25,
+          "mde_share_a": 0.125,
+          "n_a": 87,
+          "n_b": 101,
+          "p0": 0.02,
+          "power_at_mde": 0.8022,
+          "power_previous_grid_point": 0.76695
+        },
+        {
+          "mde_abs_diff": 0.135,
+          "mde_ratio": 3.7,
+          "mde_share_a": 0.185,
+          "n_a": 87,
+          "n_b": 101,
+          "p0": 0.05,
+          "power_at_mde": 0.8271,
+          "power_previous_grid_point": 0.79765
+        }
+      ],
+      "pypi": [
+        {
+          "mde_abs_diff": 0.095,
+          "mde_ratio": 10.5,
+          "mde_share_a": 0.105,
+          "n_a": 76,
+          "n_b": 97,
+          "p0": 0.01,
+          "power_at_mde": 0.81675,
+          "power_previous_grid_point": 0.7913
+        },
+        {
+          "mde_abs_diff": 0.11,
+          "mde_ratio": 6.5,
+          "mde_share_a": 0.13,
+          "n_a": 76,
+          "n_b": 97,
+          "p0": 0.02,
+          "power_at_mde": 0.81995,
+          "power_previous_grid_point": 0.791
+        },
+        {
+          "mde_abs_diff": 0.14,
+          "mde_ratio": 3.8,
+          "mde_share_a": 0.19,
+          "n_a": 76,
+          "n_b": 97,
+          "p0": 0.05,
+          "power_at_mde": 0.81205,
+          "power_previous_grid_point": 0.7921
+        }
+      ]
+    },
+    "outcomes_by_group": {
+      "npm": {
+        "A1": {
+          "not_registered": 6,
+          "registered_in_window": 1
+        },
+        "A2": {
+          "not_registered": 9
+        },
+        "B4": {
+          "not_registered": 30,
+          "registered_in_window": 1
+        },
+        "B_other": {
+          "not_registered": 488,
+          "registered_in_window": 1
+        }
+      },
+      "pypi": {
+        "A1": {
+          "not_registered": 6
+        },
+        "A2": {
+          "not_registered": 82
+        },
+        "B4": {
+          "not_registered": 95,
+          "registered_in_window": 2
+        },
+        "B_other": {
+          "not_registered": 1541,
+          "registered_in_window": 20
+        }
+      }
+    },
+    "primary": {
+      "balance": {
+        "npm.f1_l1": {
+          "A": 0,
+          "A_registered": 0,
+          "B4": 10,
+          "B4_registered": 0,
+          "common": false
+        },
+        "npm.f1_l2": {
+          "A": 0,
+          "A_registered": 0,
+          "B4": 4,
+          "B4_registered": 0,
+          "common": false
+        },
+        "npm.f1_l3": {
+          "A": 0,
+          "A_registered": 0,
+          "B4": 11,
+          "B4_registered": 1,
+          "common": false
+        },
+        "npm.f2_l1": {
+          "A": 4,
+          "A_registered": 0,
+          "B4": 1,
+          "B4_registered": 0,
+          "common": true
+        },
+        "npm.f2_l2": {
+          "A": 4,
+          "A_registered": 0,
+          "B4": 1,
+          "B4_registered": 0,
+          "common": true
+        },
+        "npm.f2_l3": {
+          "A": 3,
+          "A_registered": 0,
+          "B4": 2,
+          "B4_registered": 0,
+          "common": true
+        },
+        "npm.f3_l1": {
+          "A": 0,
+          "A_registered": 0,
+          "B4": 1,
+          "B4_registered": 0,
+          "common": false
+        },
+        "npm.f3_l2": {
+          "A": 5,
+          "A_registered": 1,
+          "B4": 0,
+          "B4_registered": 0,
+          "common": false
+        },
+        "npm.f3_l3": {
+          "A": 0,
+          "A_registered": 0,
+          "B4": 1,
+          "B4_registered": 0,
+          "common": false
+        },
+        "pypi.f1_l1": {
+          "A": 15,
+          "A_registered": 0,
+          "B4": 22,
+          "B4_registered": 0,
+          "common": true
+        },
+        "pypi.f1_l2": {
+          "A": 7,
+          "A_registered": 0,
+          "B4": 18,
+          "B4_registered": 0,
+          "common": true
+        },
+        "pypi.f1_l3": {
+          "A": 7,
+          "A_registered": 0,
+          "B4": 34,
+          "B4_registered": 1,
+          "common": true
+        },
+        "pypi.f2_l1": {
+          "A": 7,
+          "A_registered": 0,
+          "B4": 4,
+          "B4_registered": 0,
+          "common": true
+        },
+        "pypi.f2_l2": {
+          "A": 5,
+          "A_registered": 0,
+          "B4": 4,
+          "B4_registered": 1,
+          "common": true
+        },
+        "pypi.f2_l3": {
+          "A": 5,
+          "A_registered": 0,
+          "B4": 4,
+          "B4_registered": 0,
+          "common": true
+        },
+        "pypi.f3_l1": {
+          "A": 20,
+          "A_registered": 0,
+          "B4": 5,
+          "B4_registered": 0,
+          "common": true
+        },
+        "pypi.f3_l2": {
+          "A": 10,
+          "A_registered": 0,
+          "B4": 6,
+          "B4_registered": 0,
+          "common": true
+        },
+        "pypi.f3_l3": {
+          "A": 12,
+          "A_registered": 0,
+          "B4": 0,
+          "B4_registered": 0,
+          "common": false
+        }
+      },
+      "cmh_ecosystem": {
+        "computable": true,
+        "odds_ratio_mh": 0.0,
+        "p": 0.5885054000773033,
+        "registered": 2,
+        "statistic": 0.29268442629452995,
+        "strata": 2
+      },
+      "cmh_strata": {
+        "computable": true,
+        "odds_ratio_mh": 0.0,
+        "p": 0.7165672791996452,
+        "registered": 2,
+        "statistic": 0.13180555030435942,
+        "strata": 11
+      },
+      "common_strata": 11,
+      "descriptive_A1_vs_A2": {
+        "A1": {
+          "ci95": [
+            0.013710421242556586,
+            0.3331395092109959
+          ],
+          "k": 1,
+          "n": 13,
+          "share": 0.07692307692307693
+        },
+        "A2": {
+          "ci95": [
+            0.0,
+            0.04050400392888021
+          ],
+          "k": 0,
+          "n": 91,
+          "share": 0.0
+        },
+        "difference": {
+          "ci95": [
+            0.0018470210033979528,
+            0.3331395092109959
+          ],
+          "diff": 0.07692307692307693
+        },
+        "fisher": {
+          "odds_ratio": null,
+          "p": 0.125
+        }
+      },
+      "descriptive_A_vs_all_B": {
+        "A": {
+          "ci95": [
+            0.0016993728496512567,
+            0.05246772470794581
+          ],
+          "k": 1,
+          "n": 104,
+          "share": 0.009615384615384616
+        },
+        "B": {
+          "ci95": [
+            0.0074160722885239895,
+            0.016344342846641203
+          ],
+          "k": 24,
+          "n": 2178,
+          "share": 0.011019283746556474
+        },
+        "difference": {
+          "ci95": [
+            -0.01094431299507861,
+            0.041599661003075446
+          ],
+          "diff": -0.0014038991311718582
+        },
+        "fisher": {
+          "odds_ratio": 0.8713592233009708,
+          "p": 1.0
+        }
+      },
+      "label": "primary",
+      "outside_common_strata": {
+        "A": 17,
+        "A_registered": 1,
+        "B4": 27,
+        "B4_registered": 1
+      },
+      "per_ecosystem": {
+        "npm": {
+          "A": {
+            "ci95": [
+              0.0,
+              0.2588329669680317
+            ],
+            "k": 0,
+            "n": 11,
+            "share": 0.0
+          },
+          "B4": {
+            "ci95": [
+              0.0,
+              0.4898908364545973
+            ],
+            "k": 0,
+            "n": 4,
+            "share": 0.0
+          },
+          "difference": {
+            "ci95": [
+              -0.4898908364545973,
+              0.2588329669680317
+            ],
+            "diff": 0.0
+          },
+          "fisher": {
+            "odds_ratio": null,
+            "p": 1.0
+          }
+        },
+        "pypi": {
+          "A": {
+            "ci95": [
+              0.0,
+              0.048113585065137326
+            ],
+            "k": 0,
+            "n": 76,
+            "share": 0.0
+          },
+          "B4": {
+            "ci95": [
+              0.005672685102266338,
+              0.07208758247415772
+            ],
+            "k": 2,
+            "n": 97,
+            "share": 0.020618556701030927
+          },
+          "difference": {
+            "ci95": [
+              -0.07208758247415772,
+              0.02976294928744627
+            ],
+            "diff": -0.020618556701030927
+          },
+          "fisher": {
+            "odds_ratio": 0.0,
+            "p": 0.504503293453421
+          }
+        }
+      },
+      "primary": {
+        "A": {
+          "ci95": [
+            0.0,
+            0.04228750694412034
+          ],
+          "k": 0,
+          "n": 87,
+          "share": 0.0
+        },
+        "B4": {
+          "ci95": [
+            0.0054473224611470555,
+            0.06934616962584345
+          ],
+          "k": 2,
+          "n": 101,
+          "share": 0.019801980198019802
+        },
+        "difference": {
+          "ci95": [
+            -0.06934616962584345,
+            0.024855487736154282
+          ],
+          "diff": -0.019801980198019802
+        },
+        "fisher": {
+          "odds_ratio": 0.0,
+          "p": 0.5001137785868699
+        }
+      }
+    },
+    "registered_categories": {
+      "A.registered_in_window": {
+        "published with versions (contents not inspected)": 1
+      },
+      "B.registered_in_window": {
+        "empty placeholder (version 0.0.1-security, publisher's own text)": 1,
+        "published with files (contents not inspected)": 22,
+        "security holding": 1
+      },
+      "removed_malicious_D16": {
+        "removed malicious (MAL record year 2022)": 1,
+        "removed malicious (MAL record year 2023)": 1,
+        "removed malicious (MAL record year 2024)": 2,
+        "removed malicious (MAL record year 2025)": 6,
+        "removed malicious (MAL record year 2026)": 1
+      }
+    },
+    "sensitivity": {
+      "D14_simple_only_registered": {
+        "balance": {
+          "npm.f1_l1": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 10,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f1_l2": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f1_l3": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 11,
+            "B4_registered": 1,
+            "common": false
+          },
+          "npm.f2_l1": {
+            "A": 4,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f2_l2": {
+            "A": 4,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f2_l3": {
+            "A": 3,
+            "A_registered": 0,
+            "B4": 2,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f3_l1": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f3_l2": {
+            "A": 5,
+            "A_registered": 1,
+            "B4": 0,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f3_l3": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": false
+          },
+          "pypi.f1_l1": {
+            "A": 15,
+            "A_registered": 0,
+            "B4": 22,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f1_l2": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 18,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f1_l3": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 34,
+            "B4_registered": 1,
+            "common": true
+          },
+          "pypi.f2_l1": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f2_l2": {
+            "A": 6,
+            "A_registered": 1,
+            "B4": 4,
+            "B4_registered": 1,
+            "common": true
+          },
+          "pypi.f2_l3": {
+            "A": 5,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l1": {
+            "A": 20,
+            "A_registered": 0,
+            "B4": 5,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l2": {
+            "A": 10,
+            "A_registered": 0,
+            "B4": 6,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l3": {
+            "A": 12,
+            "A_registered": 0,
+            "B4": 0,
+            "B4_registered": 0,
+            "common": false
+          }
+        },
+        "cmh_ecosystem": {
+          "computable": true,
+          "odds_ratio_mh": 0.625,
+          "p": 0.8402425586705021,
+          "registered": 3,
+          "statistic": 0.04063579755386587,
+          "strata": 2
+        },
+        "cmh_strata": {
+          "computable": true,
+          "odds_ratio_mh": 0.4472727272727272,
+          "p": 0.8638435066034034,
+          "registered": 3,
+          "statistic": 0.02940663298065381,
+          "strata": 11
+        },
+        "common_strata": 11,
+        "descriptive_A1_vs_A2": {
+          "A1": {
+            "ci95": [
+              0.013710421242556586,
+              0.3331395092109959
+            ],
+            "k": 1,
+            "n": 13,
+            "share": 0.07692307692307693
+          },
+          "A2": {
+            "ci95": [
+              0.001921329040091721,
+              0.05902785613062518
+            ],
+            "k": 1,
+            "n": 92,
+            "share": 0.010869565217391304
+          },
+          "difference": {
+            "ci95": [
+              -0.013413845252172776,
+              0.3224261528065537
+            ],
+            "diff": 0.06605351170568563
+          },
+          "fisher": {
+            "odds_ratio": 7.583333333333333,
+            "p": 0.2333333333333334
+          }
+        },
+        "descriptive_A_vs_all_B": {
+          "A": {
+            "ci95": [
+              0.0052391820659629385,
+              0.06680559669441896
+            ],
+            "k": 2,
+            "n": 105,
+            "share": 0.01904761904761905
+          },
+          "B": {
+            "ci95": [
+              0.010764348948835906,
+              0.02111447940704568
+            ],
+            "k": 33,
+            "n": 2187,
+            "share": 0.015089163237311385
+          },
+          "difference": {
+            "ci95": [
+              -0.011107312235883333,
+              0.05191185451719853
+            ],
+            "diff": 0.003958455810307664
+          },
+          "fisher": {
+            "odds_ratio": 1.267431597528685,
+            "p": 0.6734571963195006
+          }
+        },
+        "label": "D14",
+        "outside_common_strata": {
+          "A": 17,
+          "A_registered": 1,
+          "B4": 27,
+          "B4_registered": 1
+        },
+        "per_ecosystem": {
+          "npm": {
+            "A": {
+              "ci95": [
+                0.0,
+                0.2588329669680317
+              ],
+              "k": 0,
+              "n": 11,
+              "share": 0.0
+            },
+            "B4": {
+              "ci95": [
+                0.0,
+                0.4898908364545973
+              ],
+              "k": 0,
+              "n": 4,
+              "share": 0.0
+            },
+            "difference": {
+              "ci95": [
+                -0.4898908364545973,
+                0.2588329669680317
+              ],
+              "diff": 0.0
+            },
+            "fisher": {
+              "odds_ratio": null,
+              "p": 1.0
+            }
+          },
+          "pypi": {
+            "A": {
+              "ci95": [
+                0.0022962172971240508,
+                0.06996198914680525
+              ],
+              "k": 1,
+              "n": 77,
+              "share": 0.012987012987012988
+            },
+            "B4": {
+              "ci95": [
+                0.005672685102266338,
+                0.07208758247415772
+              ],
+              "k": 2,
+              "n": 97,
+              "share": 0.020618556701030927
+            },
+            "difference": {
+              "ci95": [
+                -0.060199154716590035,
+                0.05127114710953998
+              ],
+              "diff": -0.00763154371401794
+            },
+            "fisher": {
+              "odds_ratio": 0.625,
+              "p": 1.0
+            }
+          }
+        },
+        "primary": {
+          "A": {
+            "ci95": [
+              0.0020087853177044764,
+              0.061594938922985634
+            ],
+            "k": 1,
+            "n": 88,
+            "share": 0.011363636363636364
+          },
+          "B4": {
+            "ci95": [
+              0.0054473224611470555,
+              0.06934616962584345
+            ],
+            "k": 2,
+            "n": 101,
+            "share": 0.019801980198019802
+          },
+          "difference": {
+            "ci95": [
+              -0.05885798231138607,
+              0.04380378433390282
+            ],
+            "diff": -0.008438343834383438
+          },
+          "fisher": {
+            "odds_ratio": 0.5689655172413793,
+            "p": 1.0
+          }
+        }
+      },
+      "D16_removed_malicious": {
+        "lower_ambiguous_as_pre_existing": {
+          "balance": {
+            "npm.f1_l1": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 10,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f1_l2": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f1_l3": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 11,
+              "B4_registered": 1,
+              "common": false
+            },
+            "npm.f2_l1": {
+              "A": 4,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": true
+            },
+            "npm.f2_l2": {
+              "A": 4,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": true
+            },
+            "npm.f2_l3": {
+              "A": 3,
+              "A_registered": 0,
+              "B4": 2,
+              "B4_registered": 0,
+              "common": true
+            },
+            "npm.f3_l1": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f3_l2": {
+              "A": 5,
+              "A_registered": 1,
+              "B4": 0,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f3_l3": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": false
+            },
+            "pypi.f1_l1": {
+              "A": 15,
+              "A_registered": 0,
+              "B4": 22,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f1_l2": {
+              "A": 7,
+              "A_registered": 0,
+              "B4": 18,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f1_l3": {
+              "A": 7,
+              "A_registered": 0,
+              "B4": 34,
+              "B4_registered": 1,
+              "common": true
+            },
+            "pypi.f2_l1": {
+              "A": 7,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f2_l2": {
+              "A": 5,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 1,
+              "common": true
+            },
+            "pypi.f2_l3": {
+              "A": 5,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f3_l1": {
+              "A": 20,
+              "A_registered": 0,
+              "B4": 5,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f3_l2": {
+              "A": 10,
+              "A_registered": 0,
+              "B4": 6,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f3_l3": {
+              "A": 12,
+              "A_registered": 0,
+              "B4": 0,
+              "B4_registered": 0,
+              "common": false
+            }
+          },
+          "cmh_ecosystem": {
+            "computable": true,
+            "odds_ratio_mh": 0.0,
+            "p": 0.5885054000773033,
+            "registered": 2,
+            "statistic": 0.29268442629452995,
+            "strata": 2
+          },
+          "cmh_strata": {
+            "computable": true,
+            "odds_ratio_mh": 0.0,
+            "p": 0.7165672791996452,
+            "registered": 2,
+            "statistic": 0.13180555030435942,
+            "strata": 11
+          },
+          "common_strata": 11,
+          "descriptive_A1_vs_A2": {
+            "A1": {
+              "ci95": [
+                0.013710421242556586,
+                0.3331395092109959
+              ],
+              "k": 1,
+              "n": 13,
+              "share": 0.07692307692307693
+            },
+            "A2": {
+              "ci95": [
+                0.0,
+                0.04050400392888021
+              ],
+              "k": 0,
+              "n": 91,
+              "share": 0.0
+            },
+            "difference": {
+              "ci95": [
+                0.0018470210033979528,
+                0.3331395092109959
+              ],
+              "diff": 0.07692307692307693
+            },
+            "fisher": {
+              "odds_ratio": null,
+              "p": 0.125
+            }
+          },
+          "descriptive_A_vs_all_B": {
+            "A": {
+              "ci95": [
+                0.0016993728496512567,
+                0.05246772470794581
+              ],
+              "k": 1,
+              "n": 104,
+              "share": 0.009615384615384616
+            },
+            "B": {
+              "ci95": [
+                0.0074160722885239895,
+                0.016344342846641203
+              ],
+              "k": 24,
+              "n": 2178,
+              "share": 0.011019283746556474
+            },
+            "difference": {
+              "ci95": [
+                -0.01094431299507861,
+                0.041599661003075446
+              ],
+              "diff": -0.0014038991311718582
+            },
+            "fisher": {
+              "odds_ratio": 0.8713592233009708,
+              "p": 1.0
+            }
+          },
+          "label": "D16 lower_ambiguous_as_pre_existing",
+          "outside_common_strata": {
+            "A": 17,
+            "A_registered": 1,
+            "B4": 27,
+            "B4_registered": 1
+          },
+          "per_ecosystem": {
+            "npm": {
+              "A": {
+                "ci95": [
+                  0.0,
+                  0.2588329669680317
+                ],
+                "k": 0,
+                "n": 11,
+                "share": 0.0
+              },
+              "B4": {
+                "ci95": [
+                  0.0,
+                  0.4898908364545973
+                ],
+                "k": 0,
+                "n": 4,
+                "share": 0.0
+              },
+              "difference": {
+                "ci95": [
+                  -0.4898908364545973,
+                  0.2588329669680317
+                ],
+                "diff": 0.0
+              },
+              "fisher": {
+                "odds_ratio": null,
+                "p": 1.0
+              }
+            },
+            "pypi": {
+              "A": {
+                "ci95": [
+                  0.0,
+                  0.048113585065137326
+                ],
+                "k": 0,
+                "n": 76,
+                "share": 0.0
+              },
+              "B4": {
+                "ci95": [
+                  0.005672685102266338,
+                  0.07208758247415772
+                ],
+                "k": 2,
+                "n": 97,
+                "share": 0.020618556701030927
+              },
+              "difference": {
+                "ci95": [
+                  -0.07208758247415772,
+                  0.02976294928744627
+                ],
+                "diff": -0.020618556701030927
+              },
+              "fisher": {
+                "odds_ratio": 0.0,
+                "p": 0.504503293453421
+              }
+            }
+          },
+          "primary": {
+            "A": {
+              "ci95": [
+                0.0,
+                0.04228750694412034
+              ],
+              "k": 0,
+              "n": 87,
+              "share": 0.0
+            },
+            "B4": {
+              "ci95": [
+                0.0054473224611470555,
+                0.06934616962584345
+              ],
+              "k": 2,
+              "n": 101,
+              "share": 0.019801980198019802
+            },
+            "difference": {
+              "ci95": [
+                -0.06934616962584345,
+                0.024855487736154282
+              ],
+              "diff": -0.019801980198019802
+            },
+            "fisher": {
+              "odds_ratio": 0.0,
+              "p": 0.5001137785868699
+            }
+          }
+        },
+        "mal_record_year_2026_ambiguous": 1,
+        "mal_record_year_before_2026_pre_existing": 10,
+        "removed_malicious_names": 11,
+        "upper_ambiguous_as_registered_in_window": {
+          "balance": {
+            "npm.f1_l1": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 10,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f1_l2": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f1_l3": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 11,
+              "B4_registered": 1,
+              "common": false
+            },
+            "npm.f2_l1": {
+              "A": 4,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": true
+            },
+            "npm.f2_l2": {
+              "A": 4,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": true
+            },
+            "npm.f2_l3": {
+              "A": 3,
+              "A_registered": 0,
+              "B4": 2,
+              "B4_registered": 0,
+              "common": true
+            },
+            "npm.f3_l1": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f3_l2": {
+              "A": 5,
+              "A_registered": 1,
+              "B4": 0,
+              "B4_registered": 0,
+              "common": false
+            },
+            "npm.f3_l3": {
+              "A": 0,
+              "A_registered": 0,
+              "B4": 1,
+              "B4_registered": 0,
+              "common": false
+            },
+            "pypi.f1_l1": {
+              "A": 15,
+              "A_registered": 0,
+              "B4": 22,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f1_l2": {
+              "A": 7,
+              "A_registered": 0,
+              "B4": 18,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f1_l3": {
+              "A": 7,
+              "A_registered": 0,
+              "B4": 34,
+              "B4_registered": 1,
+              "common": true
+            },
+            "pypi.f2_l1": {
+              "A": 7,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f2_l2": {
+              "A": 5,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 1,
+              "common": true
+            },
+            "pypi.f2_l3": {
+              "A": 5,
+              "A_registered": 0,
+              "B4": 4,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f3_l1": {
+              "A": 20,
+              "A_registered": 0,
+              "B4": 5,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f3_l2": {
+              "A": 10,
+              "A_registered": 0,
+              "B4": 6,
+              "B4_registered": 0,
+              "common": true
+            },
+            "pypi.f3_l3": {
+              "A": 12,
+              "A_registered": 0,
+              "B4": 0,
+              "B4_registered": 0,
+              "common": false
+            }
+          },
+          "cmh_ecosystem": {
+            "computable": true,
+            "odds_ratio_mh": 0.0,
+            "p": 0.5885054000773033,
+            "registered": 2,
+            "statistic": 0.29268442629452995,
+            "strata": 2
+          },
+          "cmh_strata": {
+            "computable": true,
+            "odds_ratio_mh": 0.0,
+            "p": 0.7165672791996452,
+            "registered": 2,
+            "statistic": 0.13180555030435942,
+            "strata": 11
+          },
+          "common_strata": 11,
+          "descriptive_A1_vs_A2": {
+            "A1": {
+              "ci95": [
+                0.013710421242556586,
+                0.3331395092109959
+              ],
+              "k": 1,
+              "n": 13,
+              "share": 0.07692307692307693
+            },
+            "A2": {
+              "ci95": [
+                0.0,
+                0.04050400392888021
+              ],
+              "k": 0,
+              "n": 91,
+              "share": 0.0
+            },
+            "difference": {
+              "ci95": [
+                0.0018470210033979528,
+                0.3331395092109959
+              ],
+              "diff": 0.07692307692307693
+            },
+            "fisher": {
+              "odds_ratio": null,
+              "p": 0.125
+            }
+          },
+          "descriptive_A_vs_all_B": {
+            "A": {
+              "ci95": [
+                0.0016993728496512567,
+                0.05246772470794581
+              ],
+              "k": 1,
+              "n": 104,
+              "share": 0.009615384615384616
+            },
+            "B": {
+              "ci95": [
+                0.007783330379219894,
+                0.016882436620543163
+              ],
+              "k": 25,
+              "n": 2179,
+              "share": 0.011473152822395595
+            },
+            "difference": {
+              "ci95": [
+                -0.011445447461352499,
+                0.041153135539256556
+              ],
+              "diff": -0.0018577682070109788
+            },
+            "fisher": {
+              "odds_ratio": 0.8365048543689321,
+              "p": 1.0
+            }
+          },
+          "label": "D16 upper_ambiguous_as_registered_in_window",
+          "outside_common_strata": {
+            "A": 17,
+            "A_registered": 1,
+            "B4": 27,
+            "B4_registered": 1
+          },
+          "per_ecosystem": {
+            "npm": {
+              "A": {
+                "ci95": [
+                  0.0,
+                  0.2588329669680317
+                ],
+                "k": 0,
+                "n": 11,
+                "share": 0.0
+              },
+              "B4": {
+                "ci95": [
+                  0.0,
+                  0.4898908364545973
+                ],
+                "k": 0,
+                "n": 4,
+                "share": 0.0
+              },
+              "difference": {
+                "ci95": [
+                  -0.4898908364545973,
+                  0.2588329669680317
+                ],
+                "diff": 0.0
+              },
+              "fisher": {
+                "odds_ratio": null,
+                "p": 1.0
+              }
+            },
+            "pypi": {
+              "A": {
+                "ci95": [
+                  0.0,
+                  0.048113585065137326
+                ],
+                "k": 0,
+                "n": 76,
+                "share": 0.0
+              },
+              "B4": {
+                "ci95": [
+                  0.005672685102266338,
+                  0.07208758247415772
+                ],
+                "k": 2,
+                "n": 97,
+                "share": 0.020618556701030927
+              },
+              "difference": {
+                "ci95": [
+                  -0.07208758247415772,
+                  0.02976294928744627
+                ],
+                "diff": -0.020618556701030927
+              },
+              "fisher": {
+                "odds_ratio": 0.0,
+                "p": 0.504503293453421
+              }
+            }
+          },
+          "primary": {
+            "A": {
+              "ci95": [
+                0.0,
+                0.04228750694412034
+              ],
+              "k": 0,
+              "n": 87,
+              "share": 0.0
+            },
+            "B4": {
+              "ci95": [
+                0.0054473224611470555,
+                0.06934616962584345
+              ],
+              "k": 2,
+              "n": 101,
+              "share": 0.019801980198019802
+            },
+            "difference": {
+              "ci95": [
+                -0.06934616962584345,
+                0.024855487736154282
+              ],
+              "diff": -0.019801980198019802
+            },
+            "fisher": {
+              "odds_ratio": 0.0,
+              "p": 0.5001137785868699
+            }
+          }
+        }
+      },
+      "D17_unpublished_before_generation": {
+        "balance": {
+          "npm.f1_l1": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 11,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f1_l2": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 6,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f1_l3": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 11,
+            "B4_registered": 1,
+            "common": false
+          },
+          "npm.f2_l1": {
+            "A": 4,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f2_l2": {
+            "A": 4,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f2_l3": {
+            "A": 3,
+            "A_registered": 0,
+            "B4": 2,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f3_l1": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f3_l2": {
+            "A": 5,
+            "A_registered": 1,
+            "B4": 0,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f3_l3": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": false
+          },
+          "pypi.f1_l1": {
+            "A": 15,
+            "A_registered": 0,
+            "B4": 22,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f1_l2": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 18,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f1_l3": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 34,
+            "B4_registered": 1,
+            "common": true
+          },
+          "pypi.f2_l1": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f2_l2": {
+            "A": 5,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 1,
+            "common": true
+          },
+          "pypi.f2_l3": {
+            "A": 5,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l1": {
+            "A": 20,
+            "A_registered": 0,
+            "B4": 5,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l2": {
+            "A": 10,
+            "A_registered": 0,
+            "B4": 6,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l3": {
+            "A": 12,
+            "A_registered": 0,
+            "B4": 0,
+            "B4_registered": 0,
+            "common": false
+          }
+        },
+        "cmh_ecosystem": {
+          "computable": true,
+          "odds_ratio_mh": 0.0,
+          "p": 0.5885054000773033,
+          "registered": 2,
+          "statistic": 0.29268442629452995,
+          "strata": 2
+        },
+        "cmh_strata": {
+          "computable": true,
+          "odds_ratio_mh": 0.0,
+          "p": 0.7165672791996452,
+          "registered": 2,
+          "statistic": 0.13180555030435942,
+          "strata": 11
+        },
+        "common_strata": 11,
+        "descriptive_A1_vs_A2": {
+          "A1": {
+            "ci95": [
+              0.013710421242556586,
+              0.3331395092109959
+            ],
+            "k": 1,
+            "n": 13,
+            "share": 0.07692307692307693
+          },
+          "A2": {
+            "ci95": [
+              0.0,
+              0.04050400392888021
+            ],
+            "k": 0,
+            "n": 91,
+            "share": 0.0
+          },
+          "difference": {
+            "ci95": [
+              0.0018470210033979528,
+              0.3331395092109959
+            ],
+            "diff": 0.07692307692307693
+          },
+          "fisher": {
+            "odds_ratio": null,
+            "p": 0.125
+          }
+        },
+        "descriptive_A_vs_all_B": {
+          "A": {
+            "ci95": [
+              0.0016993728496512567,
+              0.05246772470794581
+            ],
+            "k": 1,
+            "n": 104,
+            "share": 0.009615384615384616
+          },
+          "B": {
+            "ci95": [
+              0.007368638038217718,
+              0.016240288103716173
+            ],
+            "k": 24,
+            "n": 2192,
+            "share": 0.010948905109489052
+          },
+          "difference": {
+            "ci95": [
+              -0.010855178767053794,
+              0.04166812323855022
+            ],
+            "diff": -0.0013335204941044357
+          },
+          "fisher": {
+            "odds_ratio": 0.8770226537216829,
+            "p": 1.0
+          }
+        },
+        "label": "D17",
+        "names_added_as_hallucinations": 14,
+        "outside_common_strata": {
+          "A": 17,
+          "A_registered": 1,
+          "B4": 30,
+          "B4_registered": 1
+        },
+        "per_ecosystem": {
+          "npm": {
+            "A": {
+              "ci95": [
+                0.0,
+                0.2588329669680317
+              ],
+              "k": 0,
+              "n": 11,
+              "share": 0.0
+            },
+            "B4": {
+              "ci95": [
+                0.0,
+                0.4898908364545973
+              ],
+              "k": 0,
+              "n": 4,
+              "share": 0.0
+            },
+            "difference": {
+              "ci95": [
+                -0.4898908364545973,
+                0.2588329669680317
+              ],
+              "diff": 0.0
+            },
+            "fisher": {
+              "odds_ratio": null,
+              "p": 1.0
+            }
+          },
+          "pypi": {
+            "A": {
+              "ci95": [
+                0.0,
+                0.048113585065137326
+              ],
+              "k": 0,
+              "n": 76,
+              "share": 0.0
+            },
+            "B4": {
+              "ci95": [
+                0.005672685102266338,
+                0.07208758247415772
+              ],
+              "k": 2,
+              "n": 97,
+              "share": 0.020618556701030927
+            },
+            "difference": {
+              "ci95": [
+                -0.07208758247415772,
+                0.02976294928744627
+              ],
+              "diff": -0.020618556701030927
+            },
+            "fisher": {
+              "odds_ratio": 0.0,
+              "p": 0.504503293453421
+            }
+          }
+        },
+        "primary": {
+          "A": {
+            "ci95": [
+              0.0,
+              0.04228750694412034
+            ],
+            "k": 0,
+            "n": 87,
+            "share": 0.0
+          },
+          "B4": {
+            "ci95": [
+              0.0054473224611470555,
+              0.06934616962584345
+            ],
+            "k": 2,
+            "n": 101,
+            "share": 0.019801980198019802
+          },
+          "difference": {
+            "ci95": [
+              -0.06934616962584345,
+              0.024855487736154282
+            ],
+            "diff": -0.019801980198019802
+          },
+          "fisher": {
+            "odds_ratio": 0.0,
+            "p": 0.5001137785868699
+          }
+        }
+      },
+      "D7_without_ember_scope": {
+        "balance": {
+          "npm.f1_l1": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 10,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f1_l2": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f1_l3": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 11,
+            "B4_registered": 1,
+            "common": false
+          },
+          "npm.f2_l1": {
+            "A": 4,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f2_l2": {
+            "A": 4,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f2_l3": {
+            "A": 3,
+            "A_registered": 0,
+            "B4": 2,
+            "B4_registered": 0,
+            "common": true
+          },
+          "npm.f3_l1": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f3_l2": {
+            "A": 1,
+            "A_registered": 1,
+            "B4": 0,
+            "B4_registered": 0,
+            "common": false
+          },
+          "npm.f3_l3": {
+            "A": 0,
+            "A_registered": 0,
+            "B4": 1,
+            "B4_registered": 0,
+            "common": false
+          },
+          "pypi.f1_l1": {
+            "A": 15,
+            "A_registered": 0,
+            "B4": 22,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f1_l2": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 18,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f1_l3": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 34,
+            "B4_registered": 1,
+            "common": true
+          },
+          "pypi.f2_l1": {
+            "A": 7,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f2_l2": {
+            "A": 5,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 1,
+            "common": true
+          },
+          "pypi.f2_l3": {
+            "A": 5,
+            "A_registered": 0,
+            "B4": 4,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l1": {
+            "A": 20,
+            "A_registered": 0,
+            "B4": 5,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l2": {
+            "A": 10,
+            "A_registered": 0,
+            "B4": 6,
+            "B4_registered": 0,
+            "common": true
+          },
+          "pypi.f3_l3": {
+            "A": 12,
+            "A_registered": 0,
+            "B4": 0,
+            "B4_registered": 0,
+            "common": false
+          }
+        },
+        "cmh_ecosystem": {
+          "computable": true,
+          "odds_ratio_mh": 0.0,
+          "p": 0.5885054000773033,
+          "registered": 2,
+          "statistic": 0.29268442629452995,
+          "strata": 2
+        },
+        "cmh_strata": {
+          "computable": true,
+          "odds_ratio_mh": 0.0,
+          "p": 0.7165672791996452,
+          "registered": 2,
+          "statistic": 0.13180555030435942,
+          "strata": 11
+        },
+        "common_strata": 11,
+        "descriptive_A1_vs_A2": {
+          "A1": {
+            "ci95": [
+              0.019890887638544907,
+              0.434999705576656
+            ],
+            "k": 1,
+            "n": 9,
+            "share": 0.1111111111111111
+          },
+          "A2": {
+            "ci95": [
+              0.0,
+              0.04050400392888021
+            ],
+            "k": 0,
+            "n": 91,
+            "share": 0.0
+          },
+          "difference": {
+            "ci95": [
+              0.011302777267410163,
+              0.434999705576656
+            ],
+            "diff": 0.1111111111111111
+          },
+          "fisher": {
+            "odds_ratio": null,
+            "p": 0.09
+          }
+        },
+        "descriptive_A_vs_all_B": {
+          "A": {
+            "ci95": [
+              0.0017674320641406505,
+              0.054486196178705315
+            ],
+            "k": 1,
+            "n": 100,
+            "share": 0.01
+          },
+          "B": {
+            "ci95": [
+              0.0074160722885239895,
+              0.016344342846641203
+            ],
+            "k": 24,
+            "n": 2178,
+            "share": 0.011019283746556474
+          },
+          "difference": {
+            "ci95": [
+              -0.010823947393920143,
+              0.043612597048023
+            ],
+            "diff": -0.001019283746556474
+          },
+          "fisher": {
+            "odds_ratio": 0.9065656565656566,
+            "p": 1.0
+          }
+        },
+        "label": "D7",
+        "outside_common_strata": {
+          "A": 13,
+          "A_registered": 1,
+          "B4": 27,
+          "B4_registered": 1
+        },
+        "per_ecosystem": {
+          "npm": {
+            "A": {
+              "ci95": [
+                0.0,
+                0.2588329669680317
+              ],
+              "k": 0,
+              "n": 11,
+              "share": 0.0
+            },
+            "B4": {
+              "ci95": [
+                0.0,
+                0.4898908364545973
+              ],
+              "k": 0,
+              "n": 4,
+              "share": 0.0
+            },
+            "difference": {
+              "ci95": [
+                -0.4898908364545973,
+                0.2588329669680317
+              ],
+              "diff": 0.0
+            },
+            "fisher": {
+              "odds_ratio": null,
+              "p": 1.0
+            }
+          },
+          "pypi": {
+            "A": {
+              "ci95": [
+                0.0,
+                0.048113585065137326
+              ],
+              "k": 0,
+              "n": 76,
+              "share": 0.0
+            },
+            "B4": {
+              "ci95": [
+                0.005672685102266338,
+                0.07208758247415772
+              ],
+              "k": 2,
+              "n": 97,
+              "share": 0.020618556701030927
+            },
+            "difference": {
+              "ci95": [
+                -0.07208758247415772,
+                0.02976294928744627
+              ],
+              "diff": -0.020618556701030927
+            },
+            "fisher": {
+              "odds_ratio": 0.0,
+              "p": 0.504503293453421
+            }
+          }
+        },
+        "primary": {
+          "A": {
+            "ci95": [
+              0.0,
+              0.04228750694412034
+            ],
+            "k": 0,
+            "n": 87,
+            "share": 0.0
+          },
+          "B4": {
+            "ci95": [
+              0.0054473224611470555,
+              0.06934616962584345
+            ],
+            "k": 2,
+            "n": 101,
+            "share": 0.019801980198019802
+          },
+          "difference": {
+            "ci95": [
+              -0.06934616962584345,
+              0.024855487736154282
+            ],
+            "diff": -0.019801980198019802
+          },
+          "fisher": {
+            "odds_ratio": 0.0,
+            "p": 0.5001137785868699
+          }
+        }
+      }
+    },
+    "t0_utc": "2026-11-07T11:44:08.000000Z"
+  },
   "universal": {
     "april_list_fate": {
       "npm": {
