@@ -1,171 +1,229 @@
-"""Published-vs-new diff report (revalidation task, item 5).
+"""v3 (published) -> new: one row per paper number, with the reason. No package names.
 
-Writes reports/diff_published_vs_new.md:
-  * every headline number: published -> new -> delta
-  * the reproducible baseline computed by the current code on the ORIGINAL data
-    (to show that the preprint's 109 is not reproducible; the code gives 121)
-  * a by-name list of what left / entered the universal set, WITH the reason.
+    Called by scripts/task1_analysis.py (DIFF.build(numbers), DIFF.write(numbers));
+    standalone: python scripts/make_diff_report.py   # re-renders from reports/numbers.json
 
-Reads: reports/recompute.json (new), disclosure/*.csv (published universal set),
-the ORIGINAL db read-only (old exists_in_master), the COPY (fresh exists + live).
+Published values are inputs, not results. Each one carries the exact text it comes from, and
+build() checks every quote against the text of data/private/papers/v3.pdf (pdftotext, both
+raw and -layout, whitespace collapsed). A quote that is not found stops the run, so a value
+cannot be mistyped silently. New values are read from reports/numbers.json only.
+
+Writes reports/diff_v3_vs_new.md.
 """
 from __future__ import annotations
 
-import csv
 import json
-import math
-import sqlite3
+import re
+import subprocess
 import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(REPO / "src"))
-from slop_bench.noise_filter import is_noise, sql_hallucination_clause  # noqa: E402
-
-Z = 1.959963984540054
-
-# ── Published constants (from the committed artifacts) ────────────────────────
-# Per-model (halluc, total) as hard-coded in the original make_figure2.py.
-PUBLISHED_MODEL = {
-    "haiku-4-5": (1399, 30303),
-    "sonnet-4-6": (1875, 34633),
-    "gemini-2.5-pro": (1983, 34168),
-    "deepseek-v3.2": (1537, 26116),
-    "gpt-5.4-mini": (1194, 19589),
-}
-# Preprint §9.2 / README: 127 = 109 PyPI + 18 npm.
-PUBLISHED_UNIVERSAL_PREPRINT = {"pypi": 109, "npm": 18, "total": 127}
+PDF = REPO / "data" / "private" / "papers" / "v3.pdf"
 MODELS = ["haiku-4-5", "sonnet-4-6", "gemini-2.5-pro", "deepseek-v3.2", "gpt-5.4-mini"]
+LABEL = {"haiku-4-5": "Claude Haiku 4.5", "sonnet-4-6": "Claude Sonnet 4.6", "gemini-2.5-pro": "Gemini 2.5 Pro",
+         "deepseek-v3.2": "DeepSeek V3.2", "gpt-5.4-mini": "GPT-5.4-mini"}
+
+# ── published v3 values: (value, quote that must occur in v3.pdf) ─────────────
+V3 = {
+    "generations": (199845, "a total of 199,845"),
+    "prompts_per_model": (39969, "approximately 39,969 per model"),
+    "appx_b": ({"anthropic": 79933, "openai": 39969, "google": 39968, "deepseek": 39975},
+               "79,933 $375.26"),
+    "appx_b_google": (39968, "gemini-2.5-pro 39,968"),
+    "appx_b_deepseek": (39975, "39,975 $11.11"),
+    "rate": ({"haiku-4-5": 4.62, "sonnet-4-6": 5.41, "gemini-2.5-pro": 5.80, "deepseek-v3.2": 5.89,
+              "gpt-5.4-mini": 6.10}, "Claude Haiku 4.5 5.49 2.76 +2.73 4.62"),
+    "rate_quotes": ["Claude Sonnet 4.6 6.63 2.62 +4.01 5.41", "Gemini 2.5 Pro 6.75 3.61 +3.14 5.80",
+                    "DeepSeek V3.2 6.69 3.78 +2.91 5.89", "GPT-5.4-mini 7.27 3.14 +4.13 6.10"],
+    "by_language": ({"haiku-4-5": (5.49, 2.76), "sonnet-4-6": (6.63, 2.62), "gemini-2.5-pro": (6.75, 3.61),
+                     "deepseek-v3.2": (6.69, 3.78), "gpt-5.4-mini": (7.27, 3.14)}, "Python JavaScript"),
+    "range": ((4.62, 6.10), "we measure 4.62%–6.10%"),
+    "spread_pp": (1.48, "(1.48"),
+    "chi2_significant": (5, "5 are significant after Holm–"),
+    "chi2_max": (52.49, "χ² = 52.49"),
+    "smallest_pair_delta": (0.08, "DeepSeek V3.2 vs. Gemini 2.5 Pro (Δ = 0.08 percentage points)"),
+    "jaccard": ((0.222, 0.179, 0.343), "mean Jaccard is 0.222 (range 0.179–0.343)"),
+    "universal": ((127, 109, 18), "127 names (109 PyPI, 18 npm)"),
+    "registrable": ((53, 41, 12), "53 (41 PyPI, 12 npm)"),
+    "refusals": ({"sonnet-4-6": 18.79, "haiku-4-5": 1.27, "gpt-5.4-mini": 32.14, "gemini-2.5-pro": 8.14,
+                  "deepseek-v3.2": 2.08}, "Claude Sonnet 4.6 claude-sonnet-4-6 default 18.79%"),
+    "refusal_quotes": ["claude-haiku-4-5-20251001 default 1.27%", "minimal 32.14%", "gemini-2.5-pro default 8.14%",
+                       "deepseek-chat (alias; see §8) default 2.08%"],
+    "mentions_per_model": (1300, "more than 1,300 hallucinated mentions per model"),
+    "llm_vs_so": ("LLM-synthesized > Stack Overflow",
+                  "LLM-synthesized prompts produce higher hallucination rates than curated Stack Overflow prompts"),
+}
 
 
-def wilson(h, t):
-    if not t:
-        return 0.0
-    return 100 * h / t
+def _norm(t: str) -> str:
+    return re.sub(r"\s+", " ", t.replace("−", "-"))
 
 
-def load_disclosure():
-    def rd(f):
-        return set(r[0].strip() for r in csv.reader((REPO / "disclosure" / f).open()) if r)
-    return rd("pypi_universal_hallucinations.csv"), rd("npm_universal_hallucinations.csv")
+def pdf_check() -> str:
+    texts = []
+    for args in (["pdftotext", "-enc", "UTF-8"], ["pdftotext", "-enc", "UTF-8", "-layout"]):
+        raw = subprocess.run(args + [str(PDF), "-"], capture_output=True, text=True, check=True).stdout
+        texts.append(_norm(re.sub(r"(?<=\w)-\s*\n\s*(?=\w)", "-", raw)))
+    quotes = [v[1] for k, v in V3.items() if isinstance(v, tuple)] + V3["rate_quotes"] + V3["refusal_quotes"]
+    missing = [q for q in quotes if not any(_norm(q) in t for t in texts)]
+    if missing:
+        raise SystemExit(f"{len(missing)} v3 quote(s) not found in v3.pdf: {missing}")
+    return f"{len(quotes)} quotes found"
 
 
-def universal_on(db_uri, halluc_mode="new"):
-    """Return (pypi_set, npm_set) universal set on a db.
-    halluc_mode 'new' uses live-aware clause; 'origfilter' ignores live (original)."""
-    con = sqlite3.connect(db_uri, uri=True)
-    cur = con.cursor()
-    if halluc_mode == "new":
-        clause = sql_hallucination_clause("h.package_norm", "v.exists_in_master", "v.live_status")
-    else:  # original data has live_status all-NULL, so this equals exists=0 AND keep
-        clause = sql_hallucination_clause("h.package_norm", "v.exists_in_master", "v.live_status")
-    cur.execute(f"""
-        WITH mh AS (SELECT DISTINCT g.model_key, h.package_norm, g.language
-            FROM generations g JOIN heuristic_hits h ON h.generation_id=g.id
-            JOIN validations v ON v.package_norm=h.package_norm
-                 AND v.registry=(CASE WHEN g.language='python' THEN 'pypi' ELSE 'npm' END)
-            WHERE {clause})
-        SELECT package_norm, language FROM mh
-        GROUP BY package_norm, language HAVING COUNT(DISTINCT model_key)=5""")
-    rows = cur.fetchall()
-    con.close()
-    return (set(p for p, l in rows if l == "python"),
-            set(p for p, l in rows if l == "javascript"))
+def pct(x: float) -> str:
+    return f"{x:.2f}%"
 
 
-def val_lookup(db_uri):
-    con = sqlite3.connect(db_uri, uri=True)
-    d = {}
-    for norm, reg, ex, live in con.execute(
-            "SELECT package_norm, registry, exists_in_master, live_status FROM validations"):
-        d[(norm, reg)] = (ex, live)
-    con.close()
-    return d
+def reason_model(n: dict, m: str) -> str:
+    d = n["decomposition_v3_to_c"]["mention"][m]
+    a = n["recompute"]["a_mention"]["per_model"][m]
+    parts = []
+    s = d.get("v3_halluc_now_stdlib_or_builtin", 0)
+    if s:
+        parts.append(f"−{s} stdlib/built-in")
+    for k, lab in (("v3_halluc_now_D15_noise", "D15"),
+                   ("v3_halluc_now_D1_D11_pipreqs_import_only", "D1/D11"),
+                   ("v3_halluc_now_FALSE_POSITIVE", "existed before generation")):
+        if d.get(k):
+            parts.append(f"−{d[k]} {lab}")
+    unk = sum(v for k, v in d.items() if k.startswith("v3_halluc_now_UNKNOWN"))
+    if unk:
+        parts.append(f"−{unk} UNKNOWN")
+    if d.get("v3_halluc_now_v3_existing"):
+        parts.append(f"−{d['v3_halluc_now_v3_existing']} spelling variant of an existing name (PEP 503)")
+    if d.get("v3_halluc_now_noise_filter"):
+        parts.append(f"−{d['v3_halluc_now_noise_filter']} noise filter on the normalized name")
+    known = ("UNKNOWN", "FALSE_POSITIVE", "D1_D11_pipreqs_import_only", "D15_noise", "stdlib_or_builtin",
+             "v3_existing", "noise_filter")
+    other = sum(v for k, v in d.items() if k.startswith("v3_halluc_now_") and
+                not k[len("v3_halluc_now_"):].startswith(known))
+    if other:
+        parts.append(f"−{other} other")
+    if d.get("new_halluc_not_in_v3"):
+        parts.append(f"+{d['new_halluc_not_in_v3']} new")
+    c = n["recompute"]["c_mention"]["per_model"][m]
+    dn = a["total"] - c["total"]
+    tail = f"; denominator −{dn} (D15 noise)" if dn else ""
+    return (f"hallucinated mentions {a['halluc']} → {c['halluc']}: " + ", ".join(parts) + tail
+            + ". Published vs (a): later noise-filter revision")
 
 
-def main():
-    import argparse
-    ap = argparse.ArgumentParser()
-    ap.add_argument("--db", default="/tmp/runs-snap.db")
-    args = ap.parse_args()
-
-    new = json.loads((REPO / "reports" / "recompute.json").read_text())
-    disc_py, disc_js = load_disclosure()
-    orig_ex = val_lookup("file:data/runs.db?mode=ro")   # OLD exists (+ null live)
-    new_ex = val_lookup(f"file:{args.db}?mode=ro")       # fresh exists + live
-
-    # reproducible baseline: current code on ORIGINAL data
-    repro_py, repro_js = universal_on("file:data/runs.db?mode=ro", "origfilter")
-    new_py, new_js = set(new["universal"]["pypi"]), set(new["universal"]["npm"])
-
-    L = ["# Published vs. recomputed — every headline number", "",
-         "Three columns where they differ:",
-         "- **published** — the value in the preprint / figure / disclosure files as shipped",
-         "- **repro(orig)** — what the *current* code produces on the *original* database "
-         "(old master list, no live check) — i.e. what was actually reproducible",
-         "- **new** — recomputed on fresh master lists + live registry status", "",
-         "## Per-model hallucination rate", "",
-         "| Model | published | new | Δ (pp) |", "|---|---|---|---:|"]
+def build(n: dict) -> dict:
+    check = pdf_check()
+    rc, rg, ra = n["recompute"]["c_mention"], n["recompute"]["c_generation"], n["recompute"]["a_mention"]
+    rows = []
+    g = n["generations_table"]
+    miss = {m: k for m, k in g["missing_per_model"].items() if k}
+    rows.append({"item": "Generations", "v3": f"{V3['generations'][0]:,}", "repro": f"{g['rows']:,} rows",
+                 "new": f"{g['rows']:,} (stored rows, D6)",
+                 "reason": f"{g['distinct_prompts']:,} prompts × 5 = {g['prompts_x_models']:,}; rows missing in the DB: "
+                           f"{miss}. Appendix B per-provider counts (Google {V3['appx_b_google'][0]:,}, DeepSeek "
+                           f"{V3['appx_b_deepseek'][0]:,}) differ from the DB ({g['per_model']['gemini-2.5-pro']:,}, "
+                           f"{g['per_model']['deepseek-v3.2']:,}) and are not reproducible from it"})
     for m in MODELS:
-        ph, pt = PUBLISHED_MODEL[m]
-        pr = wilson(ph, pt)
-        nd = new["per_model"][m]
-        L.append(f"| `{m}` | {pr:.2f}% ({ph}/{pt}) | {nd['rate']:.2f}% ({nd['halluc']}/{nd['total']}) "
-                 f"| {nd['rate']-pr:+.2f} |")
+        p = V3["rate"][0][m]
+        a, c, cg = ra["per_model"][m], rc["per_model"][m], rg["per_model"][m]
+        rows.append({"item": f"Rate {LABEL[m]}", "v3": pct(p), "repro": f"{pct(a['rate'])} ({a['halluc']}/{a['total']})",
+                     "new": f"mention {pct(c['rate'])} [{c['ci95'][0]:.2f}–{c['ci95'][1]:.2f}]; generation "
+                            f"{pct(cg['rate'])} [{cg['ci95'][0]:.2f}–{cg['ci95'][1]:.2f}]",
+                     "reason": reason_model(n, m)})
+    for lvl, r in (("mention", rc), ("generation", rg)):
+        rates = {m: r["per_model"][m]["rate"] for m in MODELS}
+        lo, hi = min(rates, key=rates.get), max(rates, key=rates.get)
+        rows.append({"item": f"Range ({lvl})", "v3": f"{V3['range'][0][0]:.2f}–{V3['range'][0][1]:.2f}%",
+                     "repro": f"{min(ra['per_model'][m]['rate'] for m in MODELS):.2f}–"
+                              f"{max(ra['per_model'][m]['rate'] for m in MODELS):.2f}%" if lvl == "mention" else "",
+                     "new": f"{rates[lo]:.2f}% ({lo}) – {rates[hi]:.2f}% ({hi}); spread {rates[hi] - rates[lo]:.2f} pp",
+                     "reason": "per-model changes above" if lvl == "mention" else
+                     "PREREG §3.1 unit (generation with ≥1 hallucination; denominator includes refusals and "
+                     "generations without any package)"})
+    for lvl, r in (("mention", rc), ("generation", rg)):
+        hg = next(x for x in r["chi2"]["pairs"] if {x["a"], x["b"]} == {"haiku-4-5", "gpt-5.4-mini"})
+        rows.append({"item": f"χ² + Holm ({lvl})",
+                     "v3": f"{V3['chi2_significant'][0]}/10 significant; Haiku vs GPT χ² {V3['chi2_max'][0]}",
+                     "repro": f"{ra['chi2']['n_significant']}/10" if lvl == "mention" else "",
+                     "new": f"{r['chi2']['n_significant']}/10 significant; Haiku vs GPT χ² {hg['chi2']:.2f}, "
+                            f"Δ {hg['delta_pp']:.2f} pp",
+                     "reason": "recomputed from the new per-model counts"})
+        perm = r["permutation"]
+        if perm is None:
+            continue
+        agree = sum(1 for x, y in zip(r["chi2"]["pairs"], perm["pairs"]) if x["significant"] == (y["p_perm"] < 0.05))
+        rows.append({"item": f"Permutation test ({lvl})", "v3": "agrees with χ² on all significant pairs",
+                     "repro": "", "new": f"{perm['n_significant']}/10 with p<0.05; agrees with χ²+Holm on {agree}/10 pairs",
+                     "reason": "10 000 resamples, seed 42"})
+        dg = next(x for x in r["chi2"]["pairs"] if {x["a"], x["b"]} == {"deepseek-v3.2", "gemini-2.5-pro"})
+        rows.append({"item": f"DeepSeek vs Gemini Δ ({lvl})", "v3": f"{V3['smallest_pair_delta'][0]:.2f} pp (ns)",
+                     "repro": "", "new": f"{dg['delta_pp']:.2f} pp ({'significant' if dg['significant'] else 'ns'})",
+                     "reason": "recomputed"})
+    j, ja = rc["jaccard"], ra["jaccard"]
+    pj = {(x["a"], x["b"]): x["jaccard"] for x in j["pairs"]}
+    pick = lambda a, b: pj.get((a, b), pj.get((b, a)))  # noqa: E731
+    rows.append({"item": "Jaccard mean (range)", "v3": "{:.3f} ({:.3f}–{:.3f})".format(*V3["jaccard"][0]),
+                 "repro": f"{ja['mean']:.3f} ({ja['min']:.3f}–{ja['max']:.3f})",
+                 "new": f"{j['mean']:.3f} ({j['min']:.3f}–{j['max']:.3f}); DeepSeek–GPT "
+                        f"{pick('deepseek-v3.2', 'gpt-5.4-mini'):.3f}; Haiku–Sonnet {pick('haiku-4-5', 'sonnet-4-6'):.3f}",
+                 "reason": "sets of names hallucinated as of generation (normalized names) instead of v3 raw keys"})
+    for m in MODELS:
+        py, js = V3["by_language"][0][m]
+        c = rc["by_model_language"][m]
+        a = ra["by_model_language"][m]
+        rows.append({"item": f"Python / JS {LABEL[m]}", "v3": f"{py:.2f} / {js:.2f}",
+                     "repro": f"{a['python']['rate']:.2f} / {a['javascript']['rate']:.2f}",
+                     "new": f"mention {c['python']['rate']:.2f} / {c['javascript']['rate']:.2f}; generation "
+                            f"{rg['by_model_language'][m]['python']['rate']:.2f} / "
+                            f"{rg['by_model_language'][m]['javascript']['rate']:.2f}",
+                     "reason": "per-language share of the changes above"})
+    ds = rc["by_dataset"]
+    llm = min(ds["LLM_AT"]["rate"], ds["LLM_LY"]["rate"]) > max(ds["SO_AT"]["rate"], ds["SO_LY"]["rate"])
+    rows.append({"item": "LLM vs SO prompts", "v3": V3["llm_vs_so"][0], "repro": "",
+                 "new": "; ".join(f"{k} {v['rate']:.2f}%" for k, v in ds.items()) +
+                        (" (holds)" if llm else " (does not hold)"), "reason": "recomputed (mention level)"})
+    u = n["universal"]
+    v3a = n["recompute"]["a_mention"]["universal"]
+    rows.append({"item": "Universal set, PyPI (109/121)", "v3": f"{V3['universal'][0][1]}",
+                 "repro": f"{u['v3_april_lists']['pypi']} in DB/April list; {v3a['n_pypi']} with the current noise filter",
+                 "new": f"{u['new_c']['pypi']}", "reason": "fate of each April-list name: " + json.dumps(
+                     u["april_list_fate"]["pypi"], sort_keys=True)})
+    rows.append({"item": "Universal set, npm", "v3": f"{V3['universal'][0][2]}",
+                 "repro": f"{u['v3_april_lists']['npm']}; {v3a['n_npm']} with the current noise filter",
+                 "new": f"{u['new_c']['npm']}",
+                 "reason": "fate of each April-list name: " + json.dumps(u["april_list_fate"]["npm"], sort_keys=True)})
+    rows.append({"item": "Universal set, total (127/139)", "v3": f"{V3['universal'][0][0]}",
+                 "repro": f"{sum(u['v3_april_lists'].values())}; {v3a['total']} with the current noise filter",
+                 "new": f"{u['new_c_total']}",
+                 "reason": "109 is not reproducible (the DB and the April list give 121); see the two rows above"})
+    rows.append({"item": "Registrable (53 = 41 + 12)", "v3": "{} ({} PyPI, {} npm)".format(*V3["registrable"][0]),
+                 "repro": "", "new": "not recomputed",
+                 "reason": "registrability is a registry decision (PREREG §2: BLOCKED_BY_REGISTRY only when the registry "
+                           "says so); the April PyPI reply gives a count, not names; HTTP 404 does not mean registrable"})
+    for m in MODELS:
+        r = rc["refusals"][m]
+        rows.append({"item": f"Refusals {LABEL[m]}", "v3": pct(V3["refusals"][0][m]),
+                     "repro": f"{r['rate']:.2f}% ({r['refusals']}/{r['generations']})", "new": f"{r['rate']:.2f}%",
+                     "reason": "refusals do not depend on the classification; difference = refusal definition in the "
+                               "v3 pipeline vs generated_code NULL/'none'/empty"})
+    lo = min(rc["per_model"][m]["halluc"] for m in MODELS)
+    rows.append({"item": "Hallucinated mentions per model", "v3": f"more than {V3['mentions_per_model'][0]:,}",
+                 "repro": f"min {min(ra['per_model'][m]['halluc'] for m in MODELS):,}", "new": f"min {lo:,}",
+                 "reason": "per-model changes above"})
+    return {"pdf_check": check, "rows": rows}
 
-    L += ["", "## Universal hallucination set (invented by all 5 models)", "",
-          "| basis | PyPI | npm | total |", "|---|---:|---:|---:|",
-          f"| preprint §9.2 / README | {PUBLISHED_UNIVERSAL_PREPRINT['pypi']} | "
-          f"{PUBLISHED_UNIVERSAL_PREPRINT['npm']} | {PUBLISHED_UNIVERSAL_PREPRINT['total']} |",
-          f"| disclosure CSVs (as sent) | {len(disc_py)} | {len(disc_js)} | {len(disc_py)+len(disc_js)} |",
-          f"| repro(orig): current code, original data | {len(repro_py)} | {len(repro_js)} | {len(repro_py)+len(repro_js)} |",
-          f"| **new**: fresh lists + live | **{len(new_py)}** | **{len(new_js)}** | **{len(new_py)+len(new_js)}** |",
-          "",
-          f"> The preprint's **{PUBLISHED_UNIVERSAL_PREPRINT['pypi']}** PyPI names are not reproducible "
-          f"from the code or notebooks: the code yields **{len(repro_py)}** on the original data "
-          f"(matching the disclosure CSV's {len(disc_py)} up to the `usr` extractor artifact the new "
-          f"filter removes). Treat 109/127 as an erratum target.", ""]
 
-    def reason(name, reg):
-        oe = orig_ex.get((name, reg), (None, None))[0]
-        ne, live = new_ex.get((name, reg), (None, None))
-        if is_noise(name):
-            return f"noise-filter drop (extractor/placeholder artifact)"
-        if ne == 1 and live == 200:
-            return "now EXISTS in registry (fresh list + live HTTP 200)"
-        if ne == 1:
-            return "now in fresh master list (registered since April snapshot)"
-        if oe == 1 and ne == 0:
-            return "was in April master list, ABSENT from fresh registry (yanked/removed; live "\
-                   f"{live})"
-        return f"exists_old={oe} exists_new={ne} live={live}"
-
-    L += ["## Names that LEFT the universal set (disclosure − new), with reason", ""]
-    for reg, disc, newset in (("pypi", disc_py, new_py), ("npm", disc_js, new_js)):
-        gone = sorted(disc - newset)
-        L.append(f"**{reg}: {len(gone)} left**")
-        for n in gone:
-            L.append(f"- `{n}` — {reason(n, reg)}")
-        L.append("")
-
-    L += ["## Names that ENTERED the universal set (new − disclosure), with reason", ""]
-    for reg, disc, newset in (("pypi", disc_py, new_py), ("npm", disc_js, new_js)):
-        added = sorted(newset - disc)
-        L.append(f"**{reg}: {len(added)} entered**")
-        for n in added:
-            L.append(f"- `{n}` — {reason(n, reg)}")
-        L.append("")
-
-    # readiness criterion
-    still = new["universal"]["any_live_200"]
-    L += ["## Readiness criterion", "",
-          f"- Universal-set names returning HTTP 200 from the registry: **{len(still)}** (must be 0)."
-          + ("" if not still else f" — {still}"), ""]
-
-    out = REPO / "reports" / "diff_published_vs_new.md"
-    out.write_text("\n".join(L) + "\n")
-    print(f"wrote {out}")
+def write(n: dict) -> None:
+    L = ["# v3 → new (task 1, stage A)", "", "Generated by `scripts/make_diff_report.py` from `reports/numbers.json`. "
+         "v3 = published value (checked against v3.pdf); (a) = v3 method on the DB; new = live revalidation "
+         "(variant c). No package names.", "", "| Number | v3 | (a) | New | Reason |", "|---|---|---|---|---|"]
+    for r in n["v3_to_new"]["rows"]:
+        L.append(f"| {r['item']} | {r['v3']} | {r.get('repro', '')} | {r['new']} | {r['reason']} |")
+    L += ["", n["v3_to_new"]["pdf_check"], ""]
+    (REPO / "reports" / "diff_v3_vs_new.md").write_text("\n".join(L) + "\n")
 
 
 if __name__ == "__main__":
-    main()
+    nums = json.loads((REPO / "reports" / "numbers.json").read_text())
+    nums["v3_to_new"] = build(nums)
+    write(nums)
+    print("wrote reports/diff_v3_vs_new.md", file=sys.stderr)
