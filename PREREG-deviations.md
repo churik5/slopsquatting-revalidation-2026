@@ -89,3 +89,11 @@ D18. arXiv shows submission times for each version, not announcement times. The 
      exposure start is the submission time of the first version that prints the name
      (from the arXiv submission history), used as a proxy for the announcement date.
      The difference is at most a few days.
+
+D19. Written after stage B. Safety check outside the pre-registered analysis: the only
+     registered name in group A (an npm name printed in the paper) was checked
+     statically. Its tarball was downloaded and listed in an isolated folder; nothing
+     was installed or run. PREREG section 5 said only registry metadata would be read,
+     so this is a deviation, made for safety. It does not change any stage B number or
+     category. The result (an empty placeholder: package.json only, no scripts, no
+     dependencies, no code) is reported separately.
